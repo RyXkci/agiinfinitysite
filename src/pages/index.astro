@@ -21,7 +21,7 @@ import "../styles/global.css";
         position: fixed;
         height: 100vh;
         inset: 0;
-        /* z-index: 9999; */
+        z-index: 9999;
         mix-blend-mode: screen;
       }
 
@@ -35,6 +35,7 @@ import "../styles/global.css";
       }
       .circle-group {
         transform-origin: center;
+        opacity: 0;
       }
 
       @keyframes rotate {
@@ -69,6 +70,8 @@ import "../styles/global.css";
         }
       }
       .hero {
+        position: sticky;
+        top: 0;
         height: 100vh;
         width: 100%;
         display: flex;
@@ -82,6 +85,7 @@ import "../styles/global.css";
           rgba(0, 212, 255, 1) 10%,
           rgba(26, 26, 46, 1) 32%
         );
+        /* background: black; */
       }
 
       .hero-title {
@@ -91,6 +95,7 @@ import "../styles/global.css";
         grid-column: 1/1;
         grid-row: 1;
         width: 100%; /*pushing it to side of grid column */
+        opacity: 0;
       }
       .hero-subtitle {
         font-family: "JetBrains Mono", monospace;
@@ -110,17 +115,21 @@ import "../styles/global.css";
         grid-column: 1/3;
         grid-row: 3;
         width: 100%; /*pushing it to side of grid column */
+        opacity: 0;
       }
       .hero-chip-img-container {
         grid-column: 2/3;
         grid-row: 2/3;
         height: 200px;
-        width: 100px;
+        width: 200px;
         background-image: url("../images/microchip.png");
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
         z-index: 2;
+        transform: scale(0);
+        /* opacity: 0; */
+        transform-origin: center;
       }
 
       .hero-wave-img-container {
@@ -131,6 +140,14 @@ import "../styles/global.css";
         background-image: url("../images/wave-microchip.png");
         background-repeat: no-repeat;
         background-size: contain;
+        opacity: 0;
+      }
+
+      .svg-rotate-trigger {
+        position: sticky;
+        top: 0;
+        height: 70vh;
+        background: red;
       }
     </style>
   </head>
@@ -288,16 +305,93 @@ import "../styles/global.css";
         <div class="hero-chip-img-container"></div>
         <div class="hero-wave-img-container"></div>
       </div>
-      <div class="hero-2"></div>
     </div>
+    <div class="svg-rotate-trigger"></div>
 
     <script>
       import {
         animate,
         createTimeline,
         createTimer,
-        // ...other methods
+        utils,
+        text,
+        stagger,
+        onScroll,
       } from "animejs";
+
+      // const svgScrollAnimation = animate(".circle-group", {
+      //   rotate: "1turn",
+      //   ease: "linear",
+      //   autoplay: onScroll({
+      //     container: ".svg-container",
+      //     target: ".svg-rotate-trigger",
+      //     enter: "bottom top",
+      //     leave: "+=100 top",
+      //     sync: true,
+      //     debug: true,
+      //   }),
+      // });
+
+      const tl = createTimeline()
+      .add(".circle-group", {
+        opacity: 1,
+        delay: stagger(500, { reversed: true }),
+        duration: stagger(500, { start: 500 }),
+      })
+     .add(
+          ".hero-chip-img-container",
+          {
+            scale: {
+              from: "0",
+              duration: 3000,
+            },
+            rotate: {
+              to: "360deg",
+              duration: 5000,
+            },
+          },
+          2000
+        )
+
+        const scrolltl1 = createTimeline(
+          {
+           autoplay: onScroll({
+            container: ".svg-container",
+            target: ".svg-rotate-trigger",
+            enter: "bottom +=100",
+            leave: "+=100 top",
+            sync: true,
+            // debug: true,
+          }),
+          }
+        )
+        .add(".circle-group", {
+          rotate: "1turn",
+          ease: "linear",
+          scale: '0'
+        })
+        .add('.hero-chip-img-container', {
+          rotate: "1turn",
+          ease: "linear",
+          scale: '0'
+        })
+   
+        // const tlMain = createTimeline()
+        // .sync(tl)
+        // .sync(scrolltl1)
+
+        // .add(".circle-group", {
+        //   rotate: "1turn",
+        //   ease: "linear",
+        //   autoplay: onScroll({
+        //     container: ".svg-container",
+        //     target: ".svg-rotate-trigger",
+        //     enter: "bottom top",
+        //     leave: "+=100 top",
+        //     sync: true,
+        //     debug: true,
+        //   }),
+        // });
     </script>
   </body>
 </html>

@@ -17,6 +17,7 @@ import "../styles/global.css";
     <title>Astro</title>
     <style>
       /*  SVG STUFF */
+
       #svg-container {
         position: fixed;
         height: 100vh;
@@ -58,8 +59,24 @@ import "../styles/global.css";
         width: 100%;
         display: grid;
         place-items: center;
+        position: relative;
       }
 
+      .hero-one::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin-inline: auto;
+        width: fit-content;
+        width: 300px;
+        height: 300px;
+        background: radial-gradient(circle 400px, #FFD700eb, #000814);
+        filter: blur(100px);
+        z-index: 2;
+
+        border-radius: 50%;
+      }
       @media screen and (min-width: 600px) {
         .hero-one {
           height: 70%;
@@ -78,14 +95,17 @@ import "../styles/global.css";
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        background: #c2f9ff;
+        /* background: #c2f9ff;
         background: radial-gradient(
           circle,
           rgba(194, 249, 255, 1) 2%,
           rgba(0, 212, 255, 1) 10%,
           rgba(26, 26, 46, 1) 32%
-        );
-        /* background: black; */
+        ); */
+        background: black;
+        /* background-image: url('../images/hero-bg-1.jpg');
+       background-position: center;
+       background-size: contain; */
       }
 
       .hero-title {
@@ -103,6 +123,7 @@ import "../styles/global.css";
         grid-column: 1/1;
         grid-row: 2;
         width: 100%; /*pushing it to side of grid column */
+        opacity: 0;
       }
       .hero-subtitle span {
         display: block;
@@ -147,148 +168,73 @@ import "../styles/global.css";
         position: sticky;
         top: 0;
         height: 70vh;
-        background: red;
+        /* background: red; */
       }
     </style>
   </head>
   <body>
     <div id="svg-container" class="svg-center">
-      <svg class="circles-svg" width="600" height="600" viewBox="0 0 600 600">
-        <!-- New outermost circle (largest dots, furthest) -->
-        <g class="circle-group circle-outer">
-          <circle class="dot" cx="300" cy="50" r="6"></circle>
-          <circle class="dot" cx="450" cy="75" r="6"></circle>
-          <circle class="dot" cx="550" cy="200" r="6"></circle>
-          <circle class="dot" cx="575" cy="300" r="6"></circle>
-          <circle class="dot" cx="550" cy="400" r="6"></circle>
-          <circle class="dot" cx="450" cy="525" r="6"></circle>
-          <circle class="dot" cx="300" cy="550" r="6"></circle>
-          <circle class="dot" cx="150" cy="525" r="6"></circle>
-          <circle class="dot" cx="50" cy="400" r="6"></circle>
-          <circle class="dot" cx="25" cy="300" r="6"></circle>
-          <circle class="dot" cx="50" cy="200" r="6"></circle>
-          <circle class="dot" cx="150" cy="75" r="6"></circle>
-          <circle class="dot" cx="388" cy="63" r="6"></circle>
-          <circle class="dot" cx="537" cy="112" r="6"></circle>
-          <circle class="dot" cx="537" cy="188" r="6"></circle>
-          <circle class="dot" cx="537" cy="412" r="6"></circle>
-          <circle class="dot" cx="537" cy="488" r="6"></circle>
-          <circle class="dot" cx="388" cy="537" r="6"></circle>
-          <circle class="dot" cx="212" cy="537" r="6"></circle>
-          <circle class="dot" cx="63" cy="488" r="6"></circle>
-          <circle class="dot" cx="63" cy="412" r="6"></circle>
-          <circle class="dot" cx="63" cy="188" r="6"></circle>
-          <circle class="dot" cx="63" cy="112" r="6"></circle>
-          <circle class="dot" cx="212" cy="63" r="6"></circle>
+      <svg
+        width="716"
+        height="584"
+        viewBox="0 0 716 584"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g id="Group 2">
+          <path
+            id="circle-3"
+            d="M349 116.5C455.548 116.5 541.5 194.849 541.5 291C541.5 387.151 455.548 465.5 349 465.5C242.452 465.5 156.5 387.151 156.5 291C156.5 194.849 242.452 116.5 349 116.5Z"
+            stroke="url(#paint0_linear_73_119)"
+            stroke-opacity="0.27"
+            stroke-width="3"></path>
+          <path
+            id="circle-2"
+            d="M348.5 66.5C489.627 66.5 603.5 167.737 603.5 292C603.5 416.263 489.627 517.5 348.5 517.5C207.373 517.5 93.5 416.263 93.5 292C93.5 167.737 207.373 66.5 348.5 66.5Z"
+            stroke="url(#paint1_linear_73_119)"
+            stroke-width="2"></path>
+          <path
+            id="circle-1"
+            d="M358 2.5C554.838 2.5 713.5 132.566 713.5 292C713.5 451.434 554.838 581.5 358 581.5C161.162 581.5 2.5 451.434 2.5 292C2.5 132.566 161.162 2.5 358 2.5Z"
+            stroke="url(#paint2_linear_73_119)"
+            stroke-width="1"></path>
         </g>
-
-        <!-- Previous outermost circle (second largest dots) -->
-        <g class="circle-group circle-0">
-          <circle class="dot" cx="400" cy="100" r="5"></circle>
-          <circle class="dot" cx="300" cy="100" r="5"></circle>
-          <circle class="dot" cx="424" cy="141" r="5"></circle>
-          <circle class="dot" cx="500" cy="300" r="5"></circle>
-          <circle class="dot" cx="424" cy="459" r="5"></circle>
-          <circle class="dot" cx="300" cy="500" r="5"></circle>
-          <circle class="dot" cx="400" cy="600" r="5"></circle>
-          <circle class="dot" cx="176" cy="459" r="5"></circle>
-          <circle class="dot" cx="100" cy="300" r="5"></circle>
-          <circle class="dot" cx="176" cy="141" r="5"></circle>
-          <circle class="dot" cx="362" cy="118" r="5"></circle>
-          <circle class="dot" cx="482" cy="238" r="5"></circle>
-          <circle class="dot" cx="482" cy="362" r="5"></circle>
-          <circle class="dot" cx="362" cy="482" r="5"></circle>
-          <circle class="dot" cx="238" cy="482" r="5"></circle>
-          <circle class="dot" cx="118" cy="362" r="5"></circle>
-          <circle class="dot" cx="118" cy="238" r="5"></circle>
-          <circle class="dot" cx="238" cy="118" r="5"></circle>
-        </g>
-        <g class="circle-group circle-1">
-          <circle class="dot" cx="300" cy="100" r="5"></circle>
-          <circle class="dot" cx="424" cy="141" r="5"></circle>
-          <circle class="dot" cx="500" cy="300" r="5"></circle>
-          <circle class="dot" cx="424" cy="459" r="5"></circle>
-          <circle class="dot" cx="300" cy="500" r="5"></circle>
-          <circle class="dot" cx="176" cy="459" r="5"></circle>
-          <circle class="dot" cx="100" cy="300" r="5"></circle>
-          <circle class="dot" cx="176" cy="141" r="5"></circle>
-          <circle class="dot" cx="362" cy="118" r="5"></circle>
-          <circle class="dot" cx="482" cy="238" r="5"></circle>
-          <circle class="dot" cx="482" cy="362" r="5"></circle>
-          <circle class="dot" cx="362" cy="482" r="5"></circle>
-          <circle class="dot" cx="238" cy="482" r="5"></circle>
-          <circle class="dot" cx="118" cy="362" r="5"></circle>
-          <circle class="dot" cx="118" cy="238" r="5"></circle>
-          <circle class="dot" cx="238" cy="118" r="5"></circle>
-        </g>
-
-        <!-- Third circle -->
-        <g class="circle-group circle-2">
-          <circle class="dot" cx="300" cy="150" r="4"></circle>
-          <circle class="dot" cx="389" cy="189" r="4"></circle>
-          <circle class="dot" cx="450" cy="300" r="4"></circle>
-          <circle class="dot" cx="389" cy="411" r="4"></circle>
-          <circle class="dot" cx="300" cy="450" r="4"></circle>
-          <circle class="dot" cx="211" cy="411" r="4"></circle>
-          <circle class="dot" cx="150" cy="300" r="4"></circle>
-          <circle class="dot" cx="211" cy="189" r="4"></circle>
-          <circle class="dot" cx="339" cy="161" r="4"></circle>
-          <circle class="dot" cx="439" cy="261" r="4"></circle>
-          <circle class="dot" cx="439" cy="339" r="4"></circle>
-          <circle class="dot" cx="339" cy="439" r="4"></circle>
-          <circle class="dot" cx="261" cy="439" r="4"></circle>
-          <circle class="dot" cx="161" cy="339" r="4"></circle>
-          <circle class="dot" cx="161" cy="261" r="4"></circle>
-          <circle class="dot" cx="261" cy="161" r="4"></circle>
-        </g>
-
-        <!-- Second circle -->
-        <g class="circle-group circle-3">
-          <circle class="dot" cx="300" cy="200" r="3"></circle>
-          <circle class="dot" cx="354" cy="225" r="3"></circle>
-          <circle class="dot" cx="400" cy="300" r="3"></circle>
-          <circle class="dot" cx="354" cy="375" r="3"></circle>
-          <circle class="dot" cx="300" cy="400" r="3"></circle>
-          <circle class="dot" cx="246" cy="375" r="3"></circle>
-          <circle class="dot" cx="200" cy="300" r="3"></circle>
-          <circle class="dot" cx="246" cy="225" r="3"></circle>
-          <circle class="dot" cx="327" cy="209" r="3"></circle>
-          <circle class="dot" cx="391" cy="273" r="3"></circle>
-          <circle class="dot" cx="391" cy="327" r="3"></circle>
-          <circle class="dot" cx="327" cy="391" r="3"></circle>
-          <circle class="dot" cx="273" cy="391" r="3"></circle>
-          <circle class="dot" cx="209" cy="327" r="3"></circle>
-          <circle class="dot" cx="209" cy="273" r="3"></circle>
-          <circle class="dot" cx="273" cy="209" r="3"></circle>
-        </g>
-
-        <!-- Third innermost circle -->
-        <g class="circle-group circle-4">
-          <circle class="dot" cx="300" cy="230" r="2"></circle>
-          <circle class="dot" cx="321" cy="242" r="2"></circle>
-          <circle class="dot" cx="330" cy="270" r="2"></circle>
-          <circle class="dot" cx="370" cy="300" r="2"></circle>
-          <circle class="dot" cx="330" cy="330" r="2"></circle>
-          <circle class="dot" cx="321" cy="358" r="2"></circle>
-          <circle class="dot" cx="300" cy="370" r="2"></circle>
-          <circle class="dot" cx="279" cy="358" r="2"></circle>
-          <circle class="dot" cx="270" cy="330" r="2"></circle>
-          <circle class="dot" cx="230" cy="300" r="2"></circle>
-          <circle class="dot" cx="270" cy="270" r="2"></circle>
-          <circle class="dot" cx="279" cy="242" r="2"></circle>
-        </g>
-
-        <!-- Innermost circle (smallest dots) -->
-        <g class="circle-group circle-5">
-          <circle class="dot" cx="300" cy="280" r="1"></circle>
-          <circle class="dot" cx="314" cy="286" r="1"></circle>
-          <circle class="dot" cx="320" cy="300" r="1"></circle>
-          <circle class="dot" cx="314" cy="314" r="1"></circle>
-          <circle class="dot" cx="300" cy="320" r="1"></circle>
-          <circle class="dot" cx="286" cy="314" r="1"></circle>
-          <circle class="dot" cx="280" cy="300" r="1"></circle>
-          <circle class="dot" cx="286" cy="286" r="1"></circle>
-        </g>
+        <defs>
+          <linearGradient
+            id="paint0_linear_73_119"
+            x1="349"
+            y1="114"
+            x2="349"
+            y2="468"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stop-color="#FFD700"></stop>
+            <stop offset="1" stop-color="#998100" stop-opacity="0.49"></stop>
+          </linearGradient>
+          <linearGradient
+            id="paint1_linear_73_119"
+            x1="348.5"
+            y1="64"
+            x2="348.5"
+            y2="520"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stop-color="#FFD700"></stop>
+            <stop offset="1" stop-color="#998100" stop-opacity="0.13"></stop>
+          </linearGradient>
+          <linearGradient
+            id="paint2_linear_73_119"
+            x1="358"
+            y1="0"
+            x2="358"
+            y2="584"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stop-color="#FFD700"></stop>
+            <stop offset="0.480769" stop-color="#998100" stop-opacity="0.17"
+            ></stop>
+          </linearGradient>
+        </defs>
       </svg>
     </div>
     <div class="hero">
@@ -333,12 +279,12 @@ import "../styles/global.css";
       // });
 
       const tl = createTimeline()
-      .add(".circle-group", {
-        opacity: 1,
-        delay: stagger(500, { reversed: true }),
-        duration: stagger(500, { start: 500 }),
-      })
-     .add(
+        .add(".circle-group", {
+          opacity: 1,
+          delay: stagger(500, { reversed: true }),
+          duration: stagger(500, { start: 500 }),
+        })
+        .add(
           ".hero-chip-img-container",
           {
             scale: {
@@ -351,47 +297,45 @@ import "../styles/global.css";
             },
           },
           2000
-        )
+        );
 
-        const scrolltl1 = createTimeline(
-          {
-           autoplay: onScroll({
-            container: ".svg-container",
-            target: ".svg-rotate-trigger",
-            enter: "bottom +=100",
-            leave: "+=100 top",
-            sync: true,
-            // debug: true,
-          }),
-          }
-        )
+      const scrolltl1 = createTimeline({
+        autoplay: onScroll({
+          container: ".svg-container",
+          target: ".svg-rotate-trigger",
+          enter: "bottom +=100",
+          leave: "+=100 top",
+          sync: true,
+          // debug: true,
+        }),
+      })
         .add(".circle-group", {
           rotate: "1turn",
           ease: "linear",
-          scale: '0'
+          scale: "0",
         })
-        .add('.hero-chip-img-container', {
+        .add(".hero-chip-img-container", {
           rotate: "1turn",
           ease: "linear",
-          scale: '0'
-        })
-   
-        // const tlMain = createTimeline()
-        // .sync(tl)
-        // .sync(scrolltl1)
+          scale: "0",
+        });
 
-        // .add(".circle-group", {
-        //   rotate: "1turn",
-        //   ease: "linear",
-        //   autoplay: onScroll({
-        //     container: ".svg-container",
-        //     target: ".svg-rotate-trigger",
-        //     enter: "bottom top",
-        //     leave: "+=100 top",
-        //     sync: true,
-        //     debug: true,
-        //   }),
-        // });
+      // const tlMain = createTimeline()
+      // .sync(tl)
+      // .sync(scrolltl1)
+
+      // .add(".circle-group", {
+      //   rotate: "1turn",
+      //   ease: "linear",
+      //   autoplay: onScroll({
+      //     container: ".svg-container",
+      //     target: ".svg-rotate-trigger",
+      //     enter: "bottom top",
+      //     leave: "+=100 top",
+      //     sync: true,
+      //     debug: true,
+      //   }),
+      // });
     </script>
   </body>
 </html>

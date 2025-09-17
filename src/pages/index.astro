@@ -71,12 +71,35 @@ import "../styles/global.css";
         width: fit-content;
         width: 300px;
         height: 300px;
-        background: radial-gradient(circle 400px, #FFD700eb, #000814);
+        background: radial-gradient(circle 400px, #ffd700eb, #000814);
         filter: blur(100px);
         z-index: 2;
 
         border-radius: 50%;
+        transform: scale(var(--hero-pseudo-before-scale));
       }
+
+      .hero-one::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin-inline: auto;
+        width: fit-content;
+        height: 100%;
+        border-radius: 50%;
+        /* border: 1px solid red; */
+        width: var(--hero-pseudo-after-width);
+        background: var(--hero-pseudo-after-bg);
+        /* background-color: rgba(255, 215, 0, 0.5); */
+        transform: rotate(var(--hero-pseudo-after-rotate))
+          scale(var(--hero-pseudo-after-scale));
+
+        transform-origin: center;
+        filter: blur(10px);
+        mix-blend-mode: screen;
+      }
+
       @media screen and (min-width: 600px) {
         .hero-one {
           height: 70%;
@@ -141,14 +164,14 @@ import "../styles/global.css";
       .hero-chip-img-container {
         grid-column: 2/3;
         grid-row: 2/3;
-        height: 200px;
-        width: 200px;
+        height: 170px;
+        width: 150px;
         background-image: url("../images/microchip.png");
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
         z-index: 2;
-        transform: scale(0);
+        /* transform: scale(0); */
         /* opacity: 0; */
         transform-origin: center;
       }
@@ -181,19 +204,22 @@ import "../styles/global.css";
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <g id="Group 2">
+        <g id="circleGroup">
           <path
+            class="circle"
             id="circle-3"
             d="M349 116.5C455.548 116.5 541.5 194.849 541.5 291C541.5 387.151 455.548 465.5 349 465.5C242.452 465.5 156.5 387.151 156.5 291C156.5 194.849 242.452 116.5 349 116.5Z"
             stroke="url(#paint0_linear_73_119)"
             stroke-opacity="0.27"
             stroke-width="3"></path>
           <path
+            class="circle"
             id="circle-2"
             d="M348.5 66.5C489.627 66.5 603.5 167.737 603.5 292C603.5 416.263 489.627 517.5 348.5 517.5C207.373 517.5 93.5 416.263 93.5 292C93.5 167.737 207.373 66.5 348.5 66.5Z"
             stroke="url(#paint1_linear_73_119)"
             stroke-width="2"></path>
           <path
+            class="circle"
             id="circle-1"
             d="M358 2.5C554.838 2.5 713.5 132.566 713.5 292C713.5 451.434 554.838 581.5 358 581.5C161.162 581.5 2.5 451.434 2.5 292C2.5 132.566 161.162 2.5 358 2.5Z"
             stroke="url(#paint2_linear_73_119)"
@@ -257,6 +283,7 @@ import "../styles/global.css";
     <script>
       import {
         animate,
+        eases,
         createTimeline,
         createTimer,
         utils,
@@ -264,6 +291,9 @@ import "../styles/global.css";
         stagger,
         onScroll,
       } from "animejs";
+
+      const conicHerobg =
+        "conic-gradient(from 0deg, transparent 0 22%, rgba(255, 215, 0, .2) 22% 27%, transparent 27% 49%, rgba(255, 215, 0, .2) 49% 53%, transparent 53% 78%, rgba(255, 215, 0, .2) 78% 82%, transparent 82% 100%)";
 
       // const svgScrollAnimation = animate(".circle-group", {
       //   rotate: "1turn",
@@ -278,26 +308,64 @@ import "../styles/global.css";
       //   }),
       // });
 
-      const tl = createTimeline()
-        .add(".circle-group", {
-          opacity: 1,
-          delay: stagger(500, { reversed: true }),
-          duration: stagger(500, { start: 500 }),
-        })
-        .add(
-          ".hero-chip-img-container",
-          {
-            scale: {
-              from: "0",
-              duration: 3000,
-            },
-            rotate: {
-              to: "360deg",
-              duration: 5000,
-            },
+      utils.set(".hero-one", {
+        "--hero-pseudo-before-scale": "0",
+        "--hero-pseudo-after-rotate": "0deg",
+        "--hero-pseudo-after-scale": "0",
+        "--hero-pseudo-after-bg": "rgba(255, 215, 0, 0.5)",
+        "--hero-pseudo-after-width": "5px",
+      });
+
+      const introLineAnimation = animate(".hero-one", {
+        "--hero-pseudo-after-scale": {
+          to: ".5",
+          duration: 500,
+        },
+      });
+
+      const introImgAnimation = createTimeline().add(
+        ".hero-chip-img-container",
+        {
+          scale: {
+            from: "0",
+            duration: 3000,
           },
-          2000
-        );
+          rotate: {
+            to: "1turn",
+            duration: 3000,
+          },
+          delay: 500,
+        }
+      );
+      const heroIntrotl1 = createTimeline()
+        .sync(introLineAnimation)
+        .add(".hero-one", {
+          "--hero-pseudo-after-width": {
+            to: "700px",
+          },
+          "--hero-pseudo-after-bg": {
+            to: conicHerobg,
+          },
+          "--hero-pseudo-after-rotate": {
+            to: "1turn",
+            duration: 5000,
+          },
+          "--hero-pseudo-before-scale": {
+            to: "1",
+          },
+        });
+
+      const heroConicRotate = createTimeline({ defaults: { delay: 1000 } }).add(
+        ".hero-one",
+        {
+          "--hero-pseudo-after-rotate": {
+            to: "1turn",
+            duration: 5000,
+          },
+          loop: true,
+          loopDelay: 0,
+        }
+      );
 
       const scrolltl1 = createTimeline({
         autoplay: onScroll({
@@ -306,23 +374,93 @@ import "../styles/global.css";
           enter: "bottom +=100",
           leave: "+=100 top",
           sync: true,
-          // debug: true,
+          debug: true,
         }),
       })
-        .add(".circle-group", {
+        .add("#circle-3", {
           rotate: "1turn",
           ease: "linear",
           scale: "0",
         })
         .add(".hero-chip-img-container", {
-          rotate: "1turn",
+          rotate: {
+            to: "360deg",
+          },
           ease: "linear",
           scale: "0",
         });
 
-      // const tlMain = createTimeline()
-      // .sync(tl)
-      // .sync(scrolltl1)
+      // const tlMain = createTimeline().sync(tl).sync(scrolltl1);
+
+      // .add(".hero-chip-img-container", {
+      //   scale: {
+      //     from: "0",
+      //   },
+      //   rotate: {
+      //     to: "360deg",
+      //   },
+      //   opacity: {
+      //     to: "1",
+      //   },
+      //   delay: 500
+      // });
+
+      // const heroIntrotl2 = createTimeline().add(".hero-one", {
+      //   // "--hero-pseudo-after-scale": {
+      //   //   to: "1",
+      //   // },
+      //   "--hero-pseudo-after-rotate": {
+      //     to: "1turn",
+      //     duration: 20000,
+      //     ease: "linear",
+      //   },
+      // });
+
+      // const heroIntroMaintl = createTimeline()
+      //   .sync(heroIntrotl1)
+      //   .sync(heroIntrotl2, "+=1000");
+
+      // const herointrotl2 = createTimeline({ defaults: { delay: 1000 } }).add(
+      //   ".hero-one",
+      //   {
+      //     "--hero-pseudo-after-scale": {
+      //       to: "1",
+      //     },
+      //     "--hero-pseudo-after-rotate": {
+      //       to: "1turn",
+      //       duration: 20000,
+      //       ease: "linear",
+      //     },
+      //   }
+      // );
+
+      // const herotlMain = createTimeline().sync(herointrotl1).sync(herointrotl2);
+
+      // .add(".circle-group", {
+      //   opacity: 1,
+      //   delay: stagger(500, { reversed: true }),
+      //   duration: stagger(500, { start: 500 }),
+      // })
+      // .add('.hero-one::before', {
+      //   scale: {
+      //     from: '0',
+      //     duration: 3000
+      //   }
+      // })
+      // .add(
+      //   ".hero-chip-img-container",
+      //   {
+      //     scale: {
+      //       from: "0",
+      //       duration: 3000,
+      //     },
+      //     rotate: {
+      //       to: "360deg",
+      //       duration: 5000,
+      //     },
+      //   },
+      //   2000
+      // );
 
       // .add(".circle-group", {
       //   rotate: "1turn",

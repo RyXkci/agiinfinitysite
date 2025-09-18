@@ -25,18 +25,25 @@ import "../styles/global.css";
         z-index: 9999;
         mix-blend-mode: screen;
       }
-
-      #svg-container.svg-center {
+      .svg-container-inner {
+        height: 100%;
+        width: 100%;
         display: grid;
         place-items: center;
       }
-      .dot {
+
+      /* #svg-container.svg-center {
+        display: grid;
+        place-items: center;
+      } */
+
+      /* .dot {
         fill: #00d4ff;
         filter: drop-shadow(0 0 3px rgba(0, 188, 212, 0.5));
       }
       #circleGroup {
         transform-origin: center;
-      }
+      } */
 
       .hero-one {
         height: 100%;
@@ -46,7 +53,7 @@ import "../styles/global.css";
         position: relative;
       }
 
-      .hero-one::before {
+      /* .hero-one::before {
         content: "";
         position: absolute;
         left: 0;
@@ -61,9 +68,9 @@ import "../styles/global.css";
 
         border-radius: 50%;
         transform: scale(var(--hero-pseudo-before-scale));
-      }
+      } */
 
-      .hero-one::after {
+      /* .hero-one::after {
         content: "";
         position: absolute;
         left: 0;
@@ -72,17 +79,17 @@ import "../styles/global.css";
         width: fit-content;
         height: 100%;
         border-radius: 50%;
-        /* border: 1px solid red; */
+        border: 1px solid red;
         width: var(--hero-pseudo-after-width);
         background: var(--hero-pseudo-after-bg);
-        /* background-color: rgba(255, 215, 0, 0.5); */
+        background-color: rgba(255, 215, 0, 0.5);
         transform: rotate(var(--hero-pseudo-after-rotate))
           scale(var(--hero-pseudo-after-scale));
 
         transform-origin: center;
         filter: blur(10px);
         mix-blend-mode: screen;
-      }
+      } */
 
       @media screen and (min-width: 600px) {
         .hero-one {
@@ -136,7 +143,20 @@ import "../styles/global.css";
         display: block;
       }
 
+      .hero-descr {
+        font-size: 1.75rem;
+        grid-column: 1/1;
+        grid-row: 2;
+        width: 100%;
+        opacity: 0;
+      }
+
+      .hero-descr span {
+        color: #00ffff;
+      }
+
       .hero-statement {
+        font-family: "JetBrains Mono", monospace;
         font-optical-sizing: auto;
         font-size: 3rem;
         color: #ffd700;
@@ -170,6 +190,7 @@ import "../styles/global.css";
         background-size: contain;
         z-index: 2;
         opacity: 0;
+        transform-origin: center;
       }
 
       .svg-rotate-trigger {
@@ -190,99 +211,108 @@ import "../styles/global.css";
   </head>
   <body>
     <div id="svg-container" class="svg-center">
-      <svg
-        width="92"
-        height="178"
-        viewBox="0 0 92 178"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <g id="Group 3">
+      <div class="svg-container-inner">
+        <svg
+          width="570"
+          height="664"
+          viewBox="0 0 570 664"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <line
-            id="svg-line"
-            x1="1.5"
+            class="line"
+            x1="152.5"
             y1="6.55671e-08"
-            x2="1.5"
-            y2="88"
-            stroke="#00FFFF"
+            x2="152.5"
+            y2="74.6517"
+            stroke="#FFD700"
             stroke-width="3"></line>
           <line
-            id="svg-line_2"
-            x1="2.06066"
-            y1="86.9393"
-            x2="86.0607"
-            y2="170.939"
-            stroke="#00FFFF"
+            class="line"
+            y1="-1.5"
+            x2="110.153"
+            y2="-1.5"
+            transform="matrix(0.762573 0.646902 -0.762573 0.646902 152 74.6519)"
+            stroke="#FFD700"
             stroke-width="3"></line>
-          <circle id="svg-dot" cx="79.5" cy="165.5" r="12.5" fill="#00FFFF"
-          ></circle>
-        </g>
-      </svg>
-      <!-- <svg
-        width="716"
-        height="584"
-        viewBox="0 0 716 584"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <g id="circleGroup">
-          <path
-            class="circle"
-            id="circle-3"
-            d="M349 116.5C455.548 116.5 541.5 194.849 541.5 291C541.5 387.151 455.548 465.5 349 465.5C242.452 465.5 156.5 387.151 156.5 291C156.5 194.849 242.452 116.5 349 116.5Z"
-            stroke="url(#paint0_linear_73_119)"
-            stroke-opacity="0.27"
-            stroke-width="3"></path>
-          <path
-            class="circle"
-            id="circle-2"
-            d="M348.5 66.5C489.627 66.5 603.5 167.737 603.5 292C603.5 416.263 489.627 517.5 348.5 517.5C207.373 517.5 93.5 416.263 93.5 292C93.5 167.737 207.373 66.5 348.5 66.5Z"
-            stroke="url(#paint1_linear_73_119)"
-            stroke-width="2"></path>
-          <path
-            class="circle"
-            id="circle-1"
-            d="M358 2.5C554.838 2.5 713.5 132.566 713.5 292C713.5 451.434 554.838 581.5 358 581.5C161.162 581.5 2.5 451.434 2.5 292C2.5 132.566 161.162 2.5 358 2.5Z"
-            stroke="url(#paint2_linear_73_119)"
-            stroke-width="1"></path>
-        </g>
-        <defs>
-          <linearGradient
-            id="paint0_linear_73_119"
-            x1="349"
-            y1="114"
-            x2="349"
-            y2="468"
-            gradientUnits="userSpaceOnUse"
-          >
-            <stop stop-color="#FFD700"></stop>
-            <stop offset="1" stop-color="#998100" stop-opacity="0.49"></stop>
-          </linearGradient>
-          <linearGradient
-            id="paint1_linear_73_119"
-            x1="348.5"
-            y1="64"
-            x2="348.5"
-            y2="520"
-            gradientUnits="userSpaceOnUse"
-          >
-            <stop stop-color="#FFD700"></stop>
-            <stop offset="1" stop-color="#998100" stop-opacity="0.13"></stop>
-          </linearGradient>
-          <linearGradient
-            id="paint2_linear_73_119"
-            x1="358"
-            y1="0"
-            x2="358"
-            y2="584"
-            gradientUnits="userSpaceOnUse"
-          >
-            <stop stop-color="#FFD700"></stop>
-            <stop offset="0.480769" stop-color="#998100" stop-opacity="0.17"
-            ></stop>
-          </linearGradient>
-        </defs>
-      </svg> -->
+          <ellipse
+            class="dot"
+            cx="230.5"
+            cy="140.396"
+            rx="12.5"
+            ry="10.6039"
+            fill="#FFD700"></ellipse>
+          <line
+            class="line"
+            x1="1.50024"
+            y1="663.973"
+            x2="3.50024"
+            y2="551.973"
+            stroke="#FFD700"
+            stroke-width="3"></line>
+          <line
+            class="line"
+            x1="3.79866"
+            y1="551.187"
+            x2="60.6852"
+            y2="475.102"
+            stroke="#FFD700"
+            stroke-width="3"></line>
+          <ellipse
+            class="dot"
+            cx="60.5"
+            cy="479.604"
+            rx="12.5"
+            ry="10.6039"
+            fill="#FFD700"></ellipse>
+          <line
+            class="line"
+            x1="521.5"
+            y1="663.973"
+            x2="523.5"
+            y2="551.973"
+            stroke="#FFD700"
+            stroke-width="3"></line>
+          <line
+            class="line"
+            x1="523.795"
+            y1="552.412"
+            x2="487.614"
+            y2="464.571"
+            stroke="#FFD700"
+            stroke-width="3"></line>
+          <ellipse
+            class="dot"
+            cx="488.5"
+            cy="465.604"
+            rx="12.5"
+            ry="10.6039"
+            fill="#FFD700"></ellipse>
+          <line
+            class="line"
+            x1="568.5"
+            y1="-3"
+            x2="568.5"
+            y2="201"
+            stroke="#FFD700"
+            stroke-width="3"></line>
+          <line
+            class="line"
+            x1="567.954"
+            y1="202.157"
+            x2="453.954"
+            y2="296.157"
+            stroke="#FFD700"
+            stroke-width="3"></line>
+          <ellipse
+            class="dot"
+            cx="458.5"
+            cy="294.604"
+            rx="12.5"
+            ry="10.6039"
+            fill="#FFD700"></ellipse>
+        </svg>
+      </div>
     </div>
     <div class="hero">
       <div class="hero-one">
@@ -293,6 +323,11 @@ import "../styles/global.css";
           <span>Neural</span>
           <span>Network</span>
           <span>Optical</span>
+        </p>
+        <p class="hero-descr">
+          Volumetric Holographic Nano <span>Optical</span> conductors and <span
+            >transistors</span
+          >
         </p>
         <p class="hero-statement">From wires to waves</p>
         <div class="hero-chip-img-container"></div>
@@ -305,6 +340,7 @@ import "../styles/global.css";
     <script>
       import {
         animate,
+        svg,
         eases,
         createTimeline,
         createTimer,
@@ -325,20 +361,19 @@ import "../styles/global.css";
       const radialHerobgBlue =
         "radial-gradient(circle 400px, #00FFFFe, #000814)";
 
-      utils.set(".hero-one", {
-        "--hero-pseudo-before-scale": "0",
-        "--hero-pseudo-before-bg": radialHerobgYellow,
-        "--hero-pseudo-after-rotate": "0deg",
-        "--hero-pseudo-after-scale": "0",
-        "--hero-pseudo-after-bg": "rgba(255, 215, 0, 0.5)",
-        "--hero-pseudo-after-width": "5px",
-      });
-
       text.split(".hero-one", {
         chars: { class: "fade-from-above" },
       });
 
       //    END SETUP //
+
+      animate(svg.createDrawable(".line"), {
+        draw: ["0 0", "0 1"],
+        // ease: "inOutQuad",
+        duration: 2000,
+        delay: stagger(100),
+        // loop: true,
+      });
 
       const heroImgtl = animate(".hero-chip-img-container", {
         scale: {
@@ -358,8 +393,8 @@ import "../styles/global.css";
       const waveImgAnimation = animate(".hero-wave-img-container", {
         opacity: [0, 1],
         rotateY: {
-          to: "5turn",
-          duration: 3000,
+          to: "2turn",
+          duration: 5000,
         },
         autoplay: onScroll({
           container: ".svg-container",
@@ -423,7 +458,7 @@ import "../styles/global.css";
         .add(".hero-chip-img-container", {
           rotateY: {
             to: "5turn",
-            duration: 3000,
+            duration: 5000,
           },
           opacity: {
             to: [1, 0],
@@ -446,7 +481,30 @@ import "../styles/global.css";
           "--hero-pseudo-before-scale": {
             to: "1",
           },
-        });
+        })
+        .add(".hero-wave-img-container", {
+          x: "15rem",
+          y: "5rem",
+          // duration: 2000,
+          delay: 7000,
+          ease: "linear",
+        })
+        .add(".hero-descr", {
+          opacity: [0, 1],
+          y: [{ to: ["-100%", "0%"] }],
+          duration: 3000,
+          ease: "out(3)",
+          delay: stagger(50),
+          loop: false,
+        })
+        .add(".hero-statement", {
+          opacity: [0, 1],
+          y: [{ to: ["-100%", "0%"] }],
+          duration: 3000,
+          ease: "out(3)",
+          delay: stagger(50),
+          loop: false,
+        })
 
       const scrolltl1 = createTimeline({
         autoplay: onScroll({
@@ -459,6 +517,12 @@ import "../styles/global.css";
         }),
         defaults: { duration: 2000 },
       })
+        .add(".dot", {
+          opacity: [1, 0],
+        })
+        .add(".line", {
+          opacity: [1, 0],
+        })
         .add(".hero-one", {
           "--hero-pseudo-after-scale": {
             to: "0",
@@ -479,11 +543,23 @@ import "../styles/global.css";
             delay: 500,
           },
           opacity: [1, 0],
+        })
+        .add(".hero-chip-img-container", {
+          scale: [1, 1.5],
         });
 
       const scrollTlMain = createTimeline({ autoplay: false })
         .sync(scrolltl1)
         .sync(scrolltl2);
+
+      //     utils.set(".hero-one", {
+      //   "--hero-pseudo-before-scale": "0",
+      //   "--hero-pseudo-before-bg": radialHerobgYellow,
+      //   "--hero-pseudo-after-rotate": "0deg",
+      //   "--hero-pseudo-after-scale": "0",
+      //   "--hero-pseudo-after-bg": "rgba(255, 215, 0, 0.5)",
+      //   "--hero-pseudo-after-width": "5px",
+      // });
 
       //        .add("#circleGroup", {
       //   ease: "linear",
@@ -632,6 +708,72 @@ import "../styles/global.css";
       //     debug: true,
       //   }),
       // });
+
+      //  <svg
+      //   width="716"
+      //   height="584"
+      //   viewBox="0 0 716 584"
+      //   fill="none"
+      //   xmlns="http://www.w3.org/2000/svg"
+      // >
+      //   <g id="circleGroup">
+      //     <path
+      //       class="circle"
+      //       id="circle-3"
+      //       d="M349 116.5C455.548 116.5 541.5 194.849 541.5 291C541.5 387.151 455.548 465.5 349 465.5C242.452 465.5 156.5 387.151 156.5 291C156.5 194.849 242.452 116.5 349 116.5Z"
+      //       stroke="url(#paint0_linear_73_119)"
+      //       stroke-opacity="0.27"
+      //       stroke-width="3"></path>
+      //     <path
+      //       class="circle"
+      //       id="circle-2"
+      //       d="M348.5 66.5C489.627 66.5 603.5 167.737 603.5 292C603.5 416.263 489.627 517.5 348.5 517.5C207.373 517.5 93.5 416.263 93.5 292C93.5 167.737 207.373 66.5 348.5 66.5Z"
+      //       stroke="url(#paint1_linear_73_119)"
+      //       stroke-width="2"></path>
+      //     <path
+      //       class="circle"
+      //       id="circle-1"
+      //       d="M358 2.5C554.838 2.5 713.5 132.566 713.5 292C713.5 451.434 554.838 581.5 358 581.5C161.162 581.5 2.5 451.434 2.5 292C2.5 132.566 161.162 2.5 358 2.5Z"
+      //       stroke="url(#paint2_linear_73_119)"
+      //       stroke-width="1"></path>
+      //   </g>
+      //   <defs>
+      //     <linearGradient
+      //       id="paint0_linear_73_119"
+      //       x1="349"
+      //       y1="114"
+      //       x2="349"
+      //       y2="468"
+      //       gradientUnits="userSpaceOnUse"
+      //     >
+      //       <stop stop-color="#FFD700"></stop>
+      //       <stop offset="1" stop-color="#998100" stop-opacity="0.49"></stop>
+      //     </linearGradient>
+      //     <linearGradient
+      //       id="paint1_linear_73_119"
+      //       x1="348.5"
+      //       y1="64"
+      //       x2="348.5"
+      //       y2="520"
+      //       gradientUnits="userSpaceOnUse"
+      //     >
+      //       <stop stop-color="#FFD700"></stop>
+      //       <stop offset="1" stop-color="#998100" stop-opacity="0.13"></stop>
+      //     </linearGradient>
+      //     <linearGradient
+      //       id="paint2_linear_73_119"
+      //       x1="358"
+      //       y1="0"
+      //       x2="358"
+      //       y2="584"
+      //       gradientUnits="userSpaceOnUse"
+      //     >
+      //       <stop stop-color="#FFD700"></stop>
+      //       <stop offset="0.480769" stop-color="#998100" stop-opacity="0.17"
+      //       ></stop>
+      //     </linearGradient>
+      //   </defs>
+      // </svg>
     </script>
   </body>
 </html>

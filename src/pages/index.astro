@@ -447,15 +447,15 @@ import "../styles/global.css";
         },
         opacity: {
           to: [1, 0],
-          duration: 5000,
+          // duration: 5000,
         },
          autoplay: onScroll({
           container: ".svg-container",
           target: ".wave-img-trigger",
           enter: "bottom +=100",
           leave: "+=100 top",
-          sync: true,
-          // debug: true,
+        
+          debug: true,
         }),
       });
 
@@ -463,15 +463,15 @@ import "../styles/global.css";
         opacity: [0, 1],
         rotateY: {
           to: "5turn",
-          duration: 5000,
+          // duration: 5000,
         },
         autoplay: onScroll({
           container: ".svg-container",
           target: ".wave-img-trigger",
           enter: "bottom +=100",
           leave: "+=100 top",
-          sync: true,
-          // debug: true,
+         
+          debug: true,
         }),
       });
 
@@ -481,7 +481,7 @@ import "../styles/global.css";
           target: ".hero2-trigger",
           enter: "bottom +=100",
           leave: "+=100 top",
-          sync: true,
+          sync: true
           // debug: true,
         }),
         // defaults: { duration: 3000 },

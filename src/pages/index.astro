@@ -32,6 +32,9 @@ import "../styles/global.css";
         place-items: center;
       }
 
+      .line {
+        opacity: 0;
+      }
       /* #svg-container.svg-center {
         display: grid;
         place-items: center;
@@ -207,6 +210,13 @@ import "../styles/global.css";
         /* border: 5px solid blue; */
         /* background: blue; */
       }
+      .hero2-trigger {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        /* border: 5px solid blue; */
+        /* background: blue; */
+      }
     </style>
   </head>
   <body>
@@ -336,6 +346,7 @@ import "../styles/global.css";
     </div>
     <div class="svg-rotate-trigger"></div>
     <div class="wave-img-trigger"></div>
+    <div class="hero2-trigger"></div>
 
     <script>
       import {
@@ -368,6 +379,7 @@ import "../styles/global.css";
       //    END SETUP //
 
       animate(svg.createDrawable(".line"), {
+        opacity: [0, 1],
         draw: ["0 0", "0 1"],
         // ease: "inOutQuad",
         duration: 2000,
@@ -388,22 +400,6 @@ import "../styles/global.css";
           to: "1turn",
           duration: 2000,
         },
-      });
-
-      const waveImgAnimation = animate(".hero-wave-img-container", {
-        opacity: [0, 1],
-        rotateY: {
-          to: "2turn",
-          duration: 5000,
-        },
-        autoplay: onScroll({
-          container: ".svg-container",
-          target: ".wave-img-trigger",
-          enter: "bottom +=100",
-          leave: "+=100 top",
-          sync: true,
-          // debug: true,
-        }),
       });
 
       const introLineAnimation = animate(".hero-one", {
@@ -440,11 +436,35 @@ import "../styles/global.css";
       });
 
       const heroTlMain = createTimeline()
-        .sync(heroTl)
+        // .sync(heroTl)
         .sync(heroImgtl, "-=1000")
         .sync(heroTextAnim1, "-=1000");
 
-      const scrolltl2 = createTimeline({
+        const chipFadeOutAnimation = animate(".hero-chip-img-container", {
+        rotateY: {
+          to: "5turn",
+          duration: 10000,
+        },
+        opacity: {
+          to: [1, 0],
+          duration: 5000,
+        },
+         autoplay: onScroll({
+          container: ".svg-container",
+          target: ".wave-img-trigger",
+          enter: "bottom +=100",
+          leave: "+=100 top",
+          sync: true,
+          // debug: true,
+        }),
+      });
+
+      const waveImgAnimation = animate(".hero-wave-img-container", {
+        opacity: [0, 1],
+        rotateY: {
+          to: "5turn",
+          duration: 5000,
+        },
         autoplay: onScroll({
           container: ".svg-container",
           target: ".wave-img-trigger",
@@ -453,58 +473,59 @@ import "../styles/global.css";
           sync: true,
           // debug: true,
         }),
+      });
+
+      const scrolltl2 = createTimeline({
+        autoplay: onScroll({
+          container: ".svg-container",
+          target: ".hero2-trigger",
+          enter: "bottom +=100",
+          leave: "+=100 top",
+          sync: true,
+          // debug: true,
+        }),
         // defaults: { duration: 3000 },
       })
-        .add(".hero-chip-img-container", {
-          rotateY: {
-            to: "5turn",
-            duration: 5000,
-          },
-          opacity: {
-            to: [1, 0],
-            duration: 3000,
-          },
-        })
-        .add(".hero-one", {
-          "--hero-pseudo-before-bg": {
-            to: radialHerobgBlue,
-          },
-          "--hero-pseudo-after-width": {
-            to: "700px",
-          },
-          "--hero-pseudo-after-bg": {
-            to: conicHerobgBlue,
-          },
-          "--hero-pseudo-after-scale": {
-            to: "1",
-          },
-          "--hero-pseudo-before-scale": {
-            to: "1",
-          },
-        })
-        .add(".hero-wave-img-container", {
-          x: "15rem",
-          y: "5rem",
-          // duration: 2000,
-          delay: 7000,
-          ease: "linear",
-        })
-        .add(".hero-descr", {
-          opacity: [0, 1],
-          y: [{ to: ["-100%", "0%"] }],
-          duration: 3000,
-          ease: "out(3)",
-          delay: stagger(50),
-          loop: false,
-        })
-        .add(".hero-statement", {
-          opacity: [0, 1],
-          y: [{ to: ["-100%", "0%"] }],
-          duration: 3000,
-          ease: "out(3)",
-          delay: stagger(50),
-          loop: false,
-        })
+      // .add(".hero-one", {
+      //   "--hero-pseudo-before-bg": {
+      //     to: radialHerobgBlue,
+      //   },
+      //   "--hero-pseudo-after-width": {
+      //     to: "700px",
+      //   },
+      //   "--hero-pseudo-after-bg": {
+      //     to: conicHerobgBlue,
+      //   },
+      //   "--hero-pseudo-after-scale": {
+      //     to: "1",
+      //   },
+      //   "--hero-pseudo-before-scale": {
+      //     to: "1",
+      //   },
+      // })
+      .add(".hero-wave-img-container", {
+        x: "15rem",
+        y: "5rem",
+        duration: 5000,
+        // delay: 7000,
+        ease: "linear",
+      })
+      .add(".hero-descr", {
+        opacity: [0, 1],
+        y: [{ to: ["-100%", "0%"] }],
+        duration: 5000,
+        ease: 'linear',
+        delay: stagger(50),
+        loop: false,
+      })
+      .add(".hero-statement", {
+        opacity: [0, 1],
+        y: [{ to: ["-100%", "0%"] }],
+        duration: 5000,
+        ease: 'linear',
+        delay: stagger(50),
+        loop: false,
+      })
 
       const scrolltl1 = createTimeline({
         autoplay: onScroll({
@@ -548,9 +569,8 @@ import "../styles/global.css";
           scale: [1, 1.5],
         });
 
-      const scrollTlMain = createTimeline({ autoplay: false })
-        .sync(scrolltl1)
-        .sync(scrolltl2);
+      const scrollTlMain = createTimeline({ autoplay: false }).sync(scrolltl1);
+      // .sync(scrolltl2);
 
       //     utils.set(".hero-one", {
       //   "--hero-pseudo-before-scale": "0",

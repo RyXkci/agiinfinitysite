@@ -206,8 +206,8 @@ import "../styles/global.css";
       .wave-img-trigger {
         position: sticky;
         top: 0;
-        height: 100vh;
-        /* border: 5px solid blue; */
+        height: 50px;
+        border: 5px solid blue;
         /* background: blue; */
       }
       .hero2-trigger {
@@ -468,8 +468,8 @@ import "../styles/global.css";
         autoplay: onScroll({
           container: ".svg-container",
           target: ".wave-img-trigger",
-          enter: "bottom +=100",
-          leave: "+=100 top",
+          enter: "bottom top",
+          leave: "bottom top",
          
           debug: true,
         }),
@@ -536,7 +536,7 @@ import "../styles/global.css";
           sync: true,
           // debug: true,
         }),
-        defaults: { duration: 2000 },
+        defaults: { duration: 5000 },
       })
         .add(".dot", {
           opacity: [1, 0],
@@ -554,7 +554,7 @@ import "../styles/global.css";
           },
         })
         .add(".hero-title", {
-          y: "-15rem",
+          y: "50px",
           opacity: [1, 0],
         })
         .add(".hero-subtitle", {

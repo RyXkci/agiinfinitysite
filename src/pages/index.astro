@@ -18,14 +18,15 @@ import "../styles/global.css";
     <style>
       /*  SVG STUFF */
 
-      #svg-container {
+      #scroller {
         position: fixed;
         height: 100vh;
         inset: 0;
         z-index: 9999;
         mix-blend-mode: screen;
+        pointer-events: none;
       }
-      .svg-container-inner {
+      .scroller-inner {
         height: 100%;
         width: 100%;
         display: grid;
@@ -168,35 +169,8 @@ import "../styles/global.css";
         width: 100%; /*pushing it to side of grid column */
         opacity: 0;
       }
-      .hero-chip-img-container {
-        grid-column: 2/3;
-        grid-row: 2/3;
-        height: 170px;
-        width: 150px;
-        background-image: url("../images/microchip.png");
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-        z-index: 2;
-        transform: scale(0);
-        opacity: 0;
-        transform-origin: center;
-      }
 
-      .hero-wave-img-container {
-        grid-column: 2/3;
-        grid-row: 2/3;
-        height: 200px;
-        width: 300px;
-        background-image: url("../images/wave-microchip.png");
-        background-repeat: no-repeat;
-        background-size: contain;
-        z-index: 2;
-        opacity: 0;
-        transform-origin: center;
-      }
-
-      .svg-rotate-trigger {
+      .scroller-rotate-trigger {
         position: sticky;
         top: 0;
         height: 100vh;
@@ -220,8 +194,29 @@ import "../styles/global.css";
     </style>
   </head>
   <body>
-    <div id="svg-container" class="svg-center">
-      <div class="svg-container-inner">
+    <div class="hero">
+      <div class="hero-one">
+        <h1 class="hero-title fade-from-above">NANNI-O</h1>
+        <p class="hero-subtitle fade-from-above">
+          <span>Nano</span>
+          <span>Artificial</span>
+          <span>Neural</span>
+          <span>Network</span>
+          <span>Optical</span>
+        </p>
+        <p class="hero-descr">
+          Volumetric Holographic Nano <span>Optical</span> conductors and <span
+            >transistors</span
+          >
+        </p>
+        <p class="hero-statement">From wires to waves</p>
+      </div>
+    </div>
+    <div class="scroller-rotate-trigger"></div>
+    <div class="wave-img-trigger"></div>
+    <div class="hero2-trigger"></div>
+    <div id="scroller" class="scroller-center">
+      <div class="scroller-inner">
         <svg
           width="570"
           height="664"
@@ -322,33 +317,12 @@ import "../styles/global.css";
             ry="10.6039"
             fill="#FFD700"></ellipse>
         </svg>
-      </div>
-    </div>
-    <div class="hero">
-      <div class="hero-one">
-        <h1 class="hero-title fade-from-above">NANNI-O</h1>
-        <p class="hero-subtitle fade-from-above">
-          <span>Nano</span>
-          <span>Artificial</span>
-          <span>Neural</span>
-          <span>Network</span>
-          <span>Optical</span>
-        </p>
-        <p class="hero-descr">
-          Volumetric Holographic Nano <span>Optical</span> conductors and <span
-            >transistors</span
-          >
-        </p>
-        <p class="hero-statement">From wires to waves</p>
         <div class="hero-chip-img-container"></div>
         <div class="hero-wave-img-container"></div>
       </div>
     </div>
-    <div class="svg-rotate-trigger"></div>
-    <div class="wave-img-trigger"></div>
-    <div class="hero2-trigger"></div>
 
-    <script>
+    <!-- <script>
       import {
         animate,
         svg,
@@ -440,7 +414,7 @@ import "../styles/global.css";
         .sync(heroImgtl, "-=1000")
         .sync(heroTextAnim1, "-=1000");
 
-        const chipFadeOutAnimation = animate(".hero-chip-img-container", {
+      const chipFadeOutAnimation = animate(".hero-chip-img-container", {
         rotateY: {
           to: "5turn",
           duration: 10000,
@@ -449,12 +423,12 @@ import "../styles/global.css";
           to: [1, 0],
           // duration: 5000,
         },
-         autoplay: onScroll({
+        autoplay: onScroll({
           container: ".svg-container",
           target: ".wave-img-trigger",
           enter: "bottom +=100",
           leave: "+=100 top",
-        
+
           debug: true,
         }),
       });
@@ -470,7 +444,7 @@ import "../styles/global.css";
           target: ".wave-img-trigger",
           enter: "bottom top",
           leave: "bottom top",
-         
+
           debug: true,
         }),
       });
@@ -481,51 +455,51 @@ import "../styles/global.css";
           target: ".hero2-trigger",
           enter: "bottom +=100",
           leave: "+=100 top",
-          sync: true
+          sync: true,
           // debug: true,
         }),
         // defaults: { duration: 3000 },
       })
-      // .add(".hero-one", {
-      //   "--hero-pseudo-before-bg": {
-      //     to: radialHerobgBlue,
-      //   },
-      //   "--hero-pseudo-after-width": {
-      //     to: "700px",
-      //   },
-      //   "--hero-pseudo-after-bg": {
-      //     to: conicHerobgBlue,
-      //   },
-      //   "--hero-pseudo-after-scale": {
-      //     to: "1",
-      //   },
-      //   "--hero-pseudo-before-scale": {
-      //     to: "1",
-      //   },
-      // })
-      .add(".hero-wave-img-container", {
-        x: "15rem",
-        y: "5rem",
-        duration: 5000,
-        // delay: 7000,
-        ease: "linear",
-      })
-      .add(".hero-descr", {
-        opacity: [0, 1],
-        y: [{ to: ["-100%", "0%"] }],
-        duration: 5000,
-        ease: 'linear',
-        delay: stagger(50),
-        loop: false,
-      })
-      .add(".hero-statement", {
-        opacity: [0, 1],
-        y: [{ to: ["-100%", "0%"] }],
-        duration: 5000,
-        ease: 'linear',
-        delay: stagger(50),
-        loop: false,
-      })
+        // .add(".hero-one", {
+        //   "--hero-pseudo-before-bg": {
+        //     to: radialHerobgBlue,
+        //   },
+        //   "--hero-pseudo-after-width": {
+        //     to: "700px",
+        //   },
+        //   "--hero-pseudo-after-bg": {
+        //     to: conicHerobgBlue,
+        //   },
+        //   "--hero-pseudo-after-scale": {
+        //     to: "1",
+        //   },
+        //   "--hero-pseudo-before-scale": {
+        //     to: "1",
+        //   },
+        // })
+        .add(".hero-wave-img-container", {
+          x: "15rem",
+          y: "5rem",
+          duration: 5000,
+          // delay: 7000,
+          ease: "linear",
+        })
+        .add(".hero-descr", {
+          opacity: [0, 1],
+          y: [{ to: ["-100%", "0%"] }],
+          duration: 5000,
+          ease: "linear",
+          delay: stagger(50),
+          loop: false,
+        })
+        .add(".hero-statement", {
+          opacity: [0, 1],
+          y: [{ to: ["-100%", "0%"] }],
+          duration: 5000,
+          ease: "linear",
+          delay: stagger(50),
+          loop: false,
+        });
 
       const scrolltl1 = createTimeline({
         autoplay: onScroll({
@@ -796,4 +770,4 @@ import "../styles/global.css";
       // </svg>
     </script>
   </body>
-</html>
+</html> -->

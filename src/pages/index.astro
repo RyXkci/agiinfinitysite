@@ -30,7 +30,15 @@ import "../styles/global.css";
         height: 100%;
         width: 100%;
         display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
         place-items: center;
+      }
+
+      .scroller-inner svg {
+        grid-area: 1/1;
+        width: 100%;
+        height: 100%;
       }
 
       .line {
@@ -170,18 +178,47 @@ import "../styles/global.css";
         opacity: 0;
       }
 
+      .hero-chip-img-container {
+        /* grid-column: 2/3;
+        grid-row: 2/3; */
+        grid-area: 1/1;
+        height: 170px;
+        width: 150px;
+        background-image: url("../images/microchip.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        z-index: 2;
+        /* transform: scale(0); */
+        opacity: 0;
+        transform-origin: center;
+      }
+
+      .hero-wave-img-container {
+        /* grid-column: 2/3;
+        grid-row: 2/3; */
+        grid-area: 1/1;
+        height: 200px;
+        width: 300px;
+        background-image: url("../images/wave-microchip.png");
+        background-repeat: no-repeat;
+        background-size: contain;
+        z-index: 2;
+        opacity: 0;
+        transform-origin: center;
+      }
+
       .scroller-rotate-trigger {
         position: sticky;
         top: 0;
         height: 100vh;
-        /* background: red; */
         /* border: 5px solid red; */
       }
       .wave-img-trigger {
         position: sticky;
         top: 0;
-        height: 50px;
-        border: 5px solid blue;
+        height: 100vh;
+        /* border: 5px solid blue; */
         /* background: blue; */
       }
       .hero2-trigger {
@@ -194,27 +231,6 @@ import "../styles/global.css";
     </style>
   </head>
   <body>
-    <div class="hero">
-      <div class="hero-one">
-        <h1 class="hero-title fade-from-above">NANNI-O</h1>
-        <p class="hero-subtitle fade-from-above">
-          <span>Nano</span>
-          <span>Artificial</span>
-          <span>Neural</span>
-          <span>Network</span>
-          <span>Optical</span>
-        </p>
-        <p class="hero-descr">
-          Volumetric Holographic Nano <span>Optical</span> conductors and <span
-            >transistors</span
-          >
-        </p>
-        <p class="hero-statement">From wires to waves</p>
-      </div>
-    </div>
-    <div class="scroller-rotate-trigger"></div>
-    <div class="wave-img-trigger"></div>
-    <div class="hero2-trigger"></div>
     <div id="scroller" class="scroller-center">
       <div class="scroller-inner">
         <svg
@@ -321,8 +337,29 @@ import "../styles/global.css";
         <div class="hero-wave-img-container"></div>
       </div>
     </div>
+    <div class="hero">
+      <div class="hero-one">
+        <h1 class="hero-title fade-from-above">NANNI-O</h1>
+        <p class="hero-subtitle fade-from-above">
+          <span>Nano</span>
+          <span>Artificial</span>
+          <span>Neural</span>
+          <span>Network</span>
+          <span>Optical</span>
+        </p>
+        <p class="hero-descr">
+          Volumetric Holographic Nano <span>Optical</span> conductors and <span
+            >transistors</span
+          >
+        </p>
+        <p class="hero-statement">From wires to waves</p>
+      </div>
+    </div>
+    <div class="scroller-rotate-trigger"></div>
+    <div class="wave-img-trigger"></div>
+    <div class="hero2-trigger"></div>
 
-    <!-- <script>
+    <script>
       import {
         animate,
         svg,
@@ -336,6 +373,13 @@ import "../styles/global.css";
       } from "animejs";
 
       // SOME SETUP //
+      utils.set(".hero-chip-img-container", {
+        opacity: 0
+      });
+
+      utils.set('.hero-wave-img-container', {
+        scale: 1.3
+      })
 
       const conicHerobgYellow =
         "conic-gradient(from 0deg, transparent 0 22%, rgba(255, 215, 0, .2) 22% 27%, transparent 27% 49%, rgba(255, 215, 0, .2) 49% 53%, transparent 53% 78%, rgba(255, 215, 0, .2) 78% 82%, transparent 82% 100%)";
@@ -352,53 +396,52 @@ import "../styles/global.css";
 
       //    END SETUP //
 
-      animate(svg.createDrawable(".line"), {
+      const lineAnimate = animate(svg.createDrawable(".line"), {
         opacity: [0, 1],
         draw: ["0 0", "0 1"],
         // ease: "inOutQuad",
         duration: 2000,
         delay: stagger(100),
-        // loop: true,
       });
 
-      const heroImgtl = animate(".hero-chip-img-container", {
-        scale: {
-          from: "0",
-          duration: 2000,
-        },
-        opacity: {
-          to: "1",
-          duration: 3000,
-        },
-        rotate: {
-          to: "1turn",
-          duration: 2000,
-        },
-      });
+      // const heroImgtl = animate(".hero-chip-img-container", {
+      //   // scale: {
+      //   //   from: "0",
+      //   //   duration: 2000,
+      //   // },
+      //   opacity: {
+      //     to: "1",
+      //     duration: 3000,
+      //   },
+      //   // rotate: {
+      //   //   to: "1turn",
+      //   //   duration: 2000,
+      //   // },
+      // });
 
-      const introLineAnimation = animate(".hero-one", {
-        "--hero-pseudo-after-scale": {
-          to: ".5",
-          duration: 500,
-        },
-      });
+      // const introLineAnimation = animate(".hero-one", {
+      //   "--hero-pseudo-after-scale": {
+      //     to: ".5",
+      //     duration: 500,
+      //   },
+      // });
 
-      const heroTl = createTimeline()
-        .sync(introLineAnimation)
-        .add(".hero-one", {
-          "--hero-pseudo-after-width": {
-            to: "700px",
-          },
-          "--hero-pseudo-after-bg": {
-            to: conicHerobgYellow,
-          },
-          "--hero-pseudo-after-scale": {
-            to: "1",
-          },
-          "--hero-pseudo-before-scale": {
-            to: "1",
-          },
-        });
+      // const heroTl = createTimeline()
+      //   .sync(lineAnimate)
+      //   .add(".hero-one", {
+      //     "--hero-pseudo-after-width": {
+      //       to: "700px",
+      //     },
+      //     "--hero-pseudo-after-bg": {
+      //       to: conicHerobgYellow,
+      //     },
+      //     "--hero-pseudo-after-scale": {
+      //       to: "1",
+      //     },
+      //     "--hero-pseudo-before-scale": {
+      //       to: "1",
+      //     },
+      //   });
 
       const heroTextAnim1 = animate(".fade-from-above", {
         opacity: [0, 1],
@@ -410,48 +453,79 @@ import "../styles/global.css";
       });
 
       const heroTlMain = createTimeline()
-        // .sync(heroTl)
-        .sync(heroImgtl, "-=1000")
-        .sync(heroTextAnim1, "-=1000");
+        .sync(lineAnimate)
+        .add(".hero-chip-img-container", {
+          scale: {
+            from: "0",
+            composition:'blend'
+          },
+          opacity: {
+            to: 1,
+            duration: 3000,
+            composition: 'blend'
+          },
+          // rotate: {
+          //   to: "1turn",
+          //   duration: 2000,
+          // },
+        });
+
+      // .sync(heroImgtl, "-=1000")
+      // .sync(heroTextAnim1, "-=1000");
 
       const chipFadeOutAnimation = animate(".hero-chip-img-container", {
-        rotateY: {
-          to: "5turn",
-          duration: 10000,
-        },
+        // rotate: {
+        //   to: "1turn",
+        //   duration: 5000,
+        // },
+        // scale:
+        //   [{ to: [1.5, 3] }],
+        //   duration: 5000,
+        //   // composition: 'blend',
+      
         opacity: {
           to: [1, 0],
-          // duration: 5000,
+          duration: 5000,
         },
         autoplay: onScroll({
           container: ".svg-container",
           target: ".wave-img-trigger",
           enter: "bottom +=100",
           leave: "+=100 top",
-
-          debug: true,
+          sync: true,
+          // debug: true,
         }),
       });
 
       const waveImgAnimation = animate(".hero-wave-img-container", {
-        opacity: [0, 1],
-        rotateY: {
-          to: "5turn",
-          // duration: 5000,
+          opacity: {
+          to: [0, 1],
+          duration: 5000,
         },
+        // scale: {
+        //   from: 3,
+        //   duration: 5000
+        // },
+        // rotate: {
+        //   to: "1turn",
+        //   duration: 5000,
+        // },
         autoplay: onScroll({
-          container: ".svg-container",
+          // container: ".svg-container",
           target: ".wave-img-trigger",
-          enter: "bottom top",
-          leave: "bottom top",
-
-          debug: true,
+          enter: "bottom +=100",
+          leave: "+=100 top",
+          sync: true,
+          // debug: true,
         }),
       });
 
+      // const imgTransform = createTimeline()
+      // .sync(waveImgAnimation)
+
       const scrolltl2 = createTimeline({
         autoplay: onScroll({
-          container: ".svg-container",
+          // container: ".svg-container",
           target: ".hero2-trigger",
           enter: "bottom +=100",
           leave: "+=100 top",
@@ -480,14 +554,17 @@ import "../styles/global.css";
         .add(".hero-wave-img-container", {
           x: "15rem",
           y: "5rem",
+          scale: {
+            to: 1
+          },
           duration: 5000,
-          // delay: 7000,
+          delay: 7000,
           ease: "linear",
         })
         .add(".hero-descr", {
           opacity: [0, 1],
           y: [{ to: ["-100%", "0%"] }],
-          duration: 5000,
+          duration: 10000,
           ease: "linear",
           delay: stagger(50),
           loop: false,
@@ -504,7 +581,7 @@ import "../styles/global.css";
       const scrolltl1 = createTimeline({
         autoplay: onScroll({
           // container: "#svg-container",
-          target: ".svg-rotate-trigger",
+          target: ".scroller-rotate-trigger",
           enter: "bottom top",
           leave: "+=100 top",
           sync: true,
@@ -518,15 +595,15 @@ import "../styles/global.css";
         .add(".line", {
           opacity: [1, 0],
         })
-        .add(".hero-one", {
-          "--hero-pseudo-after-scale": {
-            to: "0",
-            duration: 3000,
-          },
-          "--hero-pseudo-before-scale": {
-            to: "0",
-          },
-        })
+        // .add(".hero-one", {
+        //   "--hero-pseudo-after-scale": {
+        //     to: "0",
+        //     duration: 3000,
+        //   },
+        //   "--hero-pseudo-before-scale": {
+        //     to: "0",
+        //   },
+        // })
         .add(".hero-title", {
           y: "50px",
           opacity: [1, 0],
@@ -541,6 +618,7 @@ import "../styles/global.css";
         })
         .add(".hero-chip-img-container", {
           scale: [1, 1.5],
+          composition: 'blend'
         });
 
       const scrollTlMain = createTimeline({ autoplay: false }).sync(scrolltl1);
@@ -770,4 +848,4 @@ import "../styles/global.css";
       // </svg>
     </script>
   </body>
-</html> -->
+</html>

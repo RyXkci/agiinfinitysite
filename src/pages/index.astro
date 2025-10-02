@@ -18,23 +18,51 @@ import "../styles/global.css";
     <style>
       /*  SVG STUFF */
 
-      #svg-container {
+      #scroller {
         position: fixed;
         height: 100vh;
         inset: 0;
         z-index: 9999;
-        mix-blend-mode: screen;
+        /* mix-blend-mode: screen; */
+        pointer-events: none;
       }
-      .svg-container-inner {
+      .scroller-inner {
         height: 100%;
         width: 100%;
         display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 50px 1fr;
         place-items: center;
       }
 
-      .line {
-        opacity: 0;
+      .scroller-inner .lines-container {
+        grid-area: 1/1;
+        grid-row: 2;
+        /* width: 300px; */
+        /* height: 400px; */
+        /* opacity: 0; */
       }
+
+      .scroller-inner .gradient-container {
+        grid-area: 1/1;
+        grid-row: 2;
+        height: 400px;
+        width: 100%;
+        z-index: 2;
+        transform: translateY(70%);
+      }
+
+      .gradient {
+        opacity: 0.5;
+      }
+      svg {
+        height: 100%;
+        width: 100%;
+      }
+
+      /* .line {
+        opacity: 0.5;
+      } */
       /* #svg-container.svg-center {
         display: grid;
         place-items: center;
@@ -48,7 +76,7 @@ import "../styles/global.css";
         transform-origin: center;
       } */
 
-      .hero-one {
+      .hero-inner {
         height: 100%;
         width: 100%;
         display: grid;
@@ -95,12 +123,12 @@ import "../styles/global.css";
       } */
 
       @media screen and (min-width: 600px) {
-        .hero-one {
-          height: 70%;
-          width: 80%;
+        .hero-inner {
+          height: 100%;
+          width: 50%;
           display: grid;
-          grid-template-columns: 1fr 500px 1fr;
-          grid-template-rows: 33% 1fr 1fr;
+          grid-template-columns: 1fr;
+          grid-template-rows: 1fr 400px 1fr;
         }
       }
       .hero {
@@ -112,39 +140,36 @@ import "../styles/global.css";
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        /* background: #c2f9ff;
+
+        background: #00a4cb;
         background: radial-gradient(
           circle,
-          rgba(194, 249, 255, 1) 2%,
-          rgba(0, 212, 255, 1) 10%,
-          rgba(26, 26, 46, 1) 32%
-        ); */
-        background: black;
-        /* background-image: url('../images/hero-bg-1.jpg');
-       background-position: center;
-       background-size: contain; */
+          rgba(0, 164, 203, 1) 0%,
+          rgba(15, 20, 39, 1) 30%
+        );
       }
 
       .hero-title {
         font-family: "Plus Jakarta Sans", sans-serif;
         font-optical-sizing: auto;
-        font-size: 3rem;
+        font-size: 5rem;
         grid-column: 1/1;
         grid-row: 1;
-        width: 100%; /*pushing it to side of grid column */
-        opacity: 0;
+        /* width: 100%; pushing it to side of grid column */
+        /* opacity: 0; */
       }
-      .hero-subtitle {
+      /* .hero-subtitle {
         font-family: "JetBrains Mono", monospace;
         font-size: 1.75rem;
         grid-column: 1/1;
         grid-row: 2;
-        width: 100%; /*pushing it to side of grid column */
+        width: 100%; /*pushing it to side of grid column 
         opacity: 0;
       }
+
       .hero-subtitle span {
         display: block;
-      }
+      } */
 
       .hero-descr {
         font-size: 1.75rem;
@@ -161,16 +186,24 @@ import "../styles/global.css";
       .hero-statement {
         font-family: "JetBrains Mono", monospace;
         font-optical-sizing: auto;
-        font-size: 3rem;
+        font-size: 4rem;
         color: #ffd700;
         grid-column: 1/3;
         grid-row: 3;
         width: 100%; /*pushing it to side of grid column */
+        text-align: center;
+        /* opacity: 0; */
+      }
+
+      .waves {
         opacity: 0;
       }
+
       .hero-chip-img-container {
-        grid-column: 2/3;
-        grid-row: 2/3;
+        /* grid-column: 2/3; */
+
+        grid-area: 1/1;
+        grid-row: 2;
         height: 170px;
         width: 150px;
         background-image: url("../images/microchip.png");
@@ -178,14 +211,16 @@ import "../styles/global.css";
         background-size: cover;
         background-position: center;
         z-index: 2;
-        transform: scale(0);
+        /* transform: scale(0); */
         opacity: 0;
         transform-origin: center;
       }
 
       .hero-wave-img-container {
-        grid-column: 2/3;
-        grid-row: 2/3;
+        /* grid-column: 2/3;*/
+
+        grid-area: 1/1;
+        grid-row: 2;
         height: 200px;
         width: 300px;
         background-image: url("../images/wave-microchip.png");
@@ -196,11 +231,10 @@ import "../styles/global.css";
         transform-origin: center;
       }
 
-      .svg-rotate-trigger {
+      .scroller-rotate-trigger {
         position: sticky;
         top: 0;
         height: 100vh;
-        /* background: red; */
         /* border: 5px solid red; */
       }
       .wave-img-trigger {
@@ -220,114 +254,11 @@ import "../styles/global.css";
     </style>
   </head>
   <body>
-    <div id="svg-container" class="svg-center">
-      <div class="svg-container-inner">
-        <svg
-          width="570"
-          height="664"
-          viewBox="0 0 570 664"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <line
-            class="line"
-            x1="152.5"
-            y1="6.55671e-08"
-            x2="152.5"
-            y2="74.6517"
-            stroke="#FFD700"
-            stroke-width="3"></line>
-          <line
-            class="line"
-            y1="-1.5"
-            x2="110.153"
-            y2="-1.5"
-            transform="matrix(0.762573 0.646902 -0.762573 0.646902 152 74.6519)"
-            stroke="#FFD700"
-            stroke-width="3"></line>
-          <ellipse
-            class="dot"
-            cx="230.5"
-            cy="140.396"
-            rx="12.5"
-            ry="10.6039"
-            fill="#FFD700"></ellipse>
-          <line
-            class="line"
-            x1="1.50024"
-            y1="663.973"
-            x2="3.50024"
-            y2="551.973"
-            stroke="#FFD700"
-            stroke-width="3"></line>
-          <line
-            class="line"
-            x1="3.79866"
-            y1="551.187"
-            x2="60.6852"
-            y2="475.102"
-            stroke="#FFD700"
-            stroke-width="3"></line>
-          <ellipse
-            class="dot"
-            cx="60.5"
-            cy="479.604"
-            rx="12.5"
-            ry="10.6039"
-            fill="#FFD700"></ellipse>
-          <line
-            class="line"
-            x1="521.5"
-            y1="663.973"
-            x2="523.5"
-            y2="551.973"
-            stroke="#FFD700"
-            stroke-width="3"></line>
-          <line
-            class="line"
-            x1="523.795"
-            y1="552.412"
-            x2="487.614"
-            y2="464.571"
-            stroke="#FFD700"
-            stroke-width="3"></line>
-          <ellipse
-            class="dot"
-            cx="488.5"
-            cy="465.604"
-            rx="12.5"
-            ry="10.6039"
-            fill="#FFD700"></ellipse>
-          <line
-            class="line"
-            x1="568.5"
-            y1="-3"
-            x2="568.5"
-            y2="201"
-            stroke="#FFD700"
-            stroke-width="3"></line>
-          <line
-            class="line"
-            x1="567.954"
-            y1="202.157"
-            x2="453.954"
-            y2="296.157"
-            stroke="#FFD700"
-            stroke-width="3"></line>
-          <ellipse
-            class="dot"
-            cx="458.5"
-            cy="294.604"
-            rx="12.5"
-            ry="10.6039"
-            fill="#FFD700"></ellipse>
-        </svg>
-      </div>
-    </div>
+   
     <div class="hero">
-      <div class="hero-one">
+      <div class="hero-inner">
         <h1 class="hero-title fade-from-above">NANNI-O</h1>
-        <p class="hero-subtitle fade-from-above">
+        <!-- <p class="hero-subtitle fade-from-above">
           <span>Nano</span>
           <span>Artificial</span>
           <span>Neural</span>
@@ -338,13 +269,598 @@ import "../styles/global.css";
           Volumetric Holographic Nano <span>Optical</span> conductors and <span
             >transistors</span
           >
-        </p>
-        <p class="hero-statement">From wires to waves</p>
+        </p> -->
+        <p class="hero-statement wires">From wires</p>
+        <p class="hero-statement waves">To waves</p>
+      </div>
+    </div>
+     <div id="scroller" class="scroller-center">
+      <div class="scroller-inner">
+        <div class="lines-container">
+          <svg
+            width="974"
+            height="437"
+            viewBox="0 0 974 437"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle cx="66.5" cy="119.5" r="2.5" fill="#00A4CB" class="dot"
+            ></circle>
+            <circle cx="231.5" cy="22.5" r="2.5" fill="#00A4CB" class="dot"
+            ></circle>
+            <circle cx="720.5" cy="21.5" r="2.5" fill="#00A4CB" class="dot"
+            ></circle>
+            <circle cx="63.5" cy="285.5" r="2.5" fill="#00A4CB" class="dot"
+            ></circle>
+            <circle cx="903.5" cy="121.5" r="2.5" fill="#00A4CB" class="dot"
+            ></circle>
+            <path d="M67 120L227 120L269 165H386" stroke="#00A4CB" class="line"
+            ></path>
+            <path d="M901 121H739L711 164H591" stroke="#00A4CB" class="line"
+            ></path>
+            <path d="M223 163L123 163" stroke="#00A4CB" class="line"></path>
+            <path d="M846 172H746" stroke="#00A4CB" class="line"></path>
+            <circle cx="125.5" cy="162.5" r="2.5" fill="#00A4CB" class="dot"
+            ></circle>
+            <circle cx="743.5" cy="171.5" r="2.5" fill="#00A4CB" class="dot"
+            ></circle>
+            <circle cx="225.5" cy="162.5" r="2.5" fill="#00A4CB" class="dot"
+            ></circle>
+            <circle cx="845.5" cy="172.5" r="2.5" fill="#00A4CB" class="dot"
+            ></circle>
+            <circle cx="2.5" cy="219.5" r="2.5" fill="#00A4CB" class="dot"
+            ></circle>
+            <path
+              d="M391 194L227.848 194L207.951 216.979L6 218"
+              stroke="#00A4CB"
+              class="line"></path>
+            <circle cx="971.5" cy="219.5" r="2.5" fill="#00A4CB" class="dot"
+            ></circle>
+            <path d="M591 198.5H741L779 217H974" stroke="#00A4CB" class="line"
+            ></path>
+            <circle cx="230.5" cy="220.5" r="2.5" fill="#00A4CB" class="dot"
+            ></circle>
+            <circle cx="125.5" cy="238.5" r="2.5" fill="#00A4CB" class="dot"
+            ></circle>
+            <path d="M231 218L211 238H128" stroke="#00A4CB" class="line"></path>
+            <circle cx="312.5" cy="220.5" r="2.5" fill="#00A4CB" class="dot"
+            ></circle>
+            <path d="M312 220H387" stroke="#00A4CB" class="line"></path>
+            <path d="M592 220H667" stroke="#00A4CB" class="line"></path>
+            <circle cx="666.5" cy="220.5" r="2.5" fill="#00A4CB" class="dot"
+            ></circle>
+            <circle cx="740.5" cy="220.5" r="2.5" fill="#00A4CB" class="dot"
+            ></circle>
+            <circle cx="848.5" cy="237.5" r="2.5" fill="#00A4CB" class="dot"
+            ></circle>
+            <path d="M742 223L770 237H846" stroke="#00A4CB" class="line"></path>
+            <path
+              d="M387.998 255.5L259 255.5L222 285L63.9982 285"
+              stroke="#00A4CB"
+              class="line"></path>
+            <path
+              d="M590.996 254H720L756 283H914.906"
+              stroke="#00A4CB"
+              class="line"></path>
+            <circle cx="917.5" cy="285.5" r="2.5" fill="#00A4CB" class="dot"
+            ></circle>
+            <circle cx="133.5" cy="357.5" r="2.5" fill="#00A4CB" class="dot"
+            ></circle>
+            <circle cx="844.5" cy="358.5" r="2.5" fill="#00A4CB" class="dot"
+            ></circle>
+            <path
+              d="M389 296.498L255 296.498L133 358"
+              stroke="#00A4CB"
+              class="line"></path>
+            <path d="M592 296H721L843 358" stroke="#00A4CB" class="line"></path>
+            <circle cx="285.5" cy="351.5" r="2.5" fill="#00A4CB" class="dot"
+            ></circle>
+            <circle cx="234.5" cy="397.5" r="2.5" fill="#00A4CB" class="dot"
+            ></circle>
+            <circle cx="704.5" cy="351.5" r="2.5" fill="#00A4CB" class="dot"
+            ></circle>
+            <path
+              d="M363 313L335 351.354L286.354 351.354"
+              stroke="#00A4CB"
+              class="line"></path>
+            <path d="M621 316L659 351H702" stroke="#00A4CB" class="line"></path>
+            <path
+              d="M393.209 325.454L340 397.454L237.209 397.454"
+              stroke="#00A4CB"
+              class="line"></path>
+            <circle cx="742.5" cy="397.5" r="2.5" fill="#00A4CB" class="dot"
+            ></circle>
+            <path
+              d="M587.201 328.542L641 397.542L744.201 397.542"
+              stroke="#00A4CB"
+              class="line"></path>
+            <circle cx="444.5" cy="422.5" r="2.5" fill="#00A4CB" class="dot"
+            ></circle>
+            <circle cx="547.5" cy="422.5" r="2.5" fill="#00A4CB" class="dot"
+            ></circle>
+            <line
+              x1="445"
+              y1="316.998"
+              x2="445"
+              y2="420.002"
+              stroke="#00A4CB"
+              class="line"></line>
+            <line
+              x1="547.5"
+              y1="317"
+              x2="547.5"
+              y2="420.005"
+              stroke="#00A4CB"
+              class="line"></line>
+            <path
+              d="M233.115 25.1318L271.115 70.1037L321.116 70.1037L386.27 110.546"
+              stroke="#00A4CB"
+              class="line"></path>
+            <path
+              d="M579.654 116.639L630.154 68.1394L687 68.1394L721 22"
+              stroke="#00A4CB"
+              class="line"></path>
+            <circle cx="446.5" cy="24.5" r="2.5" fill="#00A4CB" class="dot"
+            ></circle>
+            <circle cx="545.5" cy="25.5" r="2.5" fill="#00A4CB" class="dot"
+            ></circle>
+            <path d="M446.5 27L446.5 68L446.5 119" stroke="#00A4CB" class="line"
+            ></path>
+            <path d="M545 28L545 69L545 120" stroke="#00A4CB" class="line"
+            ></path>
+          </svg>
+        </div>
+        <div class="gradient-container">
+          <svg
+            class="gradient"
+            width="1983"
+            height="700"
+            viewBox="0 0 1983 700"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g id="Group 4">
+              <g id="Group 1">
+                <g id="bottom" filter="url(#filter0_di_24_35)">
+                  <circle
+                    cx="977"
+                    cy="350"
+                    r="250"
+                    fill="#00A4CB"
+                    fill-opacity="0.01"
+                    shape-rendering="crispEdges"></circle>
+                </g>
+                <mask
+                  id="mask0_24_35"
+                  style="mask-type:alpha"
+                  maskUnits="userSpaceOnUse"
+                  x="727"
+                  y="100"
+                  width="500"
+                  height="500"
+                >
+                  <circle id="mask" cx="977" cy="350" r="250" fill="#00A4CB"
+                  ></circle>
+                </mask>
+                <g mask="url(#mask0_24_35)">
+                  <g id="top" filter="url(#filter1_f_24_35)">
+                    <circle cx="977" cy="350" r="75" fill="#00A4CB"></circle>
+                  </g>
+                </g>
+              </g>
+              <g id="Group 2">
+                <g
+                  id="Line 1"
+                  style="mix-blend-mode:plus-lighter"
+                  filter="url(#filter2_f_24_35)"
+                >
+                  <line
+                    x1="914"
+                    y1="348.5"
+                    x2="50"
+                    y2="348.5"
+                    stroke="url(#paint0_linear_24_35)"
+                    stroke-width="9"></line>
+                </g>
+                <g
+                  id="Line 2"
+                  style="mix-blend-mode:plus-lighter"
+                  filter="url(#filter3_f_24_35)"
+                >
+                  <line
+                    x1="914"
+                    y1="348.5"
+                    x2="50"
+                    y2="348.5"
+                    stroke="url(#paint1_linear_24_35)"
+                    stroke-width="9"></line>
+                </g>
+                <g
+                  id="Rectangle 4"
+                  style="mix-blend-mode:plus-lighter"
+                  filter="url(#filter4_f_24_35)"
+                >
+                  <rect
+                    x="50"
+                    y="332"
+                    width="864"
+                    height="35"
+                    fill="url(#paint2_linear_24_35)"
+                    fill-opacity="0.8"></rect>
+                </g>
+              </g>
+              <g id="Group 3">
+                <g
+                  id="Line 1_2"
+                  style="mix-blend-mode:plus-lighter"
+                  filter="url(#filter5_f_24_35)"
+                >
+                  <line
+                    y1="-4.5"
+                    x2="864"
+                    y2="-4.5"
+                    transform="matrix(1 -8.74228e-08 -8.74228e-08 -1 1069 344)"
+                    stroke="url(#paint3_linear_24_35)"
+                    stroke-width="9"></line>
+                </g>
+                <g
+                  id="Line 2_2"
+                  style="mix-blend-mode:plus-lighter"
+                  filter="url(#filter6_f_24_35)"
+                >
+                  <line
+                    y1="-4.5"
+                    x2="864"
+                    y2="-4.5"
+                    transform="matrix(1 -8.74228e-08 -8.74228e-08 -1 1069 344)"
+                    stroke="url(#paint4_linear_24_35)"
+                    stroke-width="9"></line>
+                </g>
+                <g
+                  id="Rectangle 4_2"
+                  style="mix-blend-mode:plus-lighter"
+                  filter="url(#filter7_f_24_35)"
+                >
+                  <rect
+                    width="864"
+                    height="35"
+                    transform="matrix(-1 0 0 1 1933 332)"
+                    fill="url(#paint5_linear_24_35)"
+                    fill-opacity="0.8"></rect>
+                </g>
+              </g>
+              <g id="Ellipse 3" filter="url(#filter8_di_24_35)">
+                <circle
+                  cx="977"
+                  cy="350"
+                  r="160"
+                  fill="#00A4CB"
+                  fill-opacity="0.1"
+                  shape-rendering="crispEdges"></circle>
+              </g>
+            </g>
+            <defs>
+              <filter
+                id="filter0_di_24_35"
+                x="627"
+                y="0"
+                width="700"
+                height="700"
+                filterUnits="userSpaceOnUse"
+                color-interpolation-filters="sRGB"
+              >
+                <feFlood flood-opacity="0" result="BackgroundImageFix"
+                ></feFlood>
+                <feColorMatrix
+                  in="SourceAlpha"
+                  type="matrix"
+                  values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                  result="hardAlpha"></feColorMatrix>
+                <feOffset></feOffset>
+                <feGaussianBlur stdDeviation="50"></feGaussianBlur>
+                <feComposite in2="hardAlpha" operator="out"></feComposite>
+                <feColorMatrix
+                  type="matrix"
+                  values="0 0 0 0 0 0 0 0 0 0.643137 0 0 0 0 0.796078 0 0 0 1 0"
+                ></feColorMatrix>
+                <feBlend
+                  mode="normal"
+                  in2="BackgroundImageFix"
+                  result="effect1_dropShadow_24_35"></feBlend>
+                <feBlend
+                  mode="normal"
+                  in="SourceGraphic"
+                  in2="effect1_dropShadow_24_35"
+                  result="shape"></feBlend>
+                <feColorMatrix
+                  in="SourceAlpha"
+                  type="matrix"
+                  values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                  result="hardAlpha"></feColorMatrix>
+                <feOffset></feOffset>
+                <feGaussianBlur stdDeviation="32.5"></feGaussianBlur>
+                <feComposite
+                  in2="hardAlpha"
+                  operator="arithmetic"
+                  k2="-1"
+                  k3="1"></feComposite>
+                <feColorMatrix
+                  type="matrix"
+                  values="0 0 0 0 0 0 0 0 0 0.643137 0 0 0 0 0.796078 0 0 0 1 0"
+                ></feColorMatrix>
+                <feBlend
+                  mode="normal"
+                  in2="shape"
+                  result="effect2_innerShadow_24_35"></feBlend>
+              </filter>
+              <filter
+                id="filter1_f_24_35"
+                x="837"
+                y="210"
+                width="280"
+                height="280"
+                filterUnits="userSpaceOnUse"
+                color-interpolation-filters="sRGB"
+              >
+                <feFlood flood-opacity="0" result="BackgroundImageFix"
+                ></feFlood>
+                <feBlend
+                  mode="normal"
+                  in="SourceGraphic"
+                  in2="BackgroundImageFix"
+                  result="shape"></feBlend>
+                <feGaussianBlur
+                  stdDeviation="32.5"
+                  result="effect1_foregroundBlur_24_35"></feGaussianBlur>
+              </filter>
+              <filter
+                id="filter2_f_24_35"
+                x="42"
+                y="336"
+                width="880"
+                height="25.0001"
+                filterUnits="userSpaceOnUse"
+                color-interpolation-filters="sRGB"
+              >
+                <feFlood flood-opacity="0" result="BackgroundImageFix"
+                ></feFlood>
+                <feBlend
+                  mode="normal"
+                  in="SourceGraphic"
+                  in2="BackgroundImageFix"
+                  result="shape"></feBlend>
+                <feGaussianBlur
+                  stdDeviation="4"
+                  result="effect1_foregroundBlur_24_35"></feGaussianBlur>
+              </filter>
+              <filter
+                id="filter3_f_24_35"
+                x="34"
+                y="328"
+                width="896"
+                height="41.0001"
+                filterUnits="userSpaceOnUse"
+                color-interpolation-filters="sRGB"
+              >
+                <feFlood flood-opacity="0" result="BackgroundImageFix"
+                ></feFlood>
+                <feBlend
+                  mode="normal"
+                  in="SourceGraphic"
+                  in2="BackgroundImageFix"
+                  result="shape"></feBlend>
+                <feGaussianBlur
+                  stdDeviation="8"
+                  result="effect1_foregroundBlur_24_35"></feGaussianBlur>
+              </filter>
+              <filter
+                id="filter4_f_24_35"
+                x="0"
+                y="282"
+                width="964"
+                height="135"
+                filterUnits="userSpaceOnUse"
+                color-interpolation-filters="sRGB"
+              >
+                <feFlood flood-opacity="0" result="BackgroundImageFix"
+                ></feFlood>
+                <feBlend
+                  mode="normal"
+                  in="SourceGraphic"
+                  in2="BackgroundImageFix"
+                  result="shape"></feBlend>
+                <feGaussianBlur
+                  stdDeviation="25"
+                  result="effect1_foregroundBlur_24_35"></feGaussianBlur>
+              </filter>
+              <filter
+                id="filter5_f_24_35"
+                x="1061"
+                y="336"
+                width="880"
+                height="25.0001"
+                filterUnits="userSpaceOnUse"
+                color-interpolation-filters="sRGB"
+              >
+                <feFlood flood-opacity="0" result="BackgroundImageFix"
+                ></feFlood>
+                <feBlend
+                  mode="normal"
+                  in="SourceGraphic"
+                  in2="BackgroundImageFix"
+                  result="shape"></feBlend>
+                <feGaussianBlur
+                  stdDeviation="4"
+                  result="effect1_foregroundBlur_24_35"></feGaussianBlur>
+              </filter>
+              <filter
+                id="filter6_f_24_35"
+                x="1053"
+                y="328"
+                width="896"
+                height="41.0001"
+                filterUnits="userSpaceOnUse"
+                color-interpolation-filters="sRGB"
+              >
+                <feFlood flood-opacity="0" result="BackgroundImageFix"
+                ></feFlood>
+                <feBlend
+                  mode="normal"
+                  in="SourceGraphic"
+                  in2="BackgroundImageFix"
+                  result="shape"></feBlend>
+                <feGaussianBlur
+                  stdDeviation="8"
+                  result="effect1_foregroundBlur_24_35"></feGaussianBlur>
+              </filter>
+              <filter
+                id="filter7_f_24_35"
+                x="1019"
+                y="282"
+                width="964"
+                height="135"
+                filterUnits="userSpaceOnUse"
+                color-interpolation-filters="sRGB"
+              >
+                <feFlood flood-opacity="0" result="BackgroundImageFix"
+                ></feFlood>
+                <feBlend
+                  mode="normal"
+                  in="SourceGraphic"
+                  in2="BackgroundImageFix"
+                  result="shape"></feBlend>
+                <feGaussianBlur
+                  stdDeviation="25"
+                  result="effect1_foregroundBlur_24_35"></feGaussianBlur>
+              </filter>
+              <filter
+                id="filter8_di_24_35"
+                x="667"
+                y="40"
+                width="620"
+                height="620"
+                filterUnits="userSpaceOnUse"
+                color-interpolation-filters="sRGB"
+              >
+                <feFlood flood-opacity="0" result="BackgroundImageFix"
+                ></feFlood>
+                <feColorMatrix
+                  in="SourceAlpha"
+                  type="matrix"
+                  values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                  result="hardAlpha"></feColorMatrix>
+                <feOffset></feOffset>
+                <feGaussianBlur stdDeviation="75"></feGaussianBlur>
+                <feComposite in2="hardAlpha" operator="out"></feComposite>
+                <feColorMatrix
+                  type="matrix"
+                  values="0 0 0 0 0 0 0 0 0 0.643137 0 0 0 0 0.796078 0 0 0 1 0"
+                ></feColorMatrix>
+                <feBlend
+                  mode="normal"
+                  in2="BackgroundImageFix"
+                  result="effect1_dropShadow_24_35"></feBlend>
+                <feBlend
+                  mode="normal"
+                  in="SourceGraphic"
+                  in2="effect1_dropShadow_24_35"
+                  result="shape"></feBlend>
+                <feColorMatrix
+                  in="SourceAlpha"
+                  type="matrix"
+                  values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                  result="hardAlpha"></feColorMatrix>
+                <feOffset></feOffset>
+                <feGaussianBlur stdDeviation="50"></feGaussianBlur>
+                <feComposite
+                  in2="hardAlpha"
+                  operator="arithmetic"
+                  k2="-1"
+                  k3="1"></feComposite>
+                <feColorMatrix
+                  type="matrix"
+                  values="0 0 0 0 0 0 0 0 0 0.643137 0 0 0 0 0.796078 0 0 0 1 0"
+                ></feColorMatrix>
+                <feBlend
+                  mode="normal"
+                  in2="shape"
+                  result="effect2_innerShadow_24_35"></feBlend>
+              </filter>
+              <linearGradient
+                id="paint0_linear_24_35"
+                x1="50"
+                y1="343.5"
+                x2="914"
+                y2="343.5"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop stop-color="#00A4CB" stop-opacity="0"></stop>
+                <stop offset="1" stop-color="#00A4CB"></stop>
+              </linearGradient>
+              <linearGradient
+                id="paint1_linear_24_35"
+                x1="50"
+                y1="343.5"
+                x2="914"
+                y2="343.5"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop stop-color="#00A4CB" stop-opacity="0"></stop>
+                <stop offset="1" stop-color="#00A4CB"></stop>
+              </linearGradient>
+              <linearGradient
+                id="paint2_linear_24_35"
+                x1="50"
+                y1="349.5"
+                x2="914"
+                y2="349.5"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop stop-color="#00A4CB" stop-opacity="0"></stop>
+                <stop offset="1" stop-color="#00A4CB"></stop>
+              </linearGradient>
+              <linearGradient
+                id="paint3_linear_24_35"
+                x1="864"
+                y1="0.5"
+                x2="0"
+                y2="0.5"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop stop-color="#00A4CB" stop-opacity="0"></stop>
+                <stop offset="1" stop-color="#00A4CB"></stop>
+              </linearGradient>
+              <linearGradient
+                id="paint4_linear_24_35"
+                x1="864"
+                y1="0.5"
+                x2="0"
+                y2="0.5"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop stop-color="#00A4CB" stop-opacity="0"></stop>
+                <stop offset="1" stop-color="#00A4CB"></stop>
+              </linearGradient>
+              <linearGradient
+                id="paint5_linear_24_35"
+                x1="0"
+                y1="17.5"
+                x2="864"
+                y2="17.5"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop stop-color="#00A4CB" stop-opacity="0"></stop>
+                <stop offset="1" stop-color="#00A4CB"></stop>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+
         <div class="hero-chip-img-container"></div>
         <div class="hero-wave-img-container"></div>
       </div>
     </div>
-    <div class="svg-rotate-trigger"></div>
+    <div class="scroller-rotate-trigger"></div>
     <div class="wave-img-trigger"></div>
     <div class="hero2-trigger"></div>
 
@@ -362,6 +878,17 @@ import "../styles/global.css";
       } from "animejs";
 
       // SOME SETUP //
+      utils.set(".hero-chip-img-container", {
+        opacity: 0,
+      });
+
+      utils.set(".hero-wave-img-container", {
+        scale: 1.3,
+      });
+
+      // utils.set(".gradient", {
+      //   translateY: "100px",
+      // });
 
       const conicHerobgYellow =
         "conic-gradient(from 0deg, transparent 0 22%, rgba(255, 215, 0, .2) 22% 27%, transparent 27% 49%, rgba(255, 215, 0, .2) 49% 53%, transparent 53% 78%, rgba(255, 215, 0, .2) 78% 82%, transparent 82% 100%)";
@@ -372,204 +899,290 @@ import "../styles/global.css";
       const radialHerobgBlue =
         "radial-gradient(circle 400px, #00FFFFe, #000814)";
 
-      text.split(".hero-one", {
-        chars: { class: "fade-from-above" },
-      });
+      // text.split(".hero-one", {
+      //   chars: { class: "fade-from-above" },
+      // });
 
       //    END SETUP //
 
-      animate(svg.createDrawable(".line"), {
-        opacity: [0, 1],
-        draw: ["0 0", "0 1"],
-        // ease: "inOutQuad",
-        duration: 2000,
-        delay: stagger(100),
-        // loop: true,
-      });
+      // const lineAnimate = animate(svg.createDrawable(".line"), {
+      //   // opacity: [0.5, 1],
+      //   draw: ["0 0", "0 1"],
+      //   // ease: "inOutQuad",
+      //   duration: 2000,
+      //   delay: stagger(100),
+      //   reversed: true,
+      //   loop: true
+      // });
 
-      const heroImgtl = animate(".hero-chip-img-container", {
-        scale: {
-          from: "0",
-          duration: 2000,
-        },
-        opacity: {
-          to: "1",
-          duration: 3000,
-        },
-        rotate: {
-          to: "1turn",
-          duration: 2000,
-        },
-      });
+      // const heroImgtl = animate(".hero-chip-img-container", {
+      //   // scale: {
+      //   //   from: "0",
+      //   //   duration: 2000,
+      //   // },
+      //   opacity: {
+      //     to: "1",
+      //     duration: 3000,
+      //   },
+      //   // rotate: {
+      //   //   to: "1turn",
+      //   //   duration: 2000,
+      //   // },
+      // });
 
-      const introLineAnimation = animate(".hero-one", {
-        "--hero-pseudo-after-scale": {
-          to: ".5",
-          duration: 500,
-        },
-      });
+      // const introLineAnimation = animate(".hero-one", {
+      //   "--hero-pseudo-after-scale": {
+      //     to: ".5",
+      //     duration: 500,
+      //   },
+      // });
 
-      const heroTl = createTimeline()
-        .sync(introLineAnimation)
-        .add(".hero-one", {
-          "--hero-pseudo-after-width": {
-            to: "700px",
-          },
-          "--hero-pseudo-after-bg": {
-            to: conicHerobgYellow,
-          },
-          "--hero-pseudo-after-scale": {
-            to: "1",
-          },
-          "--hero-pseudo-before-scale": {
-            to: "1",
-          },
-        });
+      // const heroTl = createTimeline()
+      //   .sync(lineAnimate)
+      //   .add(".hero-one", {
+      //     "--hero-pseudo-after-width": {
+      //       to: "700px",
+      //     },
+      //     "--hero-pseudo-after-bg": {
+      //       to: conicHerobgYellow,
+      //     },
+      //     "--hero-pseudo-after-scale": {
+      //       to: "1",
+      //     },
+      //     "--hero-pseudo-before-scale": {
+      //       to: "1",
+      //     },
+      //   });
 
-      const heroTextAnim1 = animate(".fade-from-above", {
-        opacity: [0, 1],
-        y: [{ to: ["-100%", "0%"] }],
-        duration: 750,
-        ease: "out(3)",
-        delay: stagger(50),
-        loop: false,
-      });
+      // const heroTextAnim1 = animate(".fade-from-above", {
+      //   opacity: [0, 1],
+      //   y: [{ to: ["-100%", "0%"] }],
+      //   duration: 750,
+      //   ease: "out(3)",
+      //   delay: stagger(50),
+      //   loop: false,
+      // });
 
       const heroTlMain = createTimeline()
-        // .sync(heroTl)
-        .sync(heroImgtl, "-=1000")
-        .sync(heroTextAnim1, "-=1000");
+        // .sync(lineAnimate)
+        .add(".hero-chip-img-container", {
+          scale: {
+            from: "0",
+            duration: 3000,
+            composition: "blend",
+          },
+          opacity: {
+            to: 1,
+            duration: 3000,
+            composition: "blend",
+          },
+          // rotate: {
+          //   to: "1turn",
+          //   duration: 2000,
+          // },
+        });
 
-        const chipFadeOutAnimation = animate(".hero-chip-img-container", {
-        rotateY: {
-          to: "5turn",
-          duration: 10000,
+      // .sync(heroImgtl, "-=1000")
+      // .sync(heroTextAnim1, "-=1000");
+
+      const chipFadeOutAnimation = animate(".hero-chip-img-container", {
+        rotate: {
+          to: "1turn",
+          duration: 5000,
         },
+        // scale:
+        //   [{ to: [1.5, 3] }],
+        //   duration: 5000,
+        //   // composition: 'blend',
+
         opacity: {
           to: [1, 0],
-          // duration: 5000,
+          duration: 5000,
         },
-         autoplay: onScroll({
+        autoplay: onScroll({
           container: ".svg-container",
           target: ".wave-img-trigger",
           enter: "bottom +=100",
           leave: "+=100 top",
-        
-          debug: true,
+          sync: true,
+          // debug: true,
         }),
       });
 
       const waveImgAnimation = animate(".hero-wave-img-container", {
-        opacity: [0, 1],
-        rotateY: {
-          to: "5turn",
-          // duration: 5000,
+        opacity: {
+          to: [0, 1],
+          duration: 5000,
+        },
+        // scale: {
+        //   from: 3,
+        //   duration: 5000
+        // },
+        rotate: {
+          to: "1turn",
+          duration: 5000,
         },
         autoplay: onScroll({
-          container: ".svg-container",
+          // container: ".svg-container",
           target: ".wave-img-trigger",
           enter: "bottom +=100",
           leave: "+=100 top",
-         
-          debug: true,
+          sync: true,
+          // debug: true,
         }),
       });
 
+      // const imgTransform = createTimeline()
+      // .sync(waveImgAnimation)
+
       const scrolltl2 = createTimeline({
         autoplay: onScroll({
-          container: ".svg-container",
+          // container: ".svg-container",
           target: ".hero2-trigger",
           enter: "bottom +=100",
           leave: "+=100 top",
-          sync: true
+          sync: true,
           // debug: true,
         }),
         // defaults: { duration: 3000 },
       })
-      // .add(".hero-one", {
-      //   "--hero-pseudo-before-bg": {
-      //     to: radialHerobgBlue,
-      //   },
-      //   "--hero-pseudo-after-width": {
-      //     to: "700px",
-      //   },
-      //   "--hero-pseudo-after-bg": {
-      //     to: conicHerobgBlue,
-      //   },
-      //   "--hero-pseudo-after-scale": {
-      //     to: "1",
-      //   },
-      //   "--hero-pseudo-before-scale": {
-      //     to: "1",
-      //   },
-      // })
-      .add(".hero-wave-img-container", {
-        x: "15rem",
-        y: "5rem",
-        duration: 5000,
-        // delay: 7000,
-        ease: "linear",
-      })
-      .add(".hero-descr", {
-        opacity: [0, 1],
-        y: [{ to: ["-100%", "0%"] }],
-        duration: 5000,
-        ease: 'linear',
-        delay: stagger(50),
-        loop: false,
-      })
-      .add(".hero-statement", {
-        opacity: [0, 1],
-        y: [{ to: ["-100%", "0%"] }],
-        duration: 5000,
-        ease: 'linear',
-        delay: stagger(50),
-        loop: false,
-      })
+        // .add(".hero-one", {
+        //   "--hero-pseudo-before-bg": {
+        //     to: radialHerobgBlue,
+        //   },
+        //   "--hero-pseudo-after-width": {
+        //     to: "700px",
+        //   },
+        //   "--hero-pseudo-after-bg": {
+        //     to: conicHerobgBlue,
+        //   },
+        //   "--hero-pseudo-after-scale": {
+        //     to: "1",
+        //   },
+        //   "--hero-pseudo-before-scale": {
+        //     to: "1",
+        //   },
+        // })
+        .add(".hero-wave-img-container", {
+          // x: "15rem",
+          // y: "5rem",
+          scale: {
+            to: 1,
+          },
+          duration: 5000,
+          delay: 7000,
+          ease: "linear",
+        })
+        // .add(".hero-descr", {
+        //   opacity: [0, 1],
+        //   y: [{ to: ["-100%", "0%"] }],
+        //   duration: 10000,
+        //   ease: "linear",
+        //   delay: stagger(50),
+        //   loop: false,
+        // })
+        .add(".waves", {
+          opacity: [0, 1],
+          y: [{ to: ["-100%", "0%"] }],
+          duration: 5000,
+          ease: "linear",
+          delay: stagger(50),
+          loop: false,
+        });
 
-      const scrolltl1 = createTimeline({
+      const lineOutanimation = animate(".line", {
+        opacity: [1, 0],
+        duration: 2000,
+        autoplay: false,
+      });
+
+      const lineDotAnimation = animate(".dot", {
+        opacity: [1, 0],
+        duration: 2000,
+        autoplay: false,
+      });
+
+      const gradientMove = animate(".gradient", {
+        translateY: "-70%",
+        opacity: {
+          to: 1,
+        },
+        duration: 3000,
+        ease: "linear",
+        autoplay: false,
+      });
+
+      const chipScale = animate(".hero-chip-img-container", {
+        scale: [1, 1.5],
+        composition: "blend",
+        autoplay: false,
+      });
+
+      const scrollTl1 = createTimeline({
         autoplay: onScroll({
           // container: "#svg-container",
-          target: ".svg-rotate-trigger",
+          target: ".scroller-rotate-trigger",
           enter: "bottom top",
           leave: "+=100 top",
           sync: true,
           // debug: true,
         }),
-        defaults: { duration: 2000 },
+        defaults: { duration: 5000 },
       })
-        .add(".dot", {
-          opacity: [1, 0],
-        })
-        .add(".line", {
-          opacity: [1, 0],
-        })
-        .add(".hero-one", {
-          "--hero-pseudo-after-scale": {
-            to: "0",
-            duration: 3000,
+        .sync(lineOutanimation)
+        .sync(lineDotAnimation)
+        .sync(gradientMove)
+        .sync(chipScale)
+        .add(".wires", {
+          opacity: {
+            to: 0,
           },
-          "--hero-pseudo-before-scale": {
-            to: "0",
-          },
-        })
-        .add(".hero-title", {
-          y: "-15rem",
-          opacity: [1, 0],
-        })
-        .add(".hero-subtitle", {
-          y: "15rem",
-          scale: {
-            to: "0",
-            delay: 500,
-          },
-          opacity: [1, 0],
-        })
-        .add(".hero-chip-img-container", {
-          scale: [1, 1.5],
         });
 
-      const scrollTlMain = createTimeline({ autoplay: false }).sync(scrolltl1);
+      // const scrolltl1 = createTimeline({
+      //   autoplay: onScroll({
+      //     // container: "#svg-container",
+      //     target: ".scroller-rotate-trigger",
+      //     enter: "bottom top",
+      //     leave: "+=100 top",
+      //     sync: true,
+      //     // debug: true,
+      //   }),
+      //   defaults: { duration: 5000 },
+      // })
+      //   .add(".dot", {
+      //     opacity: [1, 0],
+      //   })
+      //   // .add(".line", {
+      //   //   opacity: [1, 0],
+      //   // })
+      //   // .add(".hero-one", {
+      //   //   "--hero-pseudo-after-scale": {
+      //   //     to: "0",
+      //   //     duration: 3000,
+      //   //   },
+      //   //   "--hero-pseudo-before-scale": {
+      //   //     to: "0",
+      //   //   },
+      //   // })
+      //   // .add(".hero-title", {
+      //   //   y: "50px",
+      //   //   opacity: [1, 0],
+      //   // })
+      //   // .add(".hero-subtitle", {
+      //   //   y: "15rem",
+      //   //   scale: {
+      //   //     to: "0",
+      //   //     delay: 500,
+      //   //   },
+      //   //   opacity: [1, 0],
+      //   // })
+      //   // .add(".hero-chip-img-container", {
+      //   //   scale: [1, 1.5],
+      //   //   composition: "blend",
+      //   // });
+
+      // const scrollTlMain = createTimeline({ autoplay: false }).sync(scrolltl1);
       // .sync(scrolltl2);
 
       //     utils.set(".hero-one", {

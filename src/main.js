@@ -9,7 +9,15 @@ import { SplitText } from "gsap/SplitText";
 import { TextPlugin } from "gsap/TextPlugin";
 
 gsap.registerPlugin(ScrollTrigger, SplitText, TextPlugin);
-ScrollTrigger.normalizeScroll(true);
+
+// Check for mobile/touch devices
+const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
+  || window.innerWidth <= 1024 
+  || 'ontouchstart' in window;
+
+if (isMobile) {
+  ScrollTrigger.normalizeScroll(true);
+}
 
 const canvas = document.querySelector("#canvasParticles");
 const ctx = canvas.getContext("2d");

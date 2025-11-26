@@ -101,15 +101,15 @@ button {
 } */
 
 .hero {
-  /* position: sticky;
-  top: 0; */
-  height: 100vh;
+  position: sticky;
+  top: 0;
+  height: 100svh;
   width: 100%;
   display: grid;
   grid-template-rows: 60% 1fr;
   /* background-color: #0B0E14; */
   text-align: center;
-  /* border: 5px solid aliceblue; */
+  border: 5px solid aliceblue;
 
 }
 
@@ -128,21 +128,22 @@ button {
 .intro {
   position: sticky;
   top: 0;
-  height: 100vh;
+  height: 100svh;
   width: 100%;
   font-family: "Orbitron", sans-serif;
   font-weight: bold;
   text-transform: uppercase;
+  text-align: center;
   letter-spacing: .4em;
 
-  padding: 7em 7em;
+  padding: 7em min(1em, 7em);
   ;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 33% 1fr;
 
   place-items: center;
-  /* border: 5px solid teal; */
+  border: 5px solid teal;
 }
 
 .intro-statement {
@@ -173,9 +174,9 @@ button {
 
 
 .info {
-  /* position: sticky;
-  top: 0; */
-  height: 100vh;
+  position: sticky;
+  top: 0;
+  height: 100svh;
   width: 100%;
   /* border: 5px solid green; */
   color: white;
@@ -220,7 +221,7 @@ button {
 .partner-section {
   position: sticky;
   top: 0;
-  height: 100vh;
+  height: 100svh;
   width: 100%;
   /* border: 5px solid white; */
   ;
@@ -254,7 +255,7 @@ button {
 
 .nanni-main {
 
-  height: 100vh;
+  height: 100svh;
   width: 100;
   color: white;
   display: grid;
@@ -307,7 +308,7 @@ button {
 }
 
 .nanni-scope-inner {
-  height: 100vh;
+  height: 100svh;
   width: 100%;
   padding: 3em 0em;
   /* border: 5px solid red; */
@@ -349,7 +350,7 @@ button {
 }
 
 .nanni-outlook-inner {
-  height: 105vh;
+  height: 105svh;
   width: 100%;
   padding: 3em 0em;
   /* border: 5px solid red; */
@@ -391,7 +392,7 @@ button {
   position: sticky;
   top: 0;
 
-  height: 100vh;
+  height: 100svh;
   width: 100%;
   background-color: #0b0e14;
   /* display: grid;
@@ -400,7 +401,7 @@ button {
 }
 
 .agi-outro_details {
-  height: 100vh;
+  height: 100svh;
   width: 100%;
   display: grid;
   place-items: center;
@@ -425,7 +426,7 @@ button {
 .agi-outro_contact {
   position: sticky;
   top: 0;
-  height: 100vh;
+  height: 100svh;
   width: 100%;
   /* border: 5px solid red; */
   background: black;
@@ -470,12 +471,12 @@ a {
 .scroller {
   position: sticky;
   top: 0;
-  height: 100vh;
+  height: 100svh;
   width: 100%;
   
 }
 
-/* .scroller-one {
+.scroller-one {
   border: 10px solid red;
 }
 
@@ -483,7 +484,7 @@ a {
   border: 10px solid gray;
 }
 
-.scroller-three {
+/* .scroller-three {
   border: 10px solid purple;
 }
 
@@ -507,10 +508,18 @@ a {
 .spacer {
   position: sticky;
   top: 0;
-  height: 100vh;
+  height: 100svh;
   width: 100%;
 }
 
 .spacer-one {
   border: 10px solid blue;
+}
+
+*{
+  /* border: 10px solid red!important; */
+}
+
+.canvas-container{
+  display: none!important;
 }

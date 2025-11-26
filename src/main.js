@@ -600,6 +600,25 @@ gsap.from(wavesSplit.chars, {
   },
 });
 
+gsap.to(".wires", {
+  y: -15,
+  opacity: 0,
+  scrollTrigger: {
+    trigger: ".scroller-two",
+    start: "top center",
+    toggleActions: "play none none reverse",
+  },
+});
+gsap.to(".waves", {
+  y: 15,
+  opacity: 0,
+  scrollTrigger: {
+    trigger: ".scroller-two",
+    start: "top center",
+    toggleActions: "play none none reverse",
+  },
+});
+
 const maxRadius = Math.sqrt(
   Math.pow(window.innerWidth / 2, 2) + Math.pow(window.innerHeight / 2, 2)
 );
@@ -643,24 +662,7 @@ gsap.fromTo(
   }
 );
 
-gsap.to(".wires", {
-  y: -15,
-  opacity: 0,
-  scrollTrigger: {
-    trigger: ".scroller-two",
-    start: "top center",
-    toggleActions: "play none none reverse",
-  },
-});
-gsap.to(".waves", {
-  y: 15,
-  opacity: 0,
-  scrollTrigger: {
-    trigger: ".scroller-two",
-    start: "top center",
-    toggleActions: "play none none reverse",
-  },
-});
+
 
 gsap.to(".partner_text", {
   opacity: 0,

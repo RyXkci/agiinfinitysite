@@ -103,6 +103,8 @@ button {
 .hero {
   position: sticky;
   top: 0;
+    overflow-y: auto; /* For content that's too tall */
+  -webkit-overflow-scrolling: touch;
   height: 100svh;
   width: 100%;
   display: grid;
@@ -128,6 +130,8 @@ button {
 .intro {
   position: sticky;
   top: 0;
+    overflow-y: auto; /* For content that's too tall */
+  -webkit-overflow-scrolling: touch;
   height: 100svh;
   width: 100%;
   font-family: "Orbitron", sans-serif;
@@ -176,6 +180,8 @@ button {
 .info {
   position: sticky;
   top: 0;
+    overflow-y: auto; /* For content that's too tall */
+  -webkit-overflow-scrolling: touch;
   height: 100svh;
   width: 100%;
   border: 5px solid green;
@@ -256,6 +262,8 @@ text-align: center;
 .partner-section {
   position: sticky;
   top: 0;
+    overflow-y: auto; /* For content that's too tall */
+  -webkit-overflow-scrolling: touch;
   height: 100svh;
   width: 100%;
   /* border: 5px solid white; */
@@ -286,6 +294,8 @@ text-align: center;
 .nanni {
   position: sticky;
   top: 0;
+    overflow-y: auto; /* For content that's too tall */
+  -webkit-overflow-scrolling: touch;
 }
 
 
@@ -340,6 +350,8 @@ text-align: center;
 .nanni-scope {
   position: sticky;
   top: 0;
+    overflow-y: auto; /* For content that's too tall */
+  -webkit-overflow-scrolling: touch;
   background-color: #272b34;
 }
 
@@ -382,6 +394,8 @@ text-align: center;
 .nanni-outlook {
   position: sticky;
   top: 0;
+    overflow-y: auto; /* For content that's too tall */
+  -webkit-overflow-scrolling: touch;
   background-color: #0b0e14;
 }
 
@@ -427,6 +441,8 @@ text-align: center;
 .agi-outro {
   position: sticky;
   top: 0;
+    overflow-y: auto; /* For content that's too tall */
+  -webkit-overflow-scrolling: touch;
 
   height: 100svh;
   width: 100%;
@@ -462,6 +478,8 @@ text-align: center;
 .agi-outro_contact {
   position: sticky;
   top: 0;
+    overflow-y: auto; /* For content that's too tall */
+  -webkit-overflow-scrolling: touch;
   height: 100svh;
   width: 100%;
   /* border: 5px solid red; */
@@ -507,6 +525,8 @@ a {
 .scroller {
   position: sticky;
   top: 0;
+    overflow-y: auto; /* For content that's too tall */
+  -webkit-overflow-scrolling: touch;
   height: 100svh;
   width: 100%;
   

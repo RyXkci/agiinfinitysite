@@ -9,6 +9,7 @@ import { SplitText } from "gsap/SplitText";
 import { TextPlugin } from "gsap/TextPlugin";
 
 gsap.registerPlugin(ScrollTrigger, SplitText, TextPlugin);
+ScrollTrigger.normalizeScroll(true);
 
 const canvas = document.querySelector("#canvasParticles");
 const ctx = canvas.getContext("2d");

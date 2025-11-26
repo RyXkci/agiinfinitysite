@@ -178,16 +178,16 @@ button {
 
 
 .info {
-  position: sticky;
-  top: 0;
+  /* position: sticky;
+  top: 0; */
     overflow-y: auto; /* For content that's too tall */
   -webkit-overflow-scrolling: touch;
-  height: 100svh;
+  min-height: 100svh;
   width: 100%;
   border: 5px solid green;
   color: white;
   display: grid;
-  place-items: center;
+  place-items: start center;
 }
 
 /* .info-inner {
@@ -200,11 +200,11 @@ text-align: center;
 } */
 
 .info-inner {
-  height: 70%;
-  width: 80%;
+  height: auto;
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: 1fr 1fr 3fr;
+  grid-template-rows: auto auto auto;
 text-align: center;
 }
 
@@ -524,9 +524,9 @@ a {
 
 .scroller {
   position: sticky;
-  top: 0;
-    overflow-y: auto; /* For content that's too tall */
-  -webkit-overflow-scrolling: touch;
+  /* top: 0;
+    overflow-y: auto; 
+  -webkit-overflow-scrolling: touch; */
   height: 100svh;
   width: 100%;
   
@@ -540,11 +540,11 @@ a {
   border: 10px solid gray;
 }
 
-/* .scroller-three {
+.scroller-three {
   border: 10px solid purple;
 }
 
-.scroller-four {
+/* .scroller-four {
 
   border: 5px solid green;
 
@@ -572,9 +572,9 @@ a {
   border: 10px solid blue;
 }
 
-*{
-  /* border: 10px solid red!important; */
-}
+/* *{
+  border: 10px solid red!important;
+} */
 
 .canvas-container{
   display: none!important;

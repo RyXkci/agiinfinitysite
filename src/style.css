@@ -120,11 +120,11 @@ button {
 
 }
 
-@media screen and (max-width: 800px) {
+/* @media screen and (max-width: 800px) {
   .hero {
     overflow-y: auto;
   }
-}
+} */
 
 .hero-title {
   font-family: "Orbitron", sans-serif;
@@ -550,7 +550,7 @@ button {
   gap: 2em;
   font-family: "Montserrat", sans-serif;
   color: white;
-  font-size: clamp(.9rem, 2vw, 1.1rem);
+  font-size: clamp(.8rem, 2vw, 1.1rem);
   line-height: 1.6;
 }
 

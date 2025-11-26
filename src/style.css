@@ -107,7 +107,7 @@ button {
 .hero {
   /* position: sticky;
   top: 0; */
-  overflow-y: auto;
+  /* overflow-y: auto; */
 
   -webkit-overflow-scrolling: touch;
   height: 100dvh;
@@ -118,6 +118,12 @@ button {
   text-align: center;
   /* border: 5px solid aliceblue; */
 
+}
+
+@media screen and (max-width: 800px) {
+  .hero {
+    overflow-y: auto;
+  }
 }
 
 .hero-title {

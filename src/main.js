@@ -850,6 +850,26 @@ const rotateObserver = document.querySelector(".scroller-three");
 
 autoRotateObserver.observe(rotateObserver);
 
+// const footerTrigger = document.querySelector('#footerTrigger')
+// const footer = document.querySelector('footer')
+// // console.log(footerTrigger)
+// console.log(footer)
+
+// const footerTriggerObserver = new IntersectionObserver((entries) => {
+//   entries.forEach((entry) => {
+
+//     if (entry.isIntersecting) {
+//           console.log('footertrigger has entered')
+//       footer.classList.remove('hidden')
+//     } else {
+//       console.log('Entry has exited')
+//     }
+//   })
+// }, {
+//   // rootMargin: '-50% 0px 0px 0px'
+// })
+
+// footerTriggerObserver.observe(footerTrigger)
 
 window.addEventListener("load", () => {
   window.scrollTo(0, 0);  

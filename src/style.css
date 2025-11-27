@@ -660,6 +660,34 @@ a {
   height: 50dvh;
 }
 
+footer {
+  font-family: "Montserrat", sans-serif;
+  background-color: #0b0e14;
+  color: white;
+  /* height: 200px; */
+  padding: 2em 1.3em;
+  font-size: .8em;
+  width: 100%;
+  /* position: fixed;
+  bottom: 0; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: .5em;
+  text-align: center;
+  transform-origin: bottom;
+}
+
+footer.hidden {
+  transform: scale(0);
+}
+
+.footer-link a {
+  color: #99FEFE;
+  font-weight: bold;
+}
+
 /* .spacer-one {
   border: 10px solid blue;
 } */

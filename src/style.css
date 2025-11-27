@@ -211,7 +211,7 @@ button {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: auto auto auto;
-  text-align: center;
+  /* text-align: center; */
   row-gap: 1.1em;
 }
 
@@ -244,6 +244,7 @@ button {
   line-height: 1.1;
   grid-column: 3/10;
   grid-row: 1/2;
+  text-align: left;
 
 }
 
@@ -429,6 +430,7 @@ button {
 }
 
 .nanni-scope_title {
+  font-family: "Orbitron", sans-serif;
   font-size: clamp(2.5rem, 5vw, 3rem);
   letter-spacing: .2em;
   color: #0479B6;
@@ -479,6 +481,7 @@ button {
 }
 
 .nanni-outlook_title {
+  font-family: "Orbitron", sans-serif;
   font-size: clamp(2.5rem, 5vw, 3rem);
   letter-spacing: .2em;
   color: #99FEFE;
@@ -554,7 +557,7 @@ button {
   line-height: 1.6;
 }
 
-.agi-outro_text>span {
+.agi-outro_text>a {
   color: #0577b2;
 }
 
@@ -660,12 +663,18 @@ a {
   height: 50dvh;
 }
 
+.spacer,
+.spacer-sm,
+.scroller {
+  pointer-events: none;
+}
+
 footer {
   font-family: "Montserrat", sans-serif;
   background-color: #0b0e14;
   color: white;
   /* height: 200px; */
-  padding: 2em 1.3em;
+  padding: 1.8em 1.3em;
   font-size: .8em;
   width: 100%;
   /* position: fixed;
@@ -674,7 +683,7 @@ footer {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: .5em;
+  gap: .3em;
   text-align: center;
   transform-origin: bottom;
 }

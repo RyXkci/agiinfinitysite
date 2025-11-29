@@ -9,7 +9,8 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "vite": "^7.2.4"
+    "vite": "^7.2.4",
+    "vite-plugin-favicons-inject": "^2.2.0"
   },
   "dependencies": {
     "gsap": "^3.13.0",

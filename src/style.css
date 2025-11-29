@@ -604,7 +604,7 @@ a {
   z-index: 9999;
 } */
 .agi-outro_logo {
-  background-image: url('/public/logo-colours-new-trs.png');
+  background-image: url('/public/images/logo-colours-new-trs.png');
   height: 300px;
   width: 300px;
   background-size: contain;

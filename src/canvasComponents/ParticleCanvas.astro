@@ -1,0 +1,391 @@
+ <style>
+
+ </style>
+ 
+ <canvas id="canvasParticles"></canvas>
+
+ <script>
+ 
+ const canvas: HTMLCanvasElement = document.querySelector("#canvasParticles")!;
+const ctx = canvas.getContext("2d")!;
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const opts = {
+  // Hexagon mode settings
+  hexLen: 20,
+  hexCount: 50,
+  hexBaseTime: 10,
+  hexAddedTime: 10,
+  hexDieChance: 0.05,
+  hexSpawnChance: 1,
+  hexSparkChance: 0.1,
+  hexSparkDist: 10,
+  hexSparkSize: 2,
+  hexShadowToTimePropMult: 6,
+  hexBaseLightInputMultiplier: 0.01,
+  hexAddedLightInputMultiplier: 0.02,
+  hexRepaintAlpha: 0.04,
+
+  // Chip mode settings
+  chipLen: 15,
+  chipCount: 30,
+  chipBaseTime: 15,
+  chipAddedTime: 15,
+  chipDieChance: 0.02,
+  chipSpawnChance: 1,
+  chipSparkChance: 0.15,
+  chipSparkDist: 8,
+  chipSparkSize: 2,
+  chipShadowToTimePropMult: 8,
+  chipRepaintAlpha: 0.05,
+  chipSize: 120,
+
+  colors: ["#9cffff", "#1c84b9"],
+  cx: canvas.width / 2,
+  cy: canvas.height / 2,
+  currentShape: "hexagon",
+};
+
+let tick = 0;
+let lines = [];
+let isAnimating = true;
+let animationId = null;
+let dieX, dieY;
+const baseRad = (Math.PI * 2) / 6;
+
+ctx.fillStyle = "blue";
+ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+// Calculate die bounds for hexagon mode
+function updateDieBounds() {
+  const len = opts.currentShape === "hexagon" ? opts.hexLen : opts.chipLen;
+  dieX = canvas.width / 2 / len;
+  dieY = canvas.height / 2 / len;
+}
+updateDieBounds();
+
+class Line {
+  constructor() {
+    this.reset();
+  }
+
+  reset() {
+    if (opts.currentShape === "hexagon") {
+      this.resetHexagon();
+    } else {
+      this.resetChip();
+    }
+  }
+
+  resetHexagon() {
+    // Original hexagon reset - starts from center
+    this.x = 0;
+    this.y = 0;
+    this.addedX = 0;
+    this.addedY = 0;
+    this.rad = 0;
+    this.lightInputMultiplier =
+      opts.hexBaseLightInputMultiplier +
+      opts.hexAddedLightInputMultiplier * Math.random();
+    this.color = opts.colors[Math.floor(Math.random() * opts.colors.length)];
+    this.cumulativeTime = 0;
+    this.beginPhase();
+  }
+
+  resetChip() {
+    const side = Math.floor(Math.random() * 4);
+    const offset = ((Math.random() - 0.5) * opts.chipSize) / opts.chipLen;
+
+    switch (side) {
+      case 0: // top
+        this.x = offset;
+        this.y = -opts.chipSize / (2 * opts.chipLen);
+        this.rad = -Math.PI / 2;
+        break;
+      case 1: // right
+        this.x = opts.chipSize / (2 * opts.chipLen);
+        this.y = offset;
+        this.rad = 0;
+        break;
+      case 2: // bottom
+        this.x = offset;
+        this.y = opts.chipSize / (2 * opts.chipLen);
+        this.rad = Math.PI / 2;
+        break;
+      case 3: // left
+        this.x = -opts.chipSize / (2 * opts.chipLen);
+        this.y = offset;
+        this.rad = Math.PI;
+        break;
+    }
+
+    this.addedX = Math.cos(this.rad);
+    this.addedY = Math.sin(this.rad);
+    this.color = opts.colors[Math.floor(Math.random() * opts.colors.length)];
+    this.cumulativeTime = 0;
+    this.segmentCount = 0;
+    this.maxSegments = 3 + Math.floor(Math.random() * 4);
+    this.beginPhase();
+  }
+
+  beginPhase() {
+    this.x += this.addedX;
+    this.y += this.addedY;
+    this.time = 0;
+
+    if (opts.currentShape === "hexagon") {
+      this.targetTime = Math.floor(
+        opts.hexBaseTime + opts.hexAddedTime * Math.random()
+      );
+      this.rad += baseRad * (Math.random() < 0.5 ? 1 : -1);
+      this.addedX = Math.cos(this.rad);
+      this.addedY = Math.sin(this.rad);
+
+      if (
+        Math.random() < opts.hexDieChance ||
+        this.x > dieX ||
+        this.x < -dieX ||
+        this.y > dieY ||
+        this.y < -dieY
+      ) {
+        this.reset();
+      }
+    } else {
+      this.targetTime = Math.floor(
+        opts.chipBaseTime + opts.chipAddedTime * Math.random()
+      );
+      const turn = Math.random();
+      if (turn < 0.3) {
+        this.rad += Math.PI / 2;
+      } else if (turn < 0.6) {
+        this.rad -= Math.PI / 2;
+      }
+      this.addedX = Math.cos(this.rad);
+      this.addedY = Math.sin(this.rad);
+
+      this.segmentCount++;
+      const maxDist =
+        Math.max(canvas.width, canvas.height) / (2 * opts.chipLen);
+      if (
+        this.segmentCount >= this.maxSegments ||
+        Math.abs(this.x) > maxDist ||
+        Math.abs(this.y) > maxDist ||
+        Math.random() < opts.chipDieChance
+      ) {
+        this.reset();
+      }
+    }
+  }
+
+  step() {
+    this.time++;
+    this.cumulativeTime++;
+
+    if (this.time >= this.targetTime) {
+      this.beginPhase();
+    }
+
+    const prop = this.time / this.targetTime;
+    const wave = Math.sin((prop * Math.PI) / 2);
+    const x = this.addedX * wave;
+    const y = this.addedY * wave;
+
+    const len = opts.currentShape === "hexagon" ? opts.hexLen : opts.chipLen;
+    const shadowMult =
+      opts.currentShape === "hexagon"
+        ? opts.hexShadowToTimePropMult
+        : opts.chipShadowToTimePropMult;
+    const sparkChance =
+      opts.currentShape === "hexagon"
+        ? opts.hexSparkChance
+        : opts.chipSparkChance;
+    const sparkDist =
+      opts.currentShape === "hexagon" ? opts.hexSparkDist : opts.chipSparkDist;
+    const sparkSize =
+      opts.currentShape === "hexagon" ? opts.hexSparkSize : opts.chipSparkSize;
+
+    ctx.shadowBlur = prop * shadowMult;
+    ctx.fillStyle = ctx.shadowColor = this.color;
+    ctx.fillRect(
+      opts.cx + (this.x + x) * len,
+      opts.cy + (this.y + y) * len,
+      2,
+      2
+    );
+
+    if (Math.random() < sparkChance) {
+      ctx.fillRect(
+        opts.cx +
+          (this.x + x) * len +
+          Math.random() * sparkDist * (Math.random() < 0.5 ? 1 : -1) -
+          sparkSize / 2,
+        opts.cy +
+          (this.y + y) * len +
+          Math.random() * sparkDist * (Math.random() < 0.5 ? 1 : -1) -
+          sparkSize / 2,
+        sparkSize,
+        sparkSize
+      );
+    }
+  }
+}
+
+function drawChip() {
+  ctx.globalCompositeOperation = "source-over";
+  ctx.strokeStyle = "#1c84b9";
+  ctx.lineWidth = 2;
+  ctx.strokeRect(
+    opts.cx - opts.chipSize / 2,
+    opts.cy - opts.chipSize / 2,
+    opts.chipSize,
+    opts.chipSize
+  );
+
+  const positions = [
+    [opts.cx - opts.chipSize / 2, opts.cy - opts.chipSize / 2],
+    [opts.cx + opts.chipSize / 2, opts.cy - opts.chipSize / 2],
+    [opts.cx + opts.chipSize / 2, opts.cy + opts.chipSize / 2],
+    [opts.cx - opts.chipSize / 2, opts.cy + opts.chipSize / 2],
+  ];
+
+  ctx.strokeStyle = "#9cffff";
+  ctx.lineWidth = 1;
+  positions.forEach(([x, y]) => {
+    ctx.strokeRect(x - 2, y - 2, 4, 4);
+  });
+}
+
+function animateParticles() {
+  if (!isAnimating) return;
+
+  tick++;
+
+  const repaintAlpha =
+    opts.currentShape === "hexagon"
+      ? opts.hexRepaintAlpha
+      : opts.chipRepaintAlpha;
+  const maxCount =
+    opts.currentShape === "hexagon" ? opts.hexCount : opts.chipCount;
+  const spawnChance =
+    opts.currentShape === "hexagon"
+      ? opts.hexSpawnChance
+      : opts.chipSpawnChance;
+
+  ctx.globalCompositeOperation = "source-over";
+  ctx.shadowBlur = 0;
+  ctx.fillStyle = `rgba(0,0,0,${repaintAlpha})`;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  if (opts.currentShape === "chip") {
+    drawChip();
+  }
+
+  ctx.globalCompositeOperation = "lighter";
+
+  if (lines.length < maxCount && Math.random() < spawnChance) {
+    lines.push(new Line());
+  }
+
+  lines.forEach((line) => line.step());
+
+  animationId = requestAnimationFrame(animateParticles);
+}
+
+function pauseAnimation() {
+  isAnimating = false;
+  if (animationId) {
+    cancelAnimationFrame(animationId);
+  }
+  ctx.fillStyle = "black";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+}
+
+function resumeAnimation() {
+  if (!isAnimating) {
+    isAnimating = true;
+    animateParticles();
+  }
+}
+
+function resetAnimation() {
+  lines = [];
+  tick = 0;
+  ctx.fillStyle = "black";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+}
+
+function changeShape(shapeName) {
+  if (shapeName === "hexagon" || shapeName === "chip") {
+    opts.currentShape = shapeName;
+    updateDieBounds();
+    lines.forEach((line) => line.reset());
+  }
+}
+
+window.addEventListener("resize", function () {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  ctx.fillStyle = "black";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  opts.cx = canvas.width / 2;
+  opts.cy = canvas.height / 2;
+  updateDieBounds();
+});
+
+// Start the animation
+animateParticles();
+
+// Export functions for external control using module pattern
+const hexAnimation = (function () {
+  return {
+    pause: pauseAnimation,
+    resume: resumeAnimation,
+    reset: resetAnimation,
+    changeShape: changeShape,
+  };
+})();
+
+// OPTIONS OBJECT is the key fix here
+const options = {
+  root: null, // use the viewport
+  rootMargin: "0px",
+  // Threshold 0.5 means: Trigger only when 50% of the element is visible.
+  // This prevents it from firing immediately when it's just touching the bottom edge.
+  threshold: 0.2,
+};
+
+const particleShifter = document.querySelector(".intro")!;
+
+const particleShiftObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      console.log("Element is 50% visible!");
+      hexAnimation.changeShape("chip"); // Switch to chip mode
+    } else {
+      console.log("Element left view");
+      hexAnimation.changeShape("hexagon"); // Switch to chip mode
+    }
+  });
+}, options); // Pass the options here
+
+particleShiftObserver.observe(particleShifter);
+
+const particlePauser = document.querySelector(".scroller-two");
+
+const particlePauserObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      console.log("Pauser has entered");
+      hexAnimation.pause(); // Switch to chip mode
+      canvas.style.visibility = "hidden";
+    } else {
+      console.log("Pauser has left");
+      hexAnimation.resume(); // Switch to chip mode
+      canvas.style.visibility = "visible";
+    }
+  });
+}, options); // Pass the options here
+
+particlePauserObserver.observe(particlePauser);</script>

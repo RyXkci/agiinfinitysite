@@ -1,0 +1,51 @@
+<style>
+  .intro {
+    position: sticky;
+    top: 0;
+    /* overflow-y: auto; */
+    /* For content that's too tall */
+    -webkit-overflow-scrolling: touch;
+    height: 100dvh;
+    width: 100%;
+    font-family: "Orbitron", sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 0.4em;
+
+    padding: 7em min(1em, 7em);
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 33% 1fr;
+
+    place-items: center;
+    /* border: 5px solid teal; */
+  }
+
+  .intro-statement {
+    font-size: clamp(1.8rem, 5vw, 5rem);
+    color: white;
+    line-height: 1.1;
+  }
+
+  .intro-statement.wires {
+    grid-row: 1;
+    grid-column: 1;
+  }
+
+  .intro-statement.waves {
+    grid-row: 3;
+    grid-column: 1;
+  }
+
+  .fade-below {
+    display: block;
+  }
+</style>
+
+<div role="region" aria-label="slogan" class="intro">
+  <p class="intro-statement wires">Replacing wires</p>
+  <p class="intro-statement waves">
+    <span class="fade-below">With waves</span>
+  </p>
+</div>

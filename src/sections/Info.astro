@@ -1,0 +1,134 @@
+   <style>
+    .info {
+  /* position: sticky;
+  top: 0; */
+  /* overflow-y: auto; */
+  /* For content that's too tall */
+  -webkit-overflow-scrolling: touch;
+  min-height: 100dvh;
+  width: 100%;
+  /* border: 5px solid green; */
+  color: white;
+  display: grid;
+  place-items: start center;
+}
+
+
+
+.info-inner {
+  height: auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto auto auto;
+  /* text-align: center; */
+  row-gap: 1.1em;
+}
+
+@media screen and (min-width: 800px) {
+  .info-inner {
+    height: 70%;
+    width: 80%;
+
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: 1fr 1fr 3fr;
+    text-align: left;
+
+  }
+}
+
+/* .info_title {
+  font-family: "Orbitron", sans-serif;
+  font-size: 2rem;
+  letter-spacing: 0.1em;
+  line-height: 1.1;
+  grid-column: 1/span 6;
+  grid-row: 1/2;
+
+} */
+
+.info_title {
+  font-family: "Orbitron", sans-serif;
+  font-size: 2rem;
+  letter-spacing: 0.1em;
+  line-height: 1.1;
+  grid-column: 3/10;
+  grid-row: 1/2;
+  text-align: left;
+
+}
+
+@media screen and (min-width: 800px) {
+  .info_title {
+    grid-column: 1/span 6;
+  }
+}
+
+/* .info_subtitle {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.5rem;
+  grid-column: 1/span 6;
+  grid-row: 2/3;
+} */
+
+.info_subtitle {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.5rem;
+  grid-column: 3/10;
+  grid-row: 2/3;
+
+}
+
+@media screen and (min-width: 800px) {
+  .info_subtitle {
+    grid-column: 1/span 6;
+  }
+}
+
+/* .info_text {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.3rem;
+  margin-top: 1.3em;
+  line-height: 1.6;
+  grid-column: 1/span 6;
+  grid-row: 3/-1;
+} */
+.info_text {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.3rem;
+  margin-top: 1.3em;
+  line-height: 1.6;
+  grid-column: 3/11;
+  grid-row: 3/-1;
+}
+
+@media screen and (min-width: 800px) {
+  .info_text {
+
+    grid-column: 1/span 6;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .info_text {
+    text-align: left;
+  }
+}
+
+
+   </style>
+   
+   <div class="info">
+      <article class="info-inner">
+        <h2 class="info_title">Micro Optical Conductors and Transistors</h2>
+        <p class="info_subtitle">Replacing wires with waves, eliminating high resource requirements</p>
+        <p class="info_text">We have designed, developed and implemented a proof of concept construct supporting our
+          patent
+          pending application for a breakthrough in volumetric, computer generated holographic conductors that deliver
+          full
+          logic-gate functionality (AND.NOT/NAND) to replace silicon/copper semiconductors entirely-validated by
+          micro-prototypes, two issued precursor patents, and solicitor-confirmed “New Technology” status (not an
+          upgrade)
+        </p>
+      </article>
+    </div>

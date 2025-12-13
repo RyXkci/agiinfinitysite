@@ -1,0 +1,80 @@
+/*    RESET    */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+--dark-900: hsl(200, 50%, 5%);
+--dark-700: hsl(200, 40%, 15%);
+--dark-500: hsl(200, 35%, 20%);
+--dark-200: hsl(200, 40%, 65%);
+
+--accent-800: hsl(200, 95%, 50%);
+-accent-700: hsl(201, 80, 75%);
+-accent-600: hsl(201, 90, 80%);
+
+
+--color-white: hsl(200, 15%, 98%);
+--color-white-400: hsl(200, 25%, 80%);
+--color-white-200: hsl(200, 20%, 93%);
+}
+
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+
+
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100dvh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.6;
+  background-color: var(--dark-900);
+  color: var(--color-white);
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  border: none;
+  background: none;
+}

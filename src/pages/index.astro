@@ -15,6 +15,8 @@ import Contact from "../sections/Contact.astro";
 import Footer from "../sections/Footer.astro";
 
 import ParticleCanvas from "../canvasComponents/ParticleCanvas.astro";
+import TorusCanvas from "../canvasComponents/TorusCanvas.astro";
+import CanvasClear from "../canvasComponents/CanvasClear.astro";
 ---
 
 <BaseLayout>
@@ -52,6 +54,8 @@ import ParticleCanvas from "../canvasComponents/ParticleCanvas.astro";
   <Footer/>
 
   <div class="canvas-container">
+    <TorusCanvas />
     <ParticleCanvas />
+    <CanvasClear />
   </div>
 </BaseLayout>

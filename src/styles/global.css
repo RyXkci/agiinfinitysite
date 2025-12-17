@@ -91,3 +91,62 @@ button {
   pointer-events: none;
   z-index: -1;
 }
+
+
+.scroller {
+  position: sticky;
+  top: 0;
+    /* overflow-y: auto; 
+  -webkit-overflow-scrolling: touch;  */
+  height: 100dvh;
+  width: 100%;
+
+}
+
+/* .scroller-one {
+  border: 10px solid red;
+}
+
+.scroller-two {
+  border: 10px solid gray;
+}
+
+.scroller-three {
+  border: 10px solid purple;
+} */
+
+/* .scroller-four {
+
+  border: 5px solid green;
+
+}
+
+.scroller-five {
+
+  border: 5px solid red;
+
+}
+.scroller-six {
+
+  border: 5px solid purple;
+
+} */
+
+.spacer {
+  position: sticky;
+  top: 0;
+  height: 100dvh;
+  width: 100%;
+}
+
+.spacer-sm {
+  position: sticky;
+  top: 0;
+  height: 50dvh;
+}
+
+.spacer,
+.spacer-sm,
+.scroller {
+  pointer-events: none;
+}

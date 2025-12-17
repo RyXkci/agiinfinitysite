@@ -1,0 +1,74 @@
+<style>
+  .nanni-scope {
+    position: sticky;
+    top: 0;
+    touch-action: pan-y;
+    /* Allow vertical scroll but don't capture */
+    pointer-events: none;
+    overflow-y: auto;
+    /* For content that's too tall */
+    -webkit-overflow-scrolling: touch;
+    background-color: #272b34;
+  }
+
+  .nanni-scope-inner {
+    min-height: 100dvh;
+    /* Changed from fixed height: 100svh */
+    width: 100%;
+    padding: 3em 1em;
+    /* border: 5px solid red; */
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    color: white;
+    font-family: "Montserrat", sans-serif;
+    text-align: center;
+  }
+
+  .nanni-scope_title {
+    font-family: "Orbitron", sans-serif;
+    font-size: clamp(2.5rem, 5vw, 3rem);
+    letter-spacing: 0.2em;
+    color: #0479b6;
+  }
+
+  .nanni-scope_list {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    max-width: 800px;
+    color: white;
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    text-align: center;
+    font-weight: 500;
+    gap: 2em;
+    margin-top: 0.8em;
+  }
+</style>
+
+<div class="nanni-scope">
+  <article class="nanni-scope-inner">
+    <h2 class="nanni-scope_title">Project Scope:</h2>
+    <ul class="nanni-scope_list">
+      <li class="nanni-scope-item">
+        To develop and implement Volumetric Holographic Optical Conductors &
+        Transistors using meta- materials through a Computer Generated
+        Holographic Matrix.
+      </li>
+      <li class="nanni-scope-item">
+        To replace contemporary, semi-conductor materials used in all digital
+        devices.
+      </li>
+      <li class="nanni-scope-item">
+        To produce a working Proof of concept (POC) construct showcasing the
+        advantages of nano chips over existing micro-chip technologies.
+      </li>
+      <li class="nanni-scope-item">
+        To move AI physical production into the nano world, reducing both space
+        and resource requirements for future AI provision(s).
+      </li>
+    </ul>
+  </article>
+</div>

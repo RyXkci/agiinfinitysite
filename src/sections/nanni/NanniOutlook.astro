@@ -1,0 +1,79 @@
+<style>
+  .nanni-outlook {
+    position: sticky;
+    top: 0;
+    overflow-y: auto;
+    touch-action: pan-y;
+    /* Allow vertical scroll but don't capture */
+    pointer-events: none;
+    overflow-y: auto;
+    /* For content that's too tall */
+    -webkit-overflow-scrolling: touch;
+    background-color: #0b0e14;
+  }
+
+  .nanni-outlook-inner {
+    height: 105dvh;
+    width: 100%;
+    padding: 3em 1em;
+    /* border: 5px solid red; */
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    color: white;
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+  }
+
+  .nanni-outlook_title {
+    font-family: "Orbitron", sans-serif;
+    font-size: clamp(2.5rem, 5vw, 3rem);
+    letter-spacing: 0.2em;
+    color: #99fefe;
+  }
+
+  .nanni-outlook_text {
+    font-size: clamp(1.1rem, 5vw, 1.8rem);
+    line-height: 1.6;
+  }
+
+  .nanni-outlook_list {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    max-width: 800px;
+    color: white;
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    text-align: center;
+    font-weight: 500;
+    gap: 2em;
+    margin-top: 0.8em;
+  }
+</style>
+
+<div class="nanni-outlook">
+  <article class="nanni-outlook-inner">
+    <h2 class="nanni-outlook_title">Broad Outlook</h2>
+    <p class="nanni-outlook_text">
+      Our nano volumetric holographic chip would usher in a new era of
+      computing, akin to the transition from vacuum tubes to transistors. It has
+      the potential to:
+    </p>
+    <ul class="nanni-outlook_list">
+      <li class="nanni-outlook-item">
+        Outperform Moore’s Law, enabling exponential growth in computing
+        capabilities.
+      </li>
+      <li class="nanni-outlook-item">
+        Drive innovation across industries, from AI and healthcare to defence
+        and consumer electronics.
+      </li>
+      <li class="nanni-outlook-item">
+        Reduce environmental impacts by creating more energy-efficient,
+        sustainable technologies.
+      </li>
+    </ul>
+  </article>
+</div>

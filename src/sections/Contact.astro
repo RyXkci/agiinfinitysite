@@ -1,0 +1,57 @@
+<style>
+    .agi-outro_contact {
+  position: sticky;
+  top: 0;
+  overflow-y: auto;
+  /* For content that's too tall */
+  -webkit-overflow-scrolling: touch;
+  height: 100dvh;
+  width: 100%;
+  /* border: 5px solid red; */
+  background: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.3rem;
+  letter-spacing: .2em;
+  text-align: center;
+
+}
+
+.agi-contact_text {
+  color: #0577b2;
+  margin-bottom: 1em;
+}
+
+a {
+  pointer-events: auto !important;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+/* footer {
+  background: white;
+  height: 200px;
+  z-index: 9999;
+} */
+.agi-outro_logo {
+  background-image: url('/images/logo-colours-new-trs.png');
+  height: 300px;
+  width: 300px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+</style>
+
+<div role="region" aria-label="contact" class="agi-outro_contact">
+  <div class="agi-outro_logo"></div>
+  <p class="agi-contact_text">
+    If you are interested in learning more you can request full details.
+  </p>
+  <a href="mailto:chris@agiinfinity.co.uk">chris@agiinfinity.co.uk</a>
+</div>

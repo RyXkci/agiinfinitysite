@@ -6,6 +6,13 @@ import Intro from "../sections/Intro.astro";
 import Info from "../sections/Info.astro";
 import Partner from "../sections/Partner.astro";
 
+import NanniMain from "../sections/nanni/NanniMain.astro";
+import NanniScope from "../sections/nanni/NanniScope.astro";
+import NanniOutlook from "../sections/nanni/NanniOutlook.astro";
+
+import Outro from "../sections/Outro.astro";
+import Contact from "../sections/Contact.astro";
+import Footer from "../sections/Footer.astro";
 
 import ParticleCanvas from "../canvasComponents/ParticleCanvas.astro";
 ---
@@ -17,11 +24,32 @@ import ParticleCanvas from "../canvasComponents/ParticleCanvas.astro";
     <div aria-hidden="true" class="scroller scroller-one"></div>
     <div aria-hidden="true" class="scroller scroller-two"></div>
     <div aria-hidden="true" class="scroller scroller-three"></div>
-	<Info/>
-	<Partner/>
-	<div aria-hidden="true" class="scroller scroller-four"></div>
+    <Info />
+    <Partner />
+
+    <div aria-hidden="true" class="scroller scroller-four"></div>
+
+    <NanniMain />
+
+    <div aria-hidden="true" class="spacer spacer-two"></div>
+
+    <NanniScope />
+    <div aria-hidden="true" class="spacer spacer-two"></div>
+
+    <NanniOutlook />
+
+    <Outro />
+
+    <div aria-hidden="true" class="scroller scroller-six"></div>
+
+    <div class="spacer-sm"></div>
+
+    <Contact />
+
 
   </main>
+
+  <Footer/>
 
   <div class="canvas-container">
     <ParticleCanvas />

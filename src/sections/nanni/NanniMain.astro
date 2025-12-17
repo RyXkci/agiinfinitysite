@@ -1,0 +1,75 @@
+<style>
+  .nanni {
+    position: sticky;
+    top: 0;
+    padding: 1.3em 1.3em;
+    overflow-y: auto;
+    /* For content that's too tall */
+    touch-action: pan-y;
+    /* Allow vertical scroll but don't capture */
+    pointer-events: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .nanni-main {
+    height: 100dvh;
+    width: 100;
+    color: white;
+    display: grid;
+    place-items: center;
+  }
+
+  .nanni-inner {
+    height: 90%;
+    display: grid;
+    grid-template-columns: 1fr minmax(auto, 1200px) 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    font-family: "Montserrat", sans-serif;
+    text-align: center;
+  }
+
+  .nanni_title {
+    font-size: clamp(1.3rem, 5vw, 2.5rem);
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .nanni_title span {
+    display: block;
+  }
+
+  .nanni_intro {
+    font-size: 1.5rem;
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .nanni_text-big {
+    font-size: 1.8rem;
+    grid-column: 2;
+    grid-row: 3;
+  }
+
+  .nanni_text-sm-accent {
+    font-size: clamp(1.3rem, 5vw, 2.5rem);
+    grid-column: 2;
+    grid-row: 4;
+  }
+</style>
+
+<div class="nanni">
+  <div class="nanni-main">
+    <article class="nanni-inner">
+      <h2 class="nanni_title">
+        Nano Artificial Neural-Network Interface - Optical <span>NANNI-O</span>
+      </h2>
+      <p class="nanni_intro">For the development& Implementation of</p>
+      <p class="nanni_text-big">
+        Volumetric Holographic Nano Optical Conductors & Transistors
+      </p>
+      <p class="nanni_text-sm-accent">
+        Replacing wires with waves, at the nano level
+      </p>
+    </article>
+  </div>
+</div>

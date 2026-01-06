@@ -1,3 +1,9 @@
+// fonts
+// Supports weights 100-900
+import '@fontsource-variable/montserrat';
+// Supports weights 400-900
+import '@fontsource-variable/orbitron';
+
 import { gsap } from "gsap";
 
 import { ScrollTrigger } from "gsap/ScrollTrigger";

@@ -4,6 +4,9 @@ import '@fontsource-variable/montserrat';
 // Supports weights 400-900
 import '@fontsource-variable/orbitron';
 
+  import * as THREE from "three";
+  import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+
 import { gsap } from "gsap";
 
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -281,48 +284,6 @@ gsap.fromTo(
   }
 );
 
-const autoRotateObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        // User has scrolled to second section
-        console.log("rotator has entered");
-        controls.autoRotate = false;
-      } else {
-        // User scrolled back up
-        // controls.autoRotate = true;
-      }
-    });
-  },
-  {
-    threshold: 0.1, // Adjust based on when you want the transition
-  }
-);
-
-const rotateObserver = document.querySelector(".scroller-three");
-
-autoRotateObserver.observe(rotateObserver);
-
-// const footerTrigger = document.querySelector('#footerTrigger')
-// const footer = document.querySelector('footer')
-// // console.log(footerTrigger)
-// console.log(footer)
-
-// const footerTriggerObserver = new IntersectionObserver((entries) => {
-//   entries.forEach((entry) => {
-
-//     if (entry.isIntersecting) {
-//           console.log('footertrigger has entered')
-//       footer.classList.remove('hidden')
-//     } else {
-//       console.log('Entry has exited')
-//     }
-//   })
-// }, {
-//   // rootMargin: '-50% 0px 0px 0px'
-// })
-
-// footerTriggerObserver.observe(footerTrigger)
 
 window.addEventListener("load", () => {
   window.scrollTo(0, 0);  

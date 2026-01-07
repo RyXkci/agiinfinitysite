@@ -1,0 +1,152 @@
+<style>
+  .info-list-container {
+    /* position: sticky;
+  top: 0; */
+    /* overflow-y: auto; */
+    /* For content that's too tall */
+    -webkit-overflow-scrolling: touch;
+    min-height: 100dvh;
+    width: 100%;
+    /* border: 5px solid green; */
+    color: white;
+    display: grid;
+    place-items: start center;
+    padding-top: 1.3em;
+  }
+
+  .info-list {
+    height: auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: auto auto auto;
+    /* text-align: center; */
+    row-gap: 1.1em;
+  }
+
+  @media screen and (min-width: 800px) {
+    .info-list {
+      height: 70%;
+      width: 80%;
+
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: 1fr 1fr 3fr;
+      text-align: left;
+    }
+  }
+
+  .info-list_title-left {
+    font-family: "Orbitron Variable", sans-serif;
+    color: var(--color-white-400);
+    font-size: 2.2rem;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    line-height: 1.1;
+    grid-column: 3/10;
+    grid-row: 1/2;
+    text-align: left;
+  }
+
+  @media screen and (min-width: 800px) {
+    .info-list_title-left {
+      grid-column: 1 / span 6;
+    }
+  }
+
+  .info-list_title-right {
+    font-family: "Orbitron Variable", sans-serif;
+    color: var(--color-white-400);
+    font-size: 2.2rem;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    line-height: 1.1;
+    grid-column: 3/10;
+    grid-row: 1/2;
+    text-align: left;
+  }
+
+  @media screen and (min-width: 800px) {
+    .info-list_title-right {
+      grid-column: 7 / span 6;
+    }
+  }
+
+  .info-list ul {
+    font-size: 1.3rem;
+    margin-top: 1.3em;
+    line-height: 1.6;
+    grid-column: 3/11;
+    grid-row: 3/-1;
+  }
+
+  .info-list ul > li {
+    margin-top: 1.1em;
+  }
+
+  .info-list ul > li::marker {
+    content: "> ";
+    color: var(--accent-700);
+  }
+
+  @media screen and (min-width: 800px) {
+    .info-list-left ul {
+      grid-column: 1 / span 6;
+    }
+  }
+
+  @media screen and (min-width: 800px) {
+    .info-list-right ul {
+      grid-column: 7 / span 6;
+    }
+  }
+
+  @media screen and (max-width: 700px) {
+    .info-list-right ul,
+    .info-list-left ul {
+      text-align: left;
+    }
+  }
+</style>
+
+<div class="info-list-container">
+  <article class="info-list info-list-left">
+    <h2 class="info-list_title info-list_title-left">
+      Why replacing wires with waves is commercially viable
+    </h2>
+    <ul>
+      <li>Higher bandwith density: many wavelengths in one guide (WDM)</li>
+      <li>Lower latency over distance: no RC wire delays.</li>
+      <li>Better energy/bit: avoid CV2 on long interconnects.</li>
+      <li>
+        Reconfigurable post-fab via holography (faster pivots, lower NRE).
+      </li>
+      <li>Superior signal integrity: immune to EMI/ground bounce.</li>
+      <li>True 3D routing: less congestion than planar metal layers.</li>
+      <li>
+        Scales with proven nano-graphene nonlinear islands.
+      </li>
+      <li>
+        Hybrid friendly: keep cheap CMOS memory, accelerate the rest optically.
+      </li>
+    </ul>
+  </article>
+  <article class="info-list info-list-right">
+    <h2 class="info-list_title info-list_title-right">
+      Why replacing wires with waves makes business sense
+    </h2>
+    <ul>
+      <li>
+        More bandwidth in the same space (many light colours in one tiny path).
+      </li>
+      <li>Faster over distance — no slow, resistive wires.</li>
+      <li>Lower power per bit — less heat, lower energy bills.</li>
+      <li>Flexible after build — reprogram with light, not new masks.</li>
+      <li>Cleaner signals — less interference and fewer errors.</li>
+      <li>True 3D connections — no traffic jams inside the chip.</li>
+      <li>Built on proven nano-graphene materials.</li>
+      <li>
+        Works with today's chips — keep memory in silicon, speed up the rest.
+      </li>
+    </ul>
+  </article>
+</div>

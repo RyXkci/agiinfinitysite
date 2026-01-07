@@ -82,8 +82,8 @@
         duration: 4,
         immediateRender: false,
         scrollTrigger: {
-          trigger: ".partner-section",
-          start: "top center",
+          trigger: ".info-list",
+          start: "top bottom",
           end: "top top",
           scrub: 1,
           toggleActions: "play none none reverse",
@@ -190,4 +190,26 @@
   topLight.position.set(500, 500, 500);
   scene.add(topLight);
   reRenderer3d();
+
+  const autoRotateObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        // User has scrolled to second section
+        console.log("rotator has entered");
+        controls.autoRotate = false;
+      } else {
+        // User scrolled back up
+        // controls.autoRotate = true;
+      }
+    });
+  },
+  {
+    threshold: 0.1, // Adjust based on when you want the transition
+  }
+);
+
+const rotateObserver = document.querySelector(".scroller-three");
+
+autoRotateObserver.observe(rotateObserver);
 </script>

@@ -11,6 +11,8 @@ import NanniMain from "../sections/nanni/NanniMain.astro";
 import NanniScope from "../sections/nanni/NanniScope.astro";
 import NanniOutlook from "../sections/nanni/NanniOutlook.astro";
 
+import NOCList from "../sections/NOCList.astro";
+
 import Outro from "../sections/Outro.astro";
 import Contact from "../sections/Contact.astro";
 import Footer from "../sections/Footer.astro";
@@ -37,23 +39,23 @@ import CanvasClear from "../canvasComponents/CanvasClear.astro";
 
     <div aria-hidden="true" class="spacer spacer-two"></div>
 
-    <NanniScope />
-    <div aria-hidden="true" class="spacer spacer-two"></div>
+    <div class="sticky-section">
+      <NanniScope />
+      <div aria-hidden="true" class="spacer spacer-two"></div>
 
-    <NanniOutlook />
+      <NanniOutlook />
+    </div>
+    <NOCList />
+  <!-- <div aria-hidden="true" class="scroller scroller-six"></div> -->
 
     <Outro />
-
-    <div aria-hidden="true" class="scroller scroller-six"></div>
-
+  
     <div class="spacer-sm"></div>
 
     <Contact />
-
-
   </main>
 
-  <Footer/>
+  <Footer />
 
   <div class="canvas-container">
     <TorusCanvas />

@@ -265,24 +265,24 @@ outlookItems.forEach((item, index) => {
   );
 });
 
-gsap.fromTo(
-  ".agi-outro",
-  {
-    scale: 0,
-    clipPath: "circle(0px at center)",
-  },
-  {
-    scale: 1,
-    clipPath: `circle(${maxRadius}px at center)`,
-    ease: "sine.in",
-    scrollTrigger: {
-      trigger: ".scroller-six",
-      start: "top bottom",
-      end: "top top",
-      scrub: true,
-    },
-  }
-);
+// gsap.fromTo(
+//   ".agi-outro",
+//   {
+//     scale: 0,
+//     clipPath: "circle(0px at center)",
+//   },
+//   {
+//     scale: 1,
+//     clipPath: `circle(${maxRadius}px at center)`,
+//     ease: "sine.in",
+//     scrollTrigger: {
+//       trigger: ".scroller-six",
+//       start: "top bottom",
+//       end: "top top",
+//       scrub: true,
+//     },
+//   }
+// );
 
 
 window.addEventListener("load", () => {

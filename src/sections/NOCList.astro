@@ -1,6 +1,6 @@
 <style>
   .noc-list-container {
-  position: relative;
+    position: relative;
 
     overflow-y: auto;
     /* For content that's too tall */
@@ -9,8 +9,8 @@
     /* min-height: 100dvh; */
     width: 100%;
     background-color: #0b0e14;
-   display: grid;
-  place-items: center; 
+    display: grid;
+    place-items: center;
     overflow: visible;
     padding-top: 1.3em;
   }
@@ -36,16 +36,19 @@
     }
   }
 
-  .info-list_title-left {
+  .info-list_title {
     font-family: "Orbitron Variable", sans-serif;
     color: var(--color-white-400);
-    font-size: 2.2rem;
+    font-size: 2rem;
     font-weight: 900;
     letter-spacing: 0.1em;
     line-height: 1.1;
+    text-align: left;
+  }
+
+  .info-list_title-left {
     grid-column: 3/10;
     grid-row: 1/2;
-    text-align: left;
   }
 
   @media screen and (min-width: 800px) {
@@ -55,15 +58,8 @@
   }
 
   .info-list_title-right {
-    font-family: "Orbitron Variable", sans-serif;
-    color: var(--color-white-400);
-    font-size: 2.2rem;
-    font-weight: 900;
-    letter-spacing: 0.1em;
-    line-height: 1.1;
     grid-column: 3/10;
     grid-row: 1/2;
-    text-align: left;
   }
 
   @media screen and (min-width: 800px) {
@@ -110,34 +106,76 @@
 </style>
 
 <div class="noc-list-container">
- <article class="info-list info-list-left">
-  <h2 class="info-list_title info-list_title-left">
-    Why replacing wires with waves (NOC/NOT) is commercially viable
-  </h2>
-  <ul>
-    <li>Same size-scale as semiconductors (or smaller): designed for micro/nano features for dense integration.</li>
-    <li>Full logic-gate capability: AND, OR, NOT, NAND, NOR, XOR, XNOR—true compute, not just interconnect.</li>
-    <li>Lower power: avoids resistive (I²R) wire losses → lower energy per operation.</li>
-    <li>Higher throughput: multiplexing (wavelength/polarization) boosts bandwidth without extra routing.</li>
-    <li>Less heat: reduced electrical loss improves sustained performance and simplifies cooling.</li>
-    <li>Clear ROI: better performance per watt + simpler routing/thermal can cut datacenter OPEX and raise margins.</li>
-  </ul>
-</article>
+  <article class="info-list info-list-left">
+    <h2 class="info-list_title info-list_title-left">
+      Why replacing wires with waves (NOC/NOT) is commercially viable
+    </h2>
+    <ul>
+      <li>
+        Same size-scale as semiconductors (or smaller): designed for micro/nano
+        features for dense integration.
+      </li>
+      <li>
+        Full logic-gate capability: AND, OR, NOT, NAND, NOR, XOR, XNOR—true
+        compute, not just interconnect.
+      </li>
+      <li>
+        Lower power: avoids resistive (I²R) wire losses → lower energy per
+        operation.
+      </li>
+      <li>
+        Higher throughput: multiplexing (wavelength/polarization) boosts
+        bandwidth without extra routing.
+      </li>
+      <li>
+        Less heat: reduced electrical loss improves sustained performance and
+        simplifies cooling.
+      </li>
+      <li>
+        Clear ROI: better performance per watt + simpler routing/thermal can cut
+        datacenter OPEX and raise margins.
+      </li>
+    </ul>
+  </article>
 
-<article class="info-list info-list-right">
-  <h2 class="info-list_title info-list_title-right">
-    Why replacing wires with waves (NOC/NOT) makes business sense
-  </h2>
-  <ul>
-    <li>Competitive performance per watt: less resistive loss than metal interconnects → lower energy per compute.</li>
-    <li>Lower OPEX: reduced power + reduced cooling demand can materially cut datacenter running costs.</li>
-    <li>Throughput uplift: optical multiplexing (wavelength/polarization) increases bandwidth without extra routing area.</li>
-    <li>Real compute capability: supports full boolean logic gates (AND/OR/NOT/NAND/NOR/XOR/XNOR), enabling general-purpose nodes.</li>
-    <li>Scales with (or below) today’s nodes: designed for micro/nano feature sizes, supporting dense integration.</li>
-    <li>Packaging simplification: fewer electrical complexity/repeaters/bottlenecks can reduce yield issues and improve manufacturability.</li>
-    <li>Product differentiation: new class of high-bandwidth logic/interconnect can open premium tiers and new licensing opportunities.</li>
-    <li>Clear ROI story: higher throughput + lower power across AI, HPC, and edge systems → better unit economics.</li>
-  </ul>
-</article>
-
+  <article class="info-list info-list-right">
+    <h2 class="info-list_title info-list_title-right">
+      Why replacing wires with waves (NOC/NOT) makes business sense
+    </h2>
+    <ul>
+      <li>
+        Competitive performance per watt: less resistive loss than metal
+        interconnects → lower energy per compute.
+      </li>
+      <li>
+        Lower OPEX: reduced power + reduced cooling demand can materially cut
+        datacenter running costs.
+      </li>
+      <li>
+        Throughput uplift: optical multiplexing (wavelength/polarization)
+        increases bandwidth without extra routing area.
+      </li>
+      <li>
+        Real compute capability: supports full boolean logic gates
+        (AND/OR/NOT/NAND/NOR/XOR/XNOR), enabling general-purpose nodes.
+      </li>
+      <li>
+        Scales with (or below) today’s nodes: designed for micro/nano feature
+        sizes, supporting dense integration.
+      </li>
+      <li>
+        Packaging simplification: fewer electrical
+        complexity/repeaters/bottlenecks can reduce yield issues and improve
+        manufacturability.
+      </li>
+      <li>
+        Product differentiation: new class of high-bandwidth logic/interconnect
+        can open premium tiers and new licensing opportunities.
+      </li>
+      <li>
+        Clear ROI story: higher throughput + lower power across AI, HPC, and
+        edge systems → better unit economics.
+      </li>
+    </ul>
+  </article>
 </div>

@@ -1,0 +1,97 @@
+/*    RESET    */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+    margin: 0;
+    padding: 0;
+}
+
+ul[role='list'],
+ol[role='list'] {
+    list-style: none;
+}
+
+
+html:focus-within {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    text-rendering: optimizeSpeed;
+    line-height: 1.6;
+     font-family: "Montserrat", sans-serif;
+     color: var(--white-200);
+}
+
+img,
+picture {
+    max-width: 100%;
+    display: block;
+}
+
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+button {
+    border: none;
+    background: none;
+}
+
+ /* GLOBAL VARS */
+
+ :root {
+    --primary-300: hsl(202, 84%, 72%);
+    --primary-500: hsl(202, 84%, 52%);
+    --primary-700: hsl(202, 84%, 27%);
+
+    --accent-500: hsl(29, 67%, 49%);
+    --accent-700: hsl(29, 67%, 29%);
+
+    --dark-700: hsl(202, 84%, 13%);
+    --dark-900: hsl(202, 84%, 7%);
+
+    --white: hsl(0, 0%, 100%);
+    --white-200: hsl(202, 84%, 97%);
+
+ }
+
+ .canvas-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  pointer-events: none;
+  z-index: -1;
+}
+
+
+.section-title {
+    font-size: 5rem;
+     font-family: "Exo 2", sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.section-text {
+    font-size: 1.5rem;
+    max-width: 700px;
+}

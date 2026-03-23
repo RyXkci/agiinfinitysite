@@ -1,0 +1,154 @@
+<style>
+
+
+ /* ── Outer: scroll budget ── */
+  .challenge-trigger {
+    /* 1 extra vh per step beyond the first, plus entry/exit breathing room.
+     4 steps = 500vh feels right — tune freely */
+    height: 500vh;
+    position: relative;
+    background-color: black;
+  }
+
+  /* ── Sticky container: always 100vh, pinned ── */
+  .challenge-sticky-container {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    /* align-items: center; */
+    margin: 0 auto;
+    padding-top: 2em;
+    /* padding: 0 52px; */
+    overflow: hidden;
+  }
+
+  /* ── Title: never moves ── */
+  .challenge-title {
+   
+    color: var(--primary-500);
+    /* margin-bottom: 40px; */
+    line-height: 1;
+  }
+
+  /* ── Paragraph wrapper: clips overflow ── */
+  .paragraph-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    height: 200px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  /* .challenge-step:nth-child(1) {
+    grid-column: 1 / 2;
+  }
+  .challenge-step:nth-child(2) {
+    grid-column: 2 / 3;
+  }
+  .challenge-step:nth-child(3) {
+    grid-column: 1 / 2;
+  }
+  .challenge-step:nth-child(4) {
+    grid-column: 1 / -1;
+  } */
+
+  /* ── Each step: stacked, absolutely positioned ── */
+  .challenge-step {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    /* GSAP drives opacity and y — no CSS transition needed */
+  }
+
+  .challenge-step p {
+    font-size: 1.5rem;
+    line-height: 1.8;
+    font-weight: 700;
+    color: var(--white-200);
+  }
+</style>
+
+<section class="challenge-trigger" id="challenge">
+  <div class="challenge-sticky-container">
+    <h2 class="section-title challenge-title">The Challenge</h2>
+
+    <div class="paragraph-wrapper" id="paragraph-wrapper">
+      <div class="challenge-step">
+        <p>
+          The limits facing advanced computing are no longer confined to
+          processing alone. In increasingly complex AI and high-performance
+          systems, the movement of data is becoming one of the main drivers of
+          power use, thermal output, and architectural inefficiency.
+        </p>
+      </div>
+      <div class="challenge-step">
+        <p>
+          Conventional electrical interconnects remain effective, but they also
+          introduce resistive loss, heat, and growing routing complexity as
+          systems scale. As AI workloads become larger and more demanding, these
+          pressures are becoming harder to solve through incremental
+          improvements alone.
+        </p>
+      </div>
+      <div class="challenge-step">
+        <p>
+          That creates a clear strategic question for the next generation of
+          hardware. Can a new medium for signal transport and switching unlock
+          more efficient system performance than metal wiring alone?
+        </p>
+      </div>
+      <div class="challenge-step">
+        <p>AGI Infinity has been built around that question.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const steps = gsap.utils.toArray(".challenge-step");
+  const wrapper = document.getElementById("paragraph-wrapper");
+
+  // ── Build a ScrollTrigger-driven timeline ──
+  // One tween per step: fade+rise in, hold, fade+rise out
+  // scrub:true means scroll position drives playhead directly
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: "#challenge",
+      start: "top top",
+      end: "bottom bottom",
+      scrub: 0.6, // slight lag for smoother feel; use true for 1:1
+    },
+  });
+
+  const HOLD = 2; // relative units each step holds fully visible
+  const FADE = 0.5; // relative units for each fade in / out
+
+  steps.forEach((step, i) => {
+    // Fade in
+    tl.fromTo(
+      step,
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, duration: FADE, ease: "power2.out" },
+    );
+
+    // Hold
+    tl.to(step, { duration: HOLD });
+
+    // Fade out (skip on last step — let it hold until section exits)
+    if (i < steps.length - 1) {
+      tl.to(step, { opacity: 0, y: -20, duration: FADE, ease: "power2.in" });
+    }
+  });
+</script>

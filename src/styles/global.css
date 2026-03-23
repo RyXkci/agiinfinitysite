@@ -19,9 +19,10 @@ dd {
     padding: 0;
 }
 
-ul[role='list'],
-ol[role='list'] {
+ul {
     list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 
@@ -65,11 +66,13 @@ button {
     --accent-500: hsl(29, 67%, 49%);
     --accent-700: hsl(29, 67%, 29%);
 
-    --dark-700: hsl(202, 84%, 13%);
+    --dark-700: hsl(202, 84%, 12%);
     --dark-900: hsl(202, 84%, 7%);
 
     --white: hsl(0, 0%, 100%);
     --white-200: hsl(202, 84%, 97%);
+
+    --muted: hsl(202, 15%, 75%);
 
  }
 
@@ -85,13 +88,19 @@ button {
 
 
 .section-title {
-    font-size: 5rem;
+    font-size: 3.5rem;
+    line-height: 1.1;
      font-family: "Exo 2", sans-serif;
     font-weight: 800;
     text-transform: uppercase;
 }
 
 .section-text {
-    font-size: 1.5rem;
-    max-width: 700px;
+    font-size: 1.1rem;
+    max-width: 60ch;
+}
+
+.section-text-sm {
+    font-size: .9rem;
+
 }

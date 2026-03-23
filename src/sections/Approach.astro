@@ -1,48 +1,164 @@
 <style>
   .approach-section {
-    height: 100vh;
+    /* height: 100vh; */
     width: 100%;
     background-color: var(--dark-900);
   }
 
   .approach-section-inner {
-    height: 90%;
+    height: 80%;
+    padding-top: 2em;
     width: 90%;
     margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 1.3em;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 2em;
   }
 
   .approach-section_title {
     color: var(--accent-500);
+    grid-column: 1/2;
+  }
+
+  .approach-section_subtitle {
+    font-size: 1.5rem;
+    color: var(--muted);
+    margin-right: 5em;
+    grid-column: 1;
+    place-self: center;
   }
 
   .approach-section-cards-container {
+    grid-column: 1/-1;
     display: flex;
+    flex-direction: column;
     gap: 2em;
   }
 
   .approach-section_card {
     background-color: var(--dark-700);
     padding: 2em 1.3em;
-    border-radius: 30px;
+    border-radius: 10px;
+    flex-grow: 1;
+    gap: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 0.2em;
+  }
+  .approach-section-card_title {
+    font-weight: 700;
+  }
+  .approach-section-card_subtitle {
+    font-size: 0.7rem;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+  .approach-section-card_pill {
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: var(--primary-500);
+    border: 1px solid var(--primary-500);
+    padding: 0.3em 0.5em;
+    border-radius: 3px;
+  }
+
+  .approach-section-card_tags {
+    display: flex;
+    gap: 1.3em;
+    margin-top: 1.5em;
+    padding-top: 1.5em;
+    border-top: 1px solid hsl(202, 60%, 35%);
+    /* width: 50px; */
+  }
+  .approach-section-card_tag {
+    font-size: 0.7rem;
+    background: hsl(202, 84%, 17%);
+    border: 1px solid hsl(202, 60%, 35%);
+    border-radius: 5px;
+    padding: 0.3em 0.5em;
+  }
+
+  .approach-section_list-container {
+    grid-column: 1/-1;
+  }
+
+  .approach-section-list-row {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 1em;
+    font-size: 0.9rem;
+    padding: 2em 0em;
+    border-bottom: 1px solid hsl(202, 60%, 15%);
+  }
+
+  .approach-section-list-row > p:first-child {
+    text-transform: uppercase;
+    color: var(--muted);
+    min-width: 200px;
+  }
+
+  .approach-section-title-sm {
+    color: var(--muted);
+    border-bottom: 1px solid hsl(202, 60%, 15%);
+    padding-bottom: 0.3em;
+  }
+
+  @media screen and (min-width: 680px) {
+    .approach-section_subtitle {
+      grid-column: 2;
+    }
+  }
+
+  @media screen and (min-width: 630px) {
+    .approach-section-cards-container {
+      flex-direction: row;
+    }
+  }
+
+  @media screen and (min-width: 430px) {
+    .approach-section-list-row {
+      flex-direction: row;
+      justify-content: start;
+      gap: 3em;
+      text-align: left;
+    }
   }
 </style>
 
 <div class="approach-section">
   <section class="approach-section-inner">
-    <h2 class="section-title approach-section_title">Our approach</h2>
-    <p class="section-text approach-section_text">
+    <h2 class="section-title approach-section_title">Our <br />approach</h2>
+    <p class="section-text approach-section_subtitle">
       We are developing a platform based on two core concepts:
     </p>
     <div class="approach-section-cards-container">
       <div class="approach-section_card">
-        1. Holographic Optical Conductors (HOC)
+        <p class="approach-section-card_subtitle">01 · Optical conductor</p>
+        <p class="approach-section-card_title">
+          Holographic Optical Conductors
+        </p>
+        <p class="approach-section-card_pill">HOC</p>
+        <div class="approach-section-card_tags">
+          <p class="approach-section-card_tag">signal transport</p>
+          <p class="approach-section-card_tag">optical pathways</p>
+          <p class="approach-section-card_tag">nano-scale</p>
+        </div>
       </div>
       <div class="approach-section_card">
-        2. Holographic Optical Transistors (HOT)
+        <p class="approach-section-card_subtitle">02 · Optical transistor</p>
+        <p class="approach-section-card_title">
+          Holographic Optical Transistors
+        </p>
+        <p class="approach-section-card_pill">HOT</p>
+        <div class="approach-section-card_tags">
+          <p class="approach-section-card_tag">switching logic</p>
+          <p class="approach-section-card_tag">optical media</p>
+          <p class="approach-section-card_tag">holographic</p>
+        </div>
       </div>
     </div>
     <p class="section-text approach-section_text">
@@ -50,6 +166,58 @@
       structured optical media, and volumetric design principles to explore how
       light can be directed and used functionally in three-dimensional pathways
       for signal transport and switching behaviour.
+    </p>
+
+    <div class="approach-section_list-container">
+      <h3 class="section-text-sm approach-section-title-sm">
+        At a high level, the architecture is being developed to:
+      </h3>
+      <ul class="approach-section_list">
+        <li>
+          <div class="approach-section-list-row">
+            <p>Signal Paths</p>
+            <p>
+              Replace selected electrical pathways with optical signal paths
+            </p>
+          </div>
+        </li>
+        <li>
+          <div class="approach-section-list-row">
+            <p>Resisitive loss</p>
+            <p>Reduce resistive losses associated with metal interconnects</p>
+          </div>
+        </li>
+        <li>
+          <div class="approach-section-list-row">
+            <p>Bandwith</p>
+            <p>Support high-bandwidth, low-latency data movement</p>
+          </div>
+        </li>
+        <li>
+          <div class="approach-section-list-row">
+            <p>Switching</p>
+            <p>
+              Investigate switching and logic behaviour within holographically
+              structured materials
+            </p>
+          </div>
+        </li>
+        <li>
+          <div class="approach-section-list-row">
+            <p>Future pathway</p>
+            <p>
+              Create a pathway toward future optical interconnect and compute
+              architectures
+            </p>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <p class="sectin-text approach-section_text">
+      This is an advanced development programme, not a claim of full
+      semiconductor replacement today. Our objective is to establish a credible
+      route toward optical technologies that could integrate with, complement,
+      or extend beyond conventional CMOS environments over time.
     </p>
   </section>
 </div>

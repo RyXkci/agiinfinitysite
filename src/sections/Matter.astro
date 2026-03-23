@@ -1,0 +1,106 @@
+<style>
+  .matters-section {
+    width: 100%;
+    padding: 3em 0;
+    background: var(--dark-900);
+  }
+  .matters-section_inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3em;
+  }
+
+  .matters-section_title {
+    color: var(--primary-500);
+    position: sticky;
+    top: 2em;
+  }
+
+  .matters-section_text {
+    grid-column: 2;
+  }
+
+  .matters-section_list-container {
+    grid-column: 2;
+  }
+
+  .matters-section-list-row {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 1em;
+    font-size: 0.9rem;
+    padding: 2em 0em;
+    border-bottom: 1px solid hsl(202, 60%, 15%);
+  }
+
+  .matters-section-list-row > p:first-child {
+    text-transform: uppercase;
+    color: var(--muted);
+    min-width: 200px;
+  }
+
+  @media screen and (min-width: 430px) {
+    .matters-section-list-row {
+      flex-direction: row;
+      justify-content: start;
+      gap: 3em;
+      text-align: left;
+    }
+  }
+</style>
+
+<div class="matters-section">
+  <section class="matters-section_inner inner-container">
+    <h1 class="section-title matters-section_title">Why this matters</h1>
+    <p class="section-text matters-section_text">
+      As compute systems continue to scale, interconnect efficiency is becoming
+      a first-order design issue. A successful optical architecture could open
+      up important advantages in areas such as:
+    </p>
+    <div class="matters-section_list-container">
+      <ul class="matters-section_list">
+        <li>
+          <div class="matters-section-list-row">
+            <p>Bandwidth density</p>
+            <p>Higher data throughput within the same physical footprint</p>
+          </div>
+        </li>
+        <li>
+          <div class="matters-section-list-row">
+            <p>Energy efficiency</p>
+            <p>In targeted data-movement applications</p>
+          </div>
+        </li>
+        <li>
+          <div class="matters-section-list-row">
+            <p>Thermal management</p>
+            <p>Reduced heat from signal transport pathways</p>
+          </div>
+        </li>
+        <li>
+          <div class="matters-section-list-row">
+            <p>Routing simplification</p>
+            <p>Reduced interconnect complexity at scale</p>
+          </div>
+        </li>
+        <li>
+          <div class="matters-section-list-row">
+            <p>AI hardware flexibility</p>
+            <p>New design space for future hardware configurations</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <p class="matters-section_text">
+      The significance of this goes beyond performance alone. In AI
+      infrastructure, the economics of power, cooling, and hardware utilisation
+      are increasingly central to commercial viability. If data can be moved
+      more efficiently, then system-level gains may follow across throughput,
+      operating cost, and scalability.
+    </p>
+  </section>
+</div>

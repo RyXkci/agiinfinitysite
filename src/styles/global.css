@@ -34,8 +34,8 @@ body {
     min-height: 100vh;
     text-rendering: optimizeSpeed;
     line-height: 1.6;
-     font-family: "Montserrat", sans-serif;
-     color: var(--white-200);
+    font-family: "Montserrat", sans-serif;
+    color: var(--white-200);
 }
 
 img,
@@ -56,9 +56,9 @@ button {
     background: none;
 }
 
- /* GLOBAL VARS */
+/* GLOBAL VARS */
 
- :root {
+:root {
     --primary-300: hsl(202, 84%, 72%);
     --primary-500: hsl(202, 84%, 52%);
     --primary-700: hsl(202, 84%, 27%);
@@ -67,30 +67,38 @@ button {
     --accent-700: hsl(29, 67%, 29%);
 
     --dark-700: hsl(202, 84%, 12%);
-    --dark-900: hsl(202, 84%, 7%);
+    --dark-800: hsl(202, 84%, 7%);
+    --dark-900: hsl(202, 84%, 4%);
 
     --white: hsl(0, 0%, 100%);
     --white-200: hsl(202, 84%, 97%);
 
     --muted: hsl(202, 15%, 75%);
 
- }
-
- .canvas-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  pointer-events: none;
-  z-index: -1;
 }
 
+.canvas-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    pointer-events: none;
+    z-index: -1;
+}
+
+
+.inner-container {
+    height: 80%;
+    padding: 2em 0em;
+    width: 90%;
+    margin: 0 auto;
+}
 
 .section-title {
     font-size: 3.5rem;
     line-height: 1.1;
-     font-family: "Exo 2", sans-serif;
+    font-family: "Exo 2", sans-serif;
     font-weight: 800;
     text-transform: uppercase;
 }

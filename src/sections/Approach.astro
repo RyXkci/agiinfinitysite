@@ -6,10 +6,16 @@
   }
 
   .approach-section-inner {
-   
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    row-gap: 2em;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+  }
+  @media screen and (min-width: 738px) {
+    .approach-section-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      row-gap: 2em;
+    }
   }
 
   .approach-section_title {

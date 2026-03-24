@@ -40,9 +40,15 @@ const programmes = [
 
 
   .devfocus-section_title {
-    align-self: center;
+    /* align-self: center; */
     grid-column: 2;
     color: var(--primary-300);
+  }
+
+  @media screen and (min-width: 738px) {
+    .devfocus-section_title {
+        align-self: center;
+    }
   }
 
   .devfocus-section_text {

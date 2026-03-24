@@ -1,0 +1,288 @@
+---
+const programmes = [
+  {
+    index: 1,
+    name: "Micro Optical · Conductors & Transistors",
+    title: "Micro Optical Conductors and Transistors",
+    abbr: "MICRO · HOC / HOT",
+    desc: `This is our micro-scale development path, intended to explore semiconductor-relevant dimensions and nearer-term integration opportunities. The focus here is on practical pathways for optical conductor and transistor-like structures that may be relevant to current or emerging computing environments.`,
+  },
+  {
+    index: 2,
+    name: "NANNI-O",
+    title: "NANNI-O",
+    abbr: "Nano Artificial Neural-Network Interface — Optical",
+    desc: `This is our nano-scale programme, focused on volumetric holographic optical structures for future AI hardware and denser compute architectures. It is intended to explore how optical pathways and switching concepts might operate in more compact, high-density environments aligned with longer-term hardware evolution.`,
+  },
+];
+---
+
+<style>
+  .devfocus-section {
+    width: 100%;
+    background-color: black;
+    padding: 3em 0em;
+  }
+
+  .devfocus-section_inner {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+  }
+
+  @media screen and (min-width: 738px) {
+  .devfocus-section_inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4em;
+  }
+  }
+
+
+  .devfocus-section_title {
+    align-self: center;
+    grid-column: 2;
+    color: var(--primary-300);
+  }
+
+  .devfocus-section_text {
+    /* margin-top: -4em; */
+    padding-bottom: 0.8em;
+    color: var(--muted);
+    grid-column: 2;
+    border-bottom: 1px solid var(--border-muted);
+  }
+
+  @media screen and (min-width: 738px) {
+    .devfocus-section_text {
+        margin-top: -4em;
+    }
+  }
+
+  .devfocus_programme {
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 0.8em;
+    margin-bottom: 4em;
+  }
+
+  .devfocus-programme-n {
+    font-size: 0.7rem;
+    color: var(--muted);
+  }
+
+  .devfocus-programme_abbr {
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: var(--primary-300);
+    border: 1px solid var(--primary-300);
+    padding: 0.3em 0.5em;
+    border-radius: 3px;
+  }
+
+  .devfocus-section_outro {
+    grid-column: 2;
+    font-size: 1.5rem;
+    color: var(--primary-300);
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 56px;
+    padding-bottom: 12px;
+    border-bottom: 0.5px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .section-index {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 9px;
+    color: rgba(255, 255, 255, 0.2);
+    letter-spacing: 0.25em;
+  }
+
+  .section-rule {
+    flex: 1;
+    height: 0.5px;
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  @media screen and (max-width: 738px) {
+    .devfocus-section_stat {
+        display: none;
+    }
+  }
+  /* Sticky stat */
+  .devfocus-section_stat {
+    grid-column: 1;
+    grid-row: 1;
+    position: sticky;
+    top: 3em;
+  }
+
+  .stat-number {
+    font-family: "Exo 2", sans-serif;
+    font-weight: 200;
+    font-size: 120px;
+    color: var(--primary-300);
+    transition:
+      color 0.5s ease,
+      opacity 0.2s ease;
+  }
+
+  .stat-name {
+    color: var(--primary-300);
+    font-size: 10px;
+    font-weight: 800;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  .dev-stat.is-active .stat-name {
+    opacity: 1;
+  }
+
+  /* Programme items */
+  .prog-item {
+    padding: 32px 0;
+    border-top: 0.5px solid rgba(255, 255, 255, 0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .prog-item.is-active {
+    border-color: rgba(141, 229, 228, 0.2);
+  }
+
+  .prog-name {
+    font-family: "Exo 2", sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.45);
+  }
+
+  .prog-item.is-active .prog-name {
+    color: #d8e8ea;
+  }
+
+  .prog-desc {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.3);
+  }
+
+  .prog-item.is-active .prog-desc {
+    color: rgba(255, 255, 255, 0.55);
+  }
+</style>
+
+<div class="devfocus-section">
+  <section class="devfocus-section_inner inner-container">
+    <h1 class="devfocus-section_title section-title">Development<br />Focus</h1>
+    <p class="devfocus-section_text section-text">
+      AGI Infinity is currently advancing two closely related directions,
+      establishing a pathway from early optical interconnect concepts toward
+      more advanced holographic optical computing structures.
+    </p>
+    {
+      programmes.map((p) => (
+        <div class="devfocus_programme" data-index={p.index} data-name={p.name}>
+          <span class="devfocus-programme-n">
+            {" "}
+            {String(p.index).padStart(2, "0")} ·{" "}
+            {p.index === 1 ? "MICRO-SCALE" : "NANO-SCALE"}
+          </span>
+          <h3 class="devfocus-programme_title">{p.title}</h3>
+
+          <span class="devfocus-programme_abbr">{p.abbr}</span>
+          <p class="devfocus-programme-text">{p.desc}</p>
+        </div>
+      ))
+    }
+
+    <p class="devfocus-section_outro">
+      Together, these programmes establish a development path from early optical
+      interconnect concepts toward more advanced holographic optical computing
+      structures.
+    </p>
+    <!-- Sticky stat -->
+    <div id="devfocusStat" class="devfocus-section_stat" data-dev-stat>
+      <div id="statNumber" class="stat-number">—</div>
+      <div id="statName" class="stat-name"></div>
+    </div>
+  </section>
+</div>
+
+<script>
+  const section = document.querySelector("[data-dev-section]") || document;
+  const statEl = document.querySelector("[data-dev-stat]");
+  // if (!statEl) return;
+
+  const numEl = document.querySelector("#statNumber");
+  const nameEl = document.querySelector("#statName");
+  const items = document.querySelectorAll(".devfocus_programme");
+
+  let currentNum = null;
+
+  function setNumber(index, name) {
+    const display = index === null ? "—" : String(index).padStart(2, "0");
+    if (display === currentNum) return;
+
+    currentNum = display;
+
+    numEl.style.opacity = "0";
+    nameEl.style.opacity = "0";
+
+    setTimeout(() => {
+      numEl.textContent = display;
+      nameEl.textContent = name || "";
+      numEl.style.opacity = "1";
+      nameEl.style.opacity = "1";
+    }, 200);
+  }
+
+  let activeItem = null;
+let hasActiveIntersection = false;
+
+const observer = new IntersectionObserver((entries) => {
+  hasActiveIntersection = false;
+
+  entries.forEach((entry) => {
+    const item = entry.target;
+
+    if (entry.isIntersecting) {
+      hasActiveIntersection = true;
+
+      if (activeItem === item) return;
+
+      activeItem = item;
+
+      items.forEach((i) => i.classList.remove("is-active"));
+      item.classList.add("is-active");
+
+      statEl.classList.add("is-active");
+
+      setNumber(
+        parseInt(item.dataset.index),
+        item.dataset.name
+      );
+    }
+  });
+
+  // ✅ If nothing is intersecting → reset
+  if (!hasActiveIntersection) {
+    activeItem = null;
+    statEl.classList.remove("is-active");
+    setNumber(null, "");
+  }
+
+}, {
+  rootMargin: "0px 0px -40% 0px",
+  threshold: 0.3,
+});
+
+  items.forEach((item) => observer.observe(item));
+</script>

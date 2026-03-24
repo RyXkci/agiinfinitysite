@@ -61,10 +61,11 @@ button {
 :root {
     --primary-300: hsl(202, 84%, 72%);
     --primary-500: hsl(202, 84%, 52%);
-    --primary-700: hsl(202, 84%, 27%);
+    --primary-700: hsl(202, 84%, 37%);
 
     --accent-500: hsl(29, 67%, 49%);
     --accent-700: hsl(29, 67%, 29%);
+    --accent-muted: hsl(29, 40%, 40%);
 
     --dark-700: hsl(202, 84%, 12%);
     --dark-800: hsl(202, 84%, 7%);
@@ -74,6 +75,8 @@ button {
     --white-200: hsl(202, 84%, 97%);
 
     --muted: hsl(202, 15%, 75%);
+
+    --border-muted: hsl(202, 60%, 15%);
 
 }
 
@@ -96,7 +99,7 @@ button {
 }
 
 .section-title {
-    font-size: 3.5rem;
+    font-size: clamp(2rem, 5vw, 3.5rem);
     line-height: 1.1;
     font-family: "Exo 2", sans-serif;
     font-weight: 800;

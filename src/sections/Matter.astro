@@ -4,16 +4,31 @@
     padding: 3em 0;
     background: var(--dark-900);
   }
+
+  .matters-section_inner {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+  }
+  @media screen and (min-width: 738px) {
   .matters-section_inner {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 3em;
   }
 
+  }
+
+  @media screen and (min-width: 738px) {
+    .matters-section_title {
+      postion: sticky;
+      top: 2em;
+    }
+  }
   .matters-section_title {
     color: var(--primary-500);
-    position: sticky;
-    top: 2em;
+    /* position: sticky;
+    top: 2em; */
   }
 
   .matters-section_text {

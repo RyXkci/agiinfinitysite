@@ -19,8 +19,10 @@
   }
 
   .approach-section_title {
-    color: var(--accent-500);
     grid-column: 1/2;
+  }
+  .approach-title_span {
+    color: var(--accent-500);
   }
 
   .approach-section_subtitle {
@@ -52,6 +54,11 @@
   .approach-section-card_title {
     font-weight: 700;
   }
+
+  .text-accent-200 {
+    color: var(white-200);
+  }
+
   .approach-section-card_subtitle {
     font-size: 0.7rem;
     color: var(--muted);
@@ -60,8 +67,8 @@
   .approach-section-card_pill {
     font-size: 0.7rem;
     font-weight: 800;
-    color: var(--primary-500);
-    border: 1px solid var(--primary-500);
+    color: var(--accent-500);
+    border: 1px solid var(--accent-500);
     padding: 0.3em 0.5em;
     border-radius: 3px;
   }
@@ -71,13 +78,14 @@
     gap: 1.3em;
     margin-top: 1.5em;
     padding-top: 1.5em;
-    border-top: 1px solid hsl(202, 60%, 35%);
+    border-top: 1px solid var(--border-muted-300);
     /* width: 50px; */
   }
   .approach-section-card_tag {
     font-size: 0.7rem;
-    background: hsl(202, 84%, 17%);
-    border: 1px solid hsl(202, 60%, 35%);
+    color: var(--white-muted);
+    background: var(--dark-600);
+    border: 1px solid var(--border-muted-300);
     border-radius: 5px;
     padding: 0.3em 0.5em;
   }
@@ -100,7 +108,7 @@
 
   .approach-section-list-row > p:first-child {
     text-transform: uppercase;
-    color: var(--muted);
+    color: var(--accent-muted);
     min-width: 200px;
   }
 
@@ -134,14 +142,16 @@
 
 <div class="approach-section">
   <section class="approach-section-inner inner-container">
-    <h2 class="section-title approach-section_title">Our <br />approach</h2>
+    <h2 class="section-title approach-section_title">
+      Our <span class="section-title_span approach-title_span">Approach</span>
+    </h2>
     <p class="section-text approach-section_subtitle">
       We are developing a platform based on two core concepts:
     </p>
     <div class="approach-section-cards-container">
       <div class="approach-section_card">
         <p class="approach-section-card_subtitle">01 · Optical conductor</p>
-        <p class="approach-section-card_title">
+        <p class="approach-section-card_title text-accent-200">
           Holographic Optical Conductors
         </p>
         <p class="approach-section-card_pill">HOC</p>
@@ -152,8 +162,8 @@
         </div>
       </div>
       <div class="approach-section_card">
-        <p class="approach-section-card_subtitle">02 · Optical transistor</p>
-        <p class="approach-section-card_title">
+        <p class="approach-section-card_subtitle ">02 · Optical transistor</p>
+        <p class="approach-section-card_title text-accent-200">
           Holographic Optical Transistors
         </p>
         <p class="approach-section-card_pill">HOT</p>
@@ -164,7 +174,7 @@
         </div>
       </div>
     </div>
-    <p class="section-text approach-section_text">
+    <p class="section-text approach-section_text text-accent-200 ">
       These structures are intended to use computer-generated nano-holography,
       structured optical media, and volumetric design principles to explore how
       light can be directed and used functionally in three-dimensional pathways

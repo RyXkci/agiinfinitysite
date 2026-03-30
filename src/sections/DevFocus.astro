@@ -31,23 +31,25 @@ const programmes = [
   }
 
   @media screen and (min-width: 738px) {
-  .devfocus-section_inner {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4em;
+    .devfocus-section_inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4em;
+    }
   }
-  }
-
 
   .devfocus-section_title {
     /* align-self: center; */
     grid-column: 2;
-    color: var(--primary-300);
+  }
+
+  .devfocus-title_span {
+    color: var(--accent-500);
   }
 
   @media screen and (min-width: 738px) {
     .devfocus-section_title {
-        align-self: center;
+      align-self: center;
     }
   }
 
@@ -61,7 +63,7 @@ const programmes = [
 
   @media screen and (min-width: 738px) {
     .devfocus-section_text {
-        margin-top: -4em;
+      margin-top: -4em;
     }
   }
 
@@ -76,14 +78,14 @@ const programmes = [
 
   .devfocus-programme-n {
     font-size: 0.7rem;
-    color: var(--muted);
+    color: var(--accent-muted);
   }
 
   .devfocus-programme_abbr {
     font-size: 0.7rem;
     font-weight: 800;
-    color: var(--primary-300);
-    border: 1px solid var(--primary-300);
+    color: var(--accent-500);
+    border: 1px solid var(--accent-500);
     padding: 0.3em 0.5em;
     border-radius: 3px;
   }
@@ -91,7 +93,7 @@ const programmes = [
   .devfocus-section_outro {
     grid-column: 2;
     font-size: 1.5rem;
-    color: var(--primary-300);
+    color: var(--accent-500);
   }
 
   .section-header {
@@ -118,7 +120,7 @@ const programmes = [
 
   @media screen and (max-width: 738px) {
     .devfocus-section_stat {
-        display: none;
+      display: none;
     }
   }
   /* Sticky stat */
@@ -133,14 +135,14 @@ const programmes = [
     font-family: "Exo 2", sans-serif;
     font-weight: 200;
     font-size: 120px;
-    color: var(--primary-300);
+    color: var(--accent-500);
     transition:
       color 0.5s ease,
       opacity 0.2s ease;
   }
 
   .stat-name {
-    color: var(--primary-300);
+    color: var(--accent-500);
     font-size: 10px;
     font-weight: 800;
     opacity: 0;
@@ -187,7 +189,11 @@ const programmes = [
 
 <div class="devfocus-section">
   <section class="devfocus-section_inner inner-container">
-    <h1 class="devfocus-section_title section-title">Development<br />Focus</h1>
+    <h1 class="devfocus-section_title section-title">
+      Development <span class="section-title_span devfocus-title_span"
+        >Focus</span
+      >
+    </h1>
     <p class="devfocus-section_text section-text">
       AGI Infinity is currently advancing two closely related directions,
       establishing a pathway from early optical interconnect concepts toward
@@ -251,44 +257,43 @@ const programmes = [
   }
 
   let activeItem = null;
-let hasActiveIntersection = false;
+  let hasActiveIntersection = false;
 
-const observer = new IntersectionObserver((entries) => {
-  hasActiveIntersection = false;
+  const observer = new IntersectionObserver(
+    (entries) => {
+      hasActiveIntersection = false;
 
-  entries.forEach((entry) => {
-    const item = entry.target;
+      entries.forEach((entry) => {
+        const item = entry.target;
 
-    if (entry.isIntersecting) {
-      hasActiveIntersection = true;
+        if (entry.isIntersecting) {
+          hasActiveIntersection = true;
 
-      if (activeItem === item) return;
+          if (activeItem === item) return;
 
-      activeItem = item;
+          activeItem = item;
 
-      items.forEach((i) => i.classList.remove("is-active"));
-      item.classList.add("is-active");
+          items.forEach((i) => i.classList.remove("is-active"));
+          item.classList.add("is-active");
 
-      statEl.classList.add("is-active");
+          statEl.classList.add("is-active");
 
-      setNumber(
-        parseInt(item.dataset.index),
-        item.dataset.name
-      );
-    }
-  });
+          setNumber(parseInt(item.dataset.index), item.dataset.name);
+        }
+      });
 
-  // ✅ If nothing is intersecting → reset
-  if (!hasActiveIntersection) {
-    activeItem = null;
-    statEl.classList.remove("is-active");
-    setNumber(null, "");
-  }
-
-}, {
-  rootMargin: "0px 0px -40% 0px",
-  threshold: 0.3,
-});
+      // ✅ If nothing is intersecting → reset
+      if (!hasActiveIntersection) {
+        activeItem = null;
+        statEl.classList.remove("is-active");
+        setNumber(null, "");
+      }
+    },
+    {
+      rootMargin: "0px 0px -40% 0px",
+      threshold: 0.3,
+    },
+  );
 
   items.forEach((item) => observer.observe(item));
 </script>

@@ -11,12 +11,11 @@
     gap: 2em;
   }
   @media screen and (min-width: 738px) {
-  .matters-section_inner {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3em;
-  }
-
+    .matters-section_inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3em;
+    }
   }
 
   @media screen and (min-width: 738px) {
@@ -26,9 +25,12 @@
     }
   }
   .matters-section_title {
-    color: var(--primary-500);
     /* position: sticky;
     top: 2em; */
+  }
+
+  .matters-title_span {
+    color: var(--primary-500);
   }
 
   .matters-section_text {
@@ -69,7 +71,10 @@
 
 <div class="matters-section">
   <section class="matters-section_inner inner-container">
-    <h1 class="section-title matters-section_title">Why this matters</h1>
+    <h1 class="section-title matters-section_title">
+      Why this <span class="section-title_span matters-title_span">Matters</span
+      >
+    </h1>
     <p class="section-text matters-section_text">
       As compute systems continue to scale, interconnect efficiency is becoming
       a first-order design issue. A successful optical architecture could open

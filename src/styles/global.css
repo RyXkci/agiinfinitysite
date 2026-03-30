@@ -63,10 +63,14 @@ button {
     --primary-500: hsl(202, 84%, 52%);
     --primary-700: hsl(202, 84%, 37%);
 
-    --accent-500: hsl(29, 67%, 49%);
-    --accent-700: hsl(29, 67%, 29%);
-    --accent-muted: hsl(29, 40%, 40%);
+    --accent-500: hsl(202, 84%, 52%);
+    --accent-muted: hsl(202, 60%, 35%);
 
+    /* --accent-500: hsl(159, 55%, 49%);
+     --accent-muted: hsl(156, 15%, 80%); */
+
+
+    --dark-600: hsl(202, 84%, 17%);
     --dark-700: hsl(202, 84%, 12%);
     --dark-800: hsl(202, 84%, 7%);
     --dark-900: hsl(202, 84%, 4%);
@@ -74,9 +78,17 @@ button {
     --white: hsl(0, 0%, 100%);
     --white-200: hsl(202, 84%, 97%);
 
+    --white-tinted: hsl(202, 84%, 97%);
+
+    /* --white-tinted: hsl(156, 93%, 93%);
+     */
+
     --muted: hsl(202, 15%, 75%);
+    /* --muted: hsl(156, 15%, 80%); */
 
     --border-muted: hsl(202, 60%, 15%);
+    --border-muted-300: hsl(202, 60%, 35%)
+    /* --border-muted: hsl(156, 25%, 35%); */
 
 }
 
@@ -107,6 +119,10 @@ button {
     text-transform: uppercase;
 }
 
+.section-title_span {
+    display: block;
+}
+
 .section-text {
     font-size: 1.1rem;
     max-width: 60ch;
@@ -115,4 +131,8 @@ button {
 .section-text-sm {
     font-size: .9rem;
 
+}
+
+.text-accent-200 {
+    color: var(--white-tinted);
 }

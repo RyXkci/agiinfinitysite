@@ -34,7 +34,8 @@ body {
     min-height: 100vh;
     text-rendering: optimizeSpeed;
     line-height: 1.6;
-    font-family: "Montserrat", sans-serif;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
     color: var(--white-200);
 }
 
@@ -88,7 +89,7 @@ button {
 
     --border-muted: hsl(202, 60%, 15%);
     --border-muted-300: hsl(202, 60%, 35%)
-    /* --border-muted: hsl(156, 25%, 35%); */
+        /* --border-muted: hsl(156, 25%, 35%); */
 
 }
 
@@ -114,7 +115,8 @@ button {
 .section-title {
     font-size: clamp(2rem, 5vw, 3.5rem);
     line-height: 1.1;
-    font-family: "Exo 2", sans-serif;
+    font-family: "Orbitron", sans-serif;
+    font-optical-sizing: auto;
     font-weight: 800;
     text-transform: uppercase;
 }
@@ -135,4 +137,9 @@ button {
 
 .text-accent-200 {
     color: var(--white-tinted);
+}
+
+.text-accent-500 {
+    color: var(--accent-500);
+    font-weight: 600;
 }

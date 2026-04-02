@@ -1,0 +1,334 @@
+<style>
+  .foundation-section {
+    /* height: 100vh; */
+    width: 100%;
+    background-color: var(--dark-900);
+  }
+
+  .foundation-inner {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    column-gap: 2em;
+  }
+
+  .foundation-section_title {
+    grid-row: 1;
+    grid-column: 1;
+  }
+
+  .foundation-title_span {
+    color: var(--accent-500);
+  }
+
+  .foundation-section_text {
+    grid-row: 2;
+    grid-column: 1;
+  }
+  .foundation-section_outro {
+    grid-row: 3;
+    grid-column: 1;
+  }
+
+  .radial-container {
+    grid-row: 1 / span 3;
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2em;
+    margin-top: 4em;
+  }
+
+  /*  RADIAL STUFF */
+  .radial {
+    position: relative;
+    /* Size is driven by the --size variable */
+    --size: min(420px, 80vw);
+    --r: calc(var(--size) * 0.38); /* radius = 38% of total size */
+    width: var(--size);
+    height: var(--size);
+  }
+
+  .hub {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: calc(var(--size) * 0.155);
+    height: calc(var(--size) * 0.155);
+    border-radius: 50%;
+    border: 1px solid var(--accent-muted);
+    background: rgba(141, 229, 228, 0.04);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    z-index: 2;
+  }
+
+  .hub-label {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: calc(var(--size) * 0.022);
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  .hub-dot {
+    width: calc(var(--size) * 0.014);
+    height: calc(var(--size) * 0.014);
+    border-radius: 50%;
+    background: rgba(141, 229, 228, 0.75);
+    margin-top: 3px;
+  }
+
+  .node {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    align-items: center;
+    gap: calc(var(--size) * 0.022);
+    z-index: 2;
+  }
+
+  .node-dot {
+    width: calc(var(--size) * 0.03);
+    height: calc(var(--size) * 0.03);
+    min-width: 10px;
+    min-height: 10px;
+    border-radius: 50%;
+    border: 1px solid var(--accent-500);
+    background: rgba(141, 229, 228, 0.08);
+    flex-shrink: 0;
+    position: relative;
+  }
+  .node-dot::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40%;
+    height: 40%;
+    border-radius: 50%;
+    background: var(--accent-500);
+  }
+
+  .node-label {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: calc(var(--size) * 0.026);
+    font-size: clamp(8px, calc(var(--size) * 0.026), 11px);
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    line-height: 1.5;
+    white-space: nowrap;
+  }
+
+  .nodes {
+    list-style: none;
+    position: absolute;
+    inset: 0;
+    /* inherits --size and --r from .radial */
+  }
+
+  /* ── Node positions ──
+   Hexagon: 6 points at 60° intervals
+   Angles: 270°(top), 330°, 30°, 90°(bottom), 150°, 210°
+   x = cos(angle) * r,  y = sin(angle) * r
+   270° → x=0,      y=-r
+   330° → x=0.866r, y=-0.5r
+    30° → x=0.866r, y=0.5r
+    90° → x=0,      y=r
+   150° → x=-0.866r,y=0.5r
+   210° → x=-0.866r,y=-0.5r
+── */
+
+  /* top */
+  .node-1 {
+    transform: translate(-50%, -50%) translate(0, calc(var(--r) * -1));
+    flex-direction: column;
+    align-items: center;
+  }
+  .node-1 .node-dot {
+    order: 2;
+  }
+  .node-1 .node-label {
+    order: 1;
+    text-align: center;
+    margin-bottom: calc(var(--size) * 0.018);
+  }
+
+  /* top-right */
+  .node-2 {
+    transform: translate(-50%, -50%)
+      translate(calc(var(--r) * 0.866), calc(var(--r) * -0.5));
+    flex-direction: row;
+  }
+
+  /* bottom-right */
+  .node-3 {
+    transform: translate(-50%, -50%)
+      translate(calc(var(--r) * 0.866), calc(var(--r) * 0.5));
+    flex-direction: row;
+  }
+
+  /* bottom */
+  .node-4 {
+    transform: translate(-50%, -50%) translate(0, var(--r));
+    flex-direction: column;
+    align-items: center;
+  }
+  .node-4 .node-label {
+    text-align: center;
+    margin-top: calc(var(--size) * 0.018);
+  }
+
+  /* bottom-left */
+  .node-5 {
+    transform: translate(-50%, -50%)
+      translate(calc(var(--r) * -0.866), calc(var(--r) * 0.5));
+    flex-direction: row-reverse;
+  }
+  .node-5 .node-label {
+    text-align: right;
+  }
+
+  /* top-left */
+  .node-6 {
+    transform: translate(-50%, -50%)
+      translate(calc(var(--r) * -0.866), calc(var(--r) * -0.5));
+    flex-direction: row-reverse;
+  }
+  .node-6 .node-label {
+    text-align: right;
+  }
+
+  .node-label {
+    /* max-width: 50px; */
+  }
+  /* Tablet: narrow left column */
+  @media (max-width: 900px) {
+    .tech-body {
+      grid-template-columns: 220px 1fr;
+    }
+    .radial {
+      --size: min(380px, 70vw);
+    }
+  }
+
+  /* Mobile: stack vertically */
+  @media (max-width: 640px) {
+    .tech-body {
+      grid-template-columns: 1fr;
+    }
+
+    .radial {
+      --size: min(340px, 85vw);
+    }
+    /* On mobile, labels can wrap */
+    .node-label {
+      white-space: normal;
+      max-width: 90px;
+    }
+  }
+
+  @media screen and (max-width: 776px) {
+    .foundation-inner {
+      grid-template-columns: 1fr;
+      gap: 2em;
+    }
+
+    .radial-container {
+      grid-row: 3;
+      grid-column: 1;
+      align-items: start;
+    }
+
+    .foundation-section_text {
+      grid-row: 4;
+    }
+
+    .foundation-section_outro {
+      grid-row: 5;
+    }
+  }
+</style>
+
+<div class="foundation-section">
+  <section class="foundation-inner inner-container">
+    <h2 class="section-title foundation-section_title">
+      Technology <span class="section-title_span foundation-title_span"
+        >Foundation</span
+      >
+    </h2>
+    <p class="section-text foundation-section_text">
+      Our technical direction is based on the idea that light can be structured,
+      directed, and potentially used functionally within three-dimensional
+      holographic forms, rather than relying solely on conventional metallic
+      wiring.
+    </p>
+    <p class="section-text text-muted foundation-section_outro">
+      This work has been shaped through several years of internal research and
+      concept development, supported by related experience in holographic
+      systems, optical design, neural-network thinking, and applied AI.
+    </p>
+
+    <div class="radial-container">
+      <p class="radial-title text-muted">
+        The platform brings together several areas of technical thinking,
+        including:
+      </p>
+      <div class="radial">
+        <div class="hub">
+          <span class="hub-label">AGI<br />∞</span>
+          <div class="hub-dot"></div>
+        </div>
+        <ul class="nodes">
+          <li class="node node-1">
+            <div class="node-dot"></div>
+            <div class="node-label">
+              Computer-generated<br />holography
+            </div>
+          </li>
+
+          <li class="node node-2">
+            <div class="node-dot"></div>
+            <div class="node-label">
+              Nano-optical<br />design
+            </div>
+          </li>
+
+          <li class="node node-3">
+            <div class="node-dot"></div>
+            <div class="node-label">
+              Volumetric optical<br />pathways
+            </div>
+          </li>
+
+          <li class="node node-4">
+            <div class="node-dot"></div>
+            <div class="node-label">Metamaterial hybrid-based</div>
+          </li>
+
+          <li class="node node-5">
+            <div class="node-dot"></div>
+            <div class="node-label">
+              Logic and switching <br />concepts
+            </div>
+          </li>
+
+          <li class="node node-6">
+            <div class="node-dot"></div>
+            <div class="node-label">
+              AI-related control <br />concepts
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</div>

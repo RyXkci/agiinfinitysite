@@ -1,0 +1,196 @@
+<style>
+  .why-section {
+    width: 100%;
+    background: var(--dark-900);
+  }
+
+  .why-section_inner {
+    display: flex;
+    flex-direction: column;
+    gap: 4em;
+  }
+
+  .why-title_span {
+    color: var(--accent-300);
+  }
+
+  @media screen and (min-width: 738px) {
+    .why-section_inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4em;
+    }
+    .why-section-title {
+      grid-column: 1;
+    }
+
+    .why-section_subtitle {
+      grid-column: 2;
+      margin-top: 2em;
+      font-size: 1.3rem;
+    }
+  }
+
+  .why-items {
+    grid-column: 1/-1;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .why-item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: clamp(32px, 4vw, 48px) 0;
+    border-top: 0.5px solid var(--border);
+    max-width: 560px;
+
+    /* Scroll reveal state */
+    /* opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); */
+  }
+
+  .why-item:nth-child(odd) {
+    align-self: flex-start;
+  }
+  .why-item:nth-child(even) {
+    align-self: flex-end;
+    text-align: left;
+  }
+
+  .why-item-n {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    color: rgba(141, 229, 228, 0.3);
+  }
+
+  .why-item-title {
+    font-family: "Orbitron", sans-serif;
+    font-weight: 700;
+    font-size: clamp(16px, 1.8vw, 22px);
+    color: var(--accent-300);
+    line-height: 1.15;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
+  .why-item-body {
+    font-size: 14px;
+    line-height: 1.85;
+    color: var(--text-mid);
+  }
+
+  .founding-track-record-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4em;
+    }
+
+    .founding-list-item {
+        font-size: 1.5rem;
+        color: var(--muted);
+    }
+</style>
+
+<div class="why-section">
+  <section class="why-section_inner inner-container">
+    <h2 class="section-title why-section-title">
+      Why <span class="section-title_span why-title_span">AGI Infinity</span>
+    </h2>
+    <p class="section_text why-section_text why-section_subtitle text-muted">
+      We believe this opportunity stands out for several reasons.
+    </p>
+    <dl class="why-items" id="why-items">
+      <div class="why-item" data-why>
+        <dt>
+          <span class="why-item-n">01</span>
+          <span class="why-item-title">A distinct architectural thesis</span>
+        </dt>
+        <dd>
+          This is not simply a faster version of a conventional chip concept. It
+          is a different way of thinking about data movement, routing, and
+          switching structure.
+        </dd>
+      </div>
+
+      <div class="why-item" data-why>
+        <dt>
+          <span class="why-item-n">02</span>
+          <span class="why-item-title"
+            >Relevance to a real and growing constraint</span
+          >
+        </dt>
+        <dd>
+          Bandwidth, power, and cooling are now central challenges in AI
+          infrastructure. Our work is aimed directly at that problem space.
+        </dd>
+      </div>
+
+      <div class="why-item" data-why>
+        <dt>
+          <span class="why-item-n">03</span>
+          <span class="why-item-title">Deep-tech differentiation</span>
+        </dt>
+        <dd>
+          The combination of volumetric holography, optical conductors, and
+          transistor-like functional structures creates a potentially
+          differentiated foundation for future IP, validation, and partnership.
+        </dd>
+      </div>
+
+      <div class="why-item" data-why>
+        <dt>
+          <span class="why-item-n">04</span>
+          <span class="why-item-title">A staged development path</span>
+        </dt>
+        <dd>
+          By pursuing both micro-scale and nano-scale directions, we are
+          building a pathway that can support nearer-term exploration while
+          maintaining a longer-term architectural vision.
+        </dd>
+      </div>
+
+      <div class="why-item" data-why>
+        <dt>
+          <span class="why-item-n">05</span>
+          <span class="why-item-title"
+            >Founders with relevant technical background</span
+          >
+        </dt>
+        <dd>
+          The company builds on experience spanning optical systems,
+          computer-generated holography, neural-network design, technical
+          computing, and applied AI development.
+        </dd>
+      </div>
+    </dl>
+
+    <h2 class="section-title founding-record_title">
+      Founding track <span class="found-record_title">record</span>
+    </h2>
+   <div class="founding-track-list-container">
+  <ul class="founding-track-record-list">
+    <li class="founding-list-item">
+      Volumetric holographic storage
+    </li>
+    <li class="founding-list-item">
+      Large-scale information categorisation
+    </li>
+    <li class="founding-list-item">
+      Applied AI and digitisation
+    </li>
+    <li class="founding-list-item">
+      Optical systems development
+    </li>
+    <li class="founding-list-item">
+      Technical computing environments for specialist scientific applications
+    </li>
+  </ul>
+</div>
+  </section>
+</div>

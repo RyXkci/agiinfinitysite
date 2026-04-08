@@ -1,0 +1,309 @@
+<style>
+  .commercial-section {
+    width: 100%;
+    /* height: 100vh; */
+    background-color: var(--dark-800);
+  }
+
+  .commercial-section_inner {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+  }
+
+  @media screen and (min-width: 738px) {
+    .commercial-section_inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      row-gap: 3em;
+    }
+  }
+
+  .commercial-section_title {
+    grid-column: 2;
+  }
+  .commercial-section_text {
+    grid-column: 2;
+  }
+  .commercial-title_span {
+    color: var(--accent-500);
+  }
+
+  .commercial-closing {
+    grid-column: 2;
+    font-size: 1.7rem;
+  }
+  .commercial-list-title {
+    font-size: 2rem;
+  }
+
+  .commercial-section-list {
+    margin: 2em 0;
+    grid-column: 1/-1;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+  }
+
+  .horizon-wrap {
+    position: relative;
+    /* padding: clamp(80px, 10vw, 140px) 0; */
+  }
+
+  /* The line */
+  .horizon-line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-50%);
+    z-index: 1;
+    overflow: hidden;
+  }
+  .horizon-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background: var(--cyan-dim);
+    transition: width 0.04s linear;
+  }
+
+.horizon-items {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto auto;
+}
+
+
+
+  .horizon-item {
+   
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding-bottom: clamp(24px, 3vw, 40px);
+
+    opacity: 0;
+    transform: translateY(-16px);
+    transition:
+      opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+
+  @media screen and (min-width: 738px) {
+  .horizon-items {
+    position: relative;
+    z-index: 2;
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto;
+    gap: 0 clamp(24px, 3vw, 48px);
+  }
+
+  .horizon-item.top {
+    grid-row: 1;
+  }
+
+  .horizon-item.bottom {
+    grid-row: 2;
+  }
+
+}
+
+  .horizon-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Dot on the horizon line */
+  .horizon-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    border: 1px solid rgba(141, 229, 228, 0.2);
+    background: var(--dark);
+    /* positioned at line level */
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+    transition:
+      border-color 0.4s ease,
+      background 0.4s ease,
+      box-shadow 0.4s ease;
+  }
+  .horizon-item.visible .horizon-dot {
+    border-color: var(--cyan-dim);
+    background: rgba(141, 229, 228, 0.08);
+    box-shadow: 0 0 8px rgba(141, 229, 228, 0.2);
+  }
+  .horizon-dot::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+    background: rgba(141, 229, 228, 0.85);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  .horizon-item.visible .horizon-dot::after {
+    opacity: 1;
+  }
+
+  .horiz-n {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: rgba(141, 229, 228, 0.3);
+  }
+  .horiz-name {
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+    font-size: clamp(13px, 1.5vw, 18px);
+    line-height: 1.3;
+    letter-spacing: -0.015em;
+    color: var(--text-high);
+  }
+
+  /* Dot positions along the line — one per column */
+  .horizon-item:nth-child(1) .horizon-dot,
+  .horizon-item:nth-child(4) .horizon-dot {
+    left: 0;
+  }
+  .horizon-item:nth-child(2) .horizon-dot,
+  .horizon-item:nth-child(5) .horizon-dot {
+    left: 33.33%;
+    margin-left: -3px;
+  }
+  .horizon-item:nth-child(3) .horizon-dot,
+  .horizon-item:nth-child(6) .horizon-dot {
+    left: 66.66%;
+    margin-left: -3px;
+  }
+</style>
+
+<div class="commercial-section">
+  <section class="commercial-section_inner inner-container">
+    <h2 class="section-title commercial-section_title">
+      Commercial <span class="section-title_span commercial-title_span"
+        >Relevance</span
+      >
+    </h2>
+    <p
+      class="section-text commercial-section_text text-accent-500"
+      id="cr-argument"
+    >
+      We believe this direction is commercially relevant because it addresses a
+      problem that is both technical and economic.
+    </p>
+    <p class="section-text commercial-section_text">
+      As AI infrastructure expands, the industry is under pressure to improve
+      system efficiency, reduce energy and cooling demand, and unlock greater
+      throughput from increasingly complex hardware environments. Architectures
+      that can improve data movement and reduce bottlenecks may become
+      increasingly valuable across advanced compute markets.
+    </p>
+
+    <div class="commercial-section-list">
+      <p class="section-text text-muted commercial-list-title">
+        If validated, our approach could be relevant to:
+      </p>
+
+      <div class="horizon-wrap" id="horizon-wrap">
+        <div class="horizon-line">
+          <div class="horizon-fill" id="horizon-fill"></div>
+        </div>
+
+        <div class="horizon-items" id="horizon-items">
+    
+          <div class="horizon-item top" data-horiz>
+            <span class="horiz-n">01</span>
+            <span class="horiz-name">Semiconductor manufacturers</span>
+            <!-- <div class="horizon-dot"></div> -->
+          </div>
+          <div class="horizon-item top" data-horiz>
+            <span class="horiz-n">02</span>
+            <span class="horiz-name">AI accelerator companies</span>
+            <!-- <div class="horizon-dot"></div> -->
+          </div>
+          <div class="horizon-item top" data-horiz>
+            <span class="horiz-n">03</span>
+            <span class="horiz-name"
+              >High-performance computing environments</span
+            >
+            <!-- <div class="horizon-dot"></div> -->
+          </div>
+
+          <!-- Bottom row: 3 items rise from below -->
+          <div class="horizon-item bottom" data-horiz>
+            <!-- <div class="horizon-dot"></div> -->
+            <span class="horiz-n">04</span>
+            <span class="horiz-name">Advanced data-centre systems</span>
+          </div>
+          <div class="horizon-item bottom" data-horiz>
+            <!-- <div class="horizon-dot"></div> -->
+            <span class="horiz-n">05</span>
+            <span class="horiz-name"
+              >Optical routing and packaging applications</span
+            >
+          </div>
+          <div class="horizon-item bottom" data-horiz>
+            <!-- <div class="horizon-dot"></div> -->
+            <span class="horiz-n">06</span>
+            <span class="horiz-name"
+              >Organisations exploring post-CMOS infrastructure opportunities</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="section-text commercial-closing text-muted">
+      Our view is not that the industry changes overnight. It is that meaningful
+      adoption may begin where the bottleneck is most painful, and where optical
+      approaches can offer the clearest system-level benefit.
+    </p>
+  </section>
+</div>
+
+<script>
+  const horizFill = document.getElementById("horizon-fill");
+  const horizWrap = document.getElementById("horizon-wrap");
+  const horizItems = Array.from(document.querySelectorAll("[data-horiz]"));
+
+  function updateHorizon() {
+    if (!horizWrap) return;
+    const rect = horizWrap.getBoundingClientRect();
+    const wrapW = horizWrap.offsetWidth;
+    const viewH = window.innerHeight;
+    const progress = Math.max(
+      0,
+      Math.min(1, (viewH - rect.top) / (rect.height + viewH * 0.4)),
+    );
+    horizFill.style.width = `${progress * 100}%`;
+
+    // Reveal items as horizon crosses their column
+    horizItems.forEach((item, i) => {
+      const col = i % 3; // 0, 1, 2
+      // Each column triggers at 20%, 50%, 80% line progress
+      const trigger = 0.15 + col * 0.25;
+      if (progress >= trigger) {
+        item.classList.add("visible");
+      }
+    });
+  }
+
+  window.addEventListener("scroll", updateHorizon, { passive: true });
+  updateHorizon();
+</script>

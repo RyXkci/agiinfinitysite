@@ -1,0 +1,280 @@
+<style>
+  .commercial-section {
+    width: 100%;
+    /* height: 100vh; */
+    background-color: var(--dark-800);
+  }
+
+  .commercial-section_inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 2em;
+  }
+
+  .commercial-section_title {
+    grid-column: 1;
+  }
+  .commercial-section_text {
+    grid-column: 1;
+  }
+  .commercial-title_span {
+    color: var(--accent-500);
+  }
+
+  /* ── Market wall ── */
+.market-wall {
+  position: relative;
+  grid-column: 1/2;
+  /* left padding creates room for the vertical line + dot */
+  padding-left: clamp(32px, 4vw, 48px);
+  margin-bottom: clamp(56px, 7vw, 96px);
+}
+ 
+/* ── Vertical line ── */
+.v-line-track {
+  position: absolute;
+  left: 0;
+  top: 8px;   /* aligns with first dot centre */
+  bottom: 8px;
+  width: 1px;
+  background: rgba(255,255,255,0.06);
+}
+ 
+/* The fill that draws downward */
+.v-line-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: var(--cyan-dim);
+  height: 0%;  /* driven by JS */
+  transition: height 0.05s linear;
+}
+ 
+/* ── Each market entry ── */
+.market-item {
+  position: relative;
+  padding: clamp(18px, 2.2vw, 28px) 0 clamp(18px, 2.2vw, 28px) clamp(24px, 3vw, 36px);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+ 
+/* Dot on the line */
+.market-dot {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 1px solid rgba(141,229,228,0.2);
+  background: var(--dark);
+  transition: border-color 0.4s ease, background 0.4s ease,
+              box-shadow 0.4s ease;
+  z-index: 2;
+}
+ 
+/* Inner dot — hidden until active */
+.market-dot::after {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  width: 3px; height: 3px;
+  border-radius: 50%;
+  background: var(--cyan-dot);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+ 
+.market-item.lit .market-dot {
+  border-color: var(--cyan-dim);
+  background: rgba(141,229,228,0.06);
+  box-shadow: 0 0 8px rgba(141,229,228,0.2);
+}
+.market-item.lit .market-dot::after { opacity: 1; }
+ 
+/* Market number */
+.market-n {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  color: var(--text-low);
+  transition: color 0.4s ease;
+}
+.market-item.lit .market-n { color: rgba(141,229,228,0.4); }
+ 
+/* Market name */
+.market-name {
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  font-size: clamp(22px, 3.2vw, 44px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--muted);
+  transition: color 0.4s ease;
+}
+
+.anchor-label {
+    font-size: 2rem;
+    color: var(--accent-500);
+  
+}
+
+/* .anchor-item {
+      position: sticky;
+    top: 2em;
+    background: var(--dark-800);
+    width:100%;
+} */
+.market-item.lit .market-name {
+  color: rgba(216,232,234,0.85);
+}
+ 
+/* ── Closing ── */
+.cr-closing {
+  max-width: 600px;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+</style>
+
+<div class="commercial-section">
+  <section class="commercial-section_inner inner-container">
+    <h2 class="section-title commercial-section_title">
+      Commercial <span class="section-title_span commercial-title_span"
+        >Relevance</span
+      >
+    </h2>
+    <p class="section-text commercial-section_text text-accent-500" id="cr-argument">
+      We believe this direction is commercially relevant because it addresses a
+      problem that is both technical and economic.
+    </p>
+    <p class="section-text commercial-section_text">
+      As AI infrastructure expands, the industry is under pressure to improve
+      system efficiency, reduce energy and cooling demand, and unlock greater
+      throughput from increasingly complex hardware environments. Architectures
+      that can improve data movement and reduce bottlenecks may become
+      increasingly valuable across advanced compute markets.
+    </p>
+
+    <div class="market-wall" id="market-wall">
+      <!-- Vertical line — originates at the if-validated statement -->
+      <div class="v-line-track">
+        <div class="v-line-fill" id="v-line-fill"></div>
+      </div>
+
+      <!-- Anchor: if validated — where the line begins -->
+      <div class="market-item anchor-item">
+        <!-- <div class="market-dot"></div> -->
+        <span class="anchor-label"
+          >If validated, our approach<br />could be relevant to:</span
+        >
+      </div>
+
+      <div class="market-item" data-market="0">
+        <div class="market-dot"></div>
+        <span class="market-n">01</span>
+        <span class="market-name">Semiconductor manufacturers</span>
+      </div>
+
+      <div class="market-item" data-market="1">
+        <div class="market-dot"></div>
+        <span class="market-n">02</span>
+        <span class="market-name">AI accelerator companies</span>
+      </div>
+
+      <div class="market-item" data-market="2">
+        <div class="market-dot"></div>
+        <span class="market-n">03</span>
+        <span class="market-name">High-performance computing environments</span>
+      </div>
+
+      <div class="market-item" data-market="3">
+        <div class="market-dot"></div>
+        <span class="market-n">04</span>
+        <span class="market-name">Advanced data-centre systems</span>
+      </div>
+
+      <div class="market-item" data-market="4">
+        <div class="market-dot"></div>
+        <span class="market-n">05</span>
+        <span class="market-name"
+          >Optical routing and packaging applications</span
+        >
+      </div>
+
+      <div class="market-item" data-market="5">
+        <div class="market-dot"></div>
+        <span class="market-n">06</span>
+        <span class="market-name"
+          >Organisations exploring post-CMOS infrastructure opportunities</span
+        >
+      </div>
+    </div>
+
+    <div class="cr-closing" id="cr-closing">
+      <p>
+        Our view is not that the industry changes overnight. It is that
+        meaningful adoption may begin where the bottleneck is most painful, and
+        where optical approaches can offer the clearest system-level benefit.
+      </p>
+    </div>
+  </section>
+</div>
+
+<script>
+
+const wall     = document.getElementById('market-wall');
+const lineFill = document.getElementById('v-line-fill');
+const items    = Array.from(document.querySelectorAll('[data-market]'));
+ 
+// ── Progressive line + dot reveal on scroll ──
+function updateLine() {
+  const wallRect  = wall.getBoundingClientRect();
+  const wallH     = wall.offsetHeight;
+  const viewH     = window.innerHeight;
+ 
+  // How far the viewport has scrolled through the wall
+  // 0 = top of wall at bottom of screen, 1 = bottom of wall at top of screen
+  const progress = Math.max(0, Math.min(1,
+    (viewH - wallRect.top) / (wallH + viewH)
+  ));
+ 
+  // Line fill height
+  lineFill.style.height = `${progress * 100}%`;
+ 
+  // Light up dots as line passes their centre
+  items.forEach(item => {
+    const dotEl   = item.querySelector('.market-dot');
+    const itemRect = item.getBoundingClientRect();
+    const dotY    = itemRect.top + itemRect.height / 2;
+ 
+    // Dot lights when line has passed it (dot is above midpoint of viewport)
+    if (dotY < viewH * 0.65) {
+      item.classList.add('lit');
+    } else {
+      item.classList.remove('lit');
+    }
+  });
+}
+ 
+window.addEventListener('scroll', updateLine, { passive: true });
+updateLine(); // run on load
+ 
+// ── Fade-in: argument + closing ──
+const fadeObs = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      fadeObs.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.2 });
+ 
+fadeObs.observe(document.getElementById('cr-argument'));
+fadeObs.observe(document.getElementById('cr-closing'));
+</script>

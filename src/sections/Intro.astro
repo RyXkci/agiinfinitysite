@@ -1,0 +1,62 @@
+<style>
+  .intro-section {
+    width: 100%;
+    background-color: var(--dark-900);
+  }
+  .intro-section_inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 200px;
+  }
+
+  .intro-section_text {
+    position: relative;
+    padding: 1em;
+    text-align: center;
+    font-size: 1.5rem;
+    color: var(--muted);
+  }
+
+  .intro-section_text:first-child {
+    margin-top: 200px;
+  }
+
+  .intro-section_text::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    width: 50%;
+    border-left: 1px solid var(--accent-muted);
+    height: 200px;
+    bottom: 100%;
+  }
+</style>
+
+<div class="section intro-section">
+  <div class="intro-section_inner inner-container">
+    <p class="intro-section_text section-text">
+      AI systems are scaling rapidly, but the hardware beneath them is under
+      growing pressure. As performance demands rise, so do the costs of moving
+      data efficiently. Bandwidth limits, heat, energy consumption, routing
+      complexity, and cooling overhead are becoming critical constraints across
+      advanced computing.
+    </p>
+    <p class="intro-section_text section-text">
+      AGI Infinity is developing a new class of volumetric holographic optical
+      conductors and transistor-like structures designed to explore an
+      alternative to conventional electrical interconnects at hybrid, micro- and
+      nano-scale dimensions.
+    </p>
+    <p class="intro-section_text section-text">
+      Our work is focused on whether computer-generated holographic optical
+      structures can provide a practical route to higher-bandwidth, lower-loss
+      data movement and, over time, more advanced optical logic capability for
+      future computing systems.
+    </p>
+    <p class="intro-section_text section-text">
+      We believe the next major shift in AI infrastructure may depend not only
+      on faster processing, but on a better way to move and manipulate data.
+    </p>
+  </div>
+</div>

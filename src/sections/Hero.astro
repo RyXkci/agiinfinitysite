@@ -1,0 +1,62 @@
+<style>
+  .hero {
+    height: 100vh;
+    width: 100%;
+    background-color: var(--dark-900);
+    display: flex;
+    place-items: center;
+  }
+
+  .hero-inner {
+    height: 80%;
+    width: 90%;
+    margin: 0 auto;
+    max-width: 1400px;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    /* gap: 2rem; */
+  }
+
+  .hero_logo {
+    background: url("public/images/agiinfinity-logo.png");
+    height: 350px;
+    width: 350px;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .hero_title {
+    font-family: "Orbitron", sans-serif;
+    font-size: 4rem;
+    text-align: center;
+    line-height: 1.1;
+    color: var(--accent-500);
+    margin-bottom: 0.5em;
+  }
+
+  .hero-title_span {
+    display: block;
+    color: var(--accent-300);
+  }
+
+  .hero_subtitle {
+    font-size: 1.75rem;
+    max-width: 60ch;
+    text-align: center;
+  }
+</style>
+
+<div class="hero">
+  <section class="hero-inner">
+    <div class="hero_logo"></div>
+    <h1 class="hero_title">
+      <span class="hero-title_span">Replacing Wires </span>With Waves
+    </h1>
+    <p class="hero_subtitle">
+      Developing volumetric holographic optical architecture for the next era of
+      AI infrastructure
+    </p>
+  </section>
+</div>

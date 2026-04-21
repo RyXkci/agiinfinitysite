@@ -11,24 +11,35 @@ import TechFoundation from "../sections/TechFoundation.astro";
 // import Commercial from "../sections/Commercial.astro";
 import Commercial from "../sections/Commercial-2.astro";
 import WhyAGI from "../sections/WhyAGI.astro";
+import WhereWeAre from "../sections/WhereWeAre.astro";
+import Working from "../sections/WorkingWithUs.astro"
+import Contact from "../sections/Contact.astro";
+import Footer from "../sections/Footer.astro"
 
-
-
-import ParticleCanvas from "../canvas/ParticleCanvas.astro"
+import ParticleCanvas from "../canvas/ParticleCanvas.astro";
 ---
+
 <BaseLayout>
   <Hero />
+  <main class="main" id="main">
   <Intro />
-<Challenge />
-<Approach />
-<Matter />
-<DevFocus />
-<TechFoundation />
-<Commercial />
-<WhyAGI />
+
+  <Challenge />
+  <Approach />
+  <Matter />
+  <DevFocus />
+  <TechFoundation />
+  <Commercial />
+  <WhyAGI />
+  <WhereWeAre />
+  <Working />
+  <Contact />
+
+  </main>
+  <Footer />
+</BaseLayout>
 <!-- 
  <div class="canvas-container">
 
     <ParticleCanvas />
   </div> -->
-</BaseLayout>

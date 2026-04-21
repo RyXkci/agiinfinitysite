@@ -89,7 +89,7 @@ button {
     /* --muted: hsl(156, 15%, 80%); */
 
     --border-muted: hsl(202, 60%, 15%);
-    --border-muted-300: hsl(202, 60%, 35%)
+    --border-muted-300: hsl(202, 60%, 35%);
         /* --border-muted: hsl(156, 25%, 35%); */
 
 }
@@ -127,7 +127,7 @@ button {
 }
 
 .section-text {
-    font-size: 1.1rem;
+    font-size: 1.25rem;
     max-width: 60ch;
 }
 

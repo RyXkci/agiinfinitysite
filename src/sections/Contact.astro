@@ -1,0 +1,54 @@
+<style>
+  .contact-section {
+    /* height: 100vh; */
+    width: 100%;
+    background: var(--dark-900);
+    padding-top: 12rem;
+  }
+
+  .contact-section_inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    text-align: center;
+  }
+
+  .contact_single-title {
+    font-size: 1.7rem;
+  }
+
+  .contact-single_link a {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--white-tinted);
+    text-decoration: none;
+  }
+
+  @media screen and (min-width: 670px) {
+    .contact-single_link a {
+      letter-spacing: 0.3em;
+    }
+  }
+</style>
+
+<div class="contact-section">
+  <section class="contact-section_inner container">
+    <h2 class="contact_title section-title">Contact</h2>
+    <p class="contact_single-title">For any enquiries, please contact:</p>
+    <p class="contact-single_link">
+      <a href="mailto:enquiries@fridaystreetpr.com"
+        >enquiries@fridaystreetpr.com</a
+      >
+      <!-- <div class="contact-details">
+        <p>AGI Infinity Limited</p>
+        <p>14a Grange Park</p>
+        <p>Bishop’s Stortford</p>
+        <p>England</p>
+        <p>CM23 2HX</p>
+        <p>Company Number: 15989652</p>
+      </div> -->
+    </p>
+  </section>
+</div>

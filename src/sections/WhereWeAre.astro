@@ -1,0 +1,94 @@
+<style>
+  .where-section {
+    width: 100%;
+    background-color: var(--dark-800);
+  }
+
+  .where-section_inner {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    /* justify-content: center; */
+    /* align-items: center; */
+  }
+
+  @media screen and (min-width: 770px) {
+    .where-section_inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      row-gap: 2rem;
+    }
+
+    .where_title {
+      grid-column: 1;
+    }
+
+    .where_title {
+      grid-column: 1;
+    }
+
+    .where-section_text {
+      grid-column: 1;
+    }
+
+    .where-section_list-title {
+      grid-column: 1;
+    }
+
+    .where_list {
+      grid-column: 1;
+    }
+  }
+
+  .where-title_span {
+    color: var(--accent-300);
+  }
+  .where-section_text {
+    color: var(--white-tinted);
+  }
+
+  .where-section_list-title {
+    font-size: clamp(1.15rem, 4vw, 1.8rem);
+    text-transform: uppercase;
+    font-family: "Orbitron", sans-serif;
+    font-weight: 700;
+    color: var(--accent-300);
+  }
+
+  .where_list {
+    display: flex;
+    flex-direction: column;
+    gap: 4em;
+  }
+
+  .where-list-item {
+    font-size: 1.5rem;
+  }
+</style>
+
+<div class="where-section">
+  <section class="where-section_inner inner-container">
+    <h2 class="where_title section-title">
+      Where we are <span class="where-title_span section-title_span">now</span>
+    </h2>
+    <p class="where-section_text section-text">
+      We are currently focused on refining the technical story, progressing IP
+      protection, and building the right relationships for validation and
+      commercial development.
+    </p>
+
+    <p class="where-section_list-title section-text">
+      At this stage, our priority is to engage with:
+    </p>
+
+    <ul class="where_list">
+      <li class="where-list-item">Strategic investors,</li>
+      <li class="where-list-item">Semiconductor and photonics partners,</li>
+      <li class="where-list-item">Technical collaborators,</li>
+      <li class="where-list-item">Research and engineering specialists,</li>
+      <li class="where-list-item">
+        And organisations interested in next-generation AI infrastructure.
+      </li>
+    </ul>
+  </section>
+</div>

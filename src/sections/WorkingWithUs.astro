@@ -1,0 +1,87 @@
+<style>
+  .working {
+    /* height: 100vh; */
+    width: 100%;
+    background-color: var(--dark-900);
+  }
+
+  .working_inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .working_main-text {
+    font-size: clamp(1.15rem, 4vw, 1.8rem);
+    font-weight: 800;
+    font-family: "Orbitron", sans-serif;
+    color: var(--accent-300);
+    max-width: 40ch;
+  }
+
+  .working_list-title {
+    font-size: 1.5rem;
+    color: var(--muted);
+    margin-bottom: 2em;
+  }
+
+  .working_list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5em;
+  }
+
+  .working_list-item {
+    font-size: 1.5rem;
+    position: relative;
+    padding: 0.3em;
+  }
+  .working_list-item:before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    width: 50%;
+    border-left: 1px solid var(--border-muted);
+    height: 1.75em;
+    bottom: 100%;
+  }
+  .working_list-item:last-child:after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    width: 50%;
+    border-left: 1px solid var(--accent-muted);
+    height: 10em;
+    top: 100%;
+  }
+</style>
+
+<div class="working">
+  <section class="working_inner inner-container">
+    <h2 class="working_title section-title">
+      Working with <span class="working-title_span section-title_span">us</span>
+    </h2>
+    <p class="working_main-text section-text">
+      AGI Infinity is seeking to build the partnerships needed to take this work
+      from concept development into broader technical validation and commercial
+      positioning.
+    </p>
+
+    <p class="working_list-title">That includes discussions around:</p>
+
+    <ul class="working_list">
+      <li class="working_list-item">Strategic investment,</li>
+      <li class="working_list-item">Technical collaboration,</li>
+      <li class="working_list-item">
+        Semiconductor and photonics integration pathways,
+      </li>
+      <li class="working_list-item">Validation and prototyping support,</li>
+      <li class="working_list-item">And longer-term commercial development.</li>
+    </ul>
+  </section>
+</div>

@@ -37,6 +37,7 @@ body {
     font-family: "Inter", sans-serif;
     font-optical-sizing: auto;
     color: var(--white-200);
+    background: var(--dark-900);
 }
 
 img,
@@ -134,6 +135,10 @@ button {
 .section-text-sm {
     font-size: .9rem;
 
+}
+
+.section-text-bg {
+    font-size: 2rem;
 }
 
 .text-accent-200 {
